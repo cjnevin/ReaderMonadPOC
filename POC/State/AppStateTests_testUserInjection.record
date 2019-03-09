@@ -1,13 +1,16 @@
 Core.DatabaseRecorder
 ▿ 1 element
-  - "write User 9F6C5471-5BA6-4DB3-85C9-F66647EC8C0A - success()"
+  - "write User id1 - success()"
 Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
 ▿ 2 elements
   ▿ (4 elements)
     - .0: false
     - .1: true
     ▿ .2: POC.AppAction.users
-      - users: POC.AppAction.Users.inject
+      ▿ users: POC.AppAction.Users.inject
+        ▿ inject: POC.User
+          - id: "id1"
+          - name: "name1"
     ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.immediate
       ▿ immediate: Core.Effect<Core.Reader<World.World, POC.AppAction>>.background
         ▿ background: Core.Reader<World.World, POC.AppAction>
@@ -18,8 +21,8 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
     ▿ .2: POC.AppAction.users
       ▿ users: POC.AppAction.Users.injected
         ▿ injected: POC.User
-          - id: "9F6C5471-5BA6-4DB3-85C9-F66647EC8C0A"
-          - name: "s0DMSFKve4yC9IZ"
+          - id: "id1"
+          - name: "name1"
     ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.immediate
       ▿ immediate: Core.Effect<Core.Reader<World.World, POC.AppAction>>.sequence
         - sequence: 0 elements

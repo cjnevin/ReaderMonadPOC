@@ -61,7 +61,7 @@ class UserListViewController: UITableViewController {
             users.items = latestUsers
         }
         injectTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
-            store.dispatch(.users(.inject))
+            store.dispatch(.users(.inject(.random())))
         }
     }
 

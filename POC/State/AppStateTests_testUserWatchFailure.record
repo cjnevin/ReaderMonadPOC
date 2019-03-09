@@ -15,7 +15,7 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
             - g: (Function)
         ▿ .1: Core.CompositeDisposable #0
           - isDisposed: false
-          ▿ disposables: 4 elements
+          ▿ disposables: 3 elements
             ▿ Core.Sink<Core.Observer<POC.AppAction, World.WorldError>> #1
               - isDisposed: false
               ▿ forward: Core.Observer<POC.AppAction, World.WorldError> #2
@@ -66,14 +66,6 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
                 - handler: (Function)
               - subscriptionHandler: (Function)
               ▿ disposable: Core.CompositeDisposable #20
-                - isDisposed: true
-                - disposables: 0 elements
-            ▿ Core.Sink<Core.Observer<POC.AppAction, World.WorldError>> #21
-              - isDisposed: true
-              ▿ forward: Core.Observer<POC.AppAction, World.WorldError> #22
-                - handler: (Function)
-              - subscriptionHandler: (Function)
-              ▿ disposable: Core.CompositeDisposable #23
                 - isDisposed: true
                 - disposables: 0 elements
   ▿ (4 elements)

@@ -56,9 +56,9 @@ internal extension Prism where Part == AppAction.Download {
 
 extension AppAction.Users {
     internal enum prism {
-        internal static let inject = Prism<AppAction.Users, ()>(
-            preview: { if case .inject = $0 { return () } else { return nil } },
-            review: { .inject })
+        internal static let inject = Prism<AppAction.Users, User>(
+            preview: { if case .inject(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .inject(x1) })
         internal static let injected = Prism<AppAction.Users, User>(
             preview: { if case .injected(let value) = $0 { return value } else { return nil } },
             review: { (x1) in .injected(x1) })
@@ -75,7 +75,7 @@ extension AppAction.Users {
 }
 
 internal extension Prism where Part == AppAction.Users {
-	var inject: Prism<Whole, Void> {
+	var inject: Prism<Whole, User> {
 		return self • AppAction.Users.prism.inject
 	}
 	var injected: Prism<Whole, User> {

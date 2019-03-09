@@ -21,7 +21,7 @@ enum AppAction {
 
     //sourcery:prism=chain
     enum Users {
-        case inject
+        case inject(User)
         case injected(User)
 
         case watch
@@ -53,9 +53,9 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
         }
     case .users(let users):
         switch users {
-        case .inject:
+        case .inject(let user):
             state.isLoading = true
-            return .immediate(.background(injectUser))
+            return .immediate(.background(inject(user: user)))
         case .injected(let user):
             state.isLoading = false
             return .identity
@@ -86,10 +86,11 @@ private let downloadTheInternet
     = download(url: google, cacheAt: cache, thenMoveTo: downloads)
         >>>= { .pure($0.map(AppAction.prism.download.complete.review) ?? AppAction.download(.failed)) }
 
-private let injectUser
-    = ImmediateResult { _ in .success(User(id: UUID().uuidString, name: randomString(length: 15))) }
+private func inject(user: User) -> WorldReader<AppAction> {
+    return .pure(user)
         >>>= { writeToDatabase($0, for: $0.id) }
         >>>= { .pure($0.map(AppAction.prism.users.injected.review) ?? AppAction.users(.failed)) }
+}
 
 private func fetchUsers() -> Recurring<AppAction> {
     return Recurring<AppAction> { world in
@@ -113,7 +114,13 @@ func disposal(for screen: Screen) -> () -> CompositeDisposable {
     }
 }
 
-func randomString(length: Int) -> String {
+extension User {
+    static func random() -> User {
+        return User(id: UUID().uuidString, name: randomString(length: 15))
+    }
+}
+
+private func randomString(length: Int) -> String {
     let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     return String((0...length-1).map{ _ in letters.randomElement()! })
 }

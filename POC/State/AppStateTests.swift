@@ -25,7 +25,7 @@ class AppStateTests: WorldStoreTest {
     }
 
     func testUserInjection() {
-        store.dispatch(.users(.inject))
+        store.dispatch(.users(.inject(User(id: "id1", name: "name1"))))
         assert(keyPath: \AppState.isLoading)
     }
 
@@ -36,8 +36,6 @@ class AppStateTests: WorldStoreTest {
 
     func testUserWatchSuccess() {
         _ = testableWorld.database.write(User(id: "id1", name: "name1"), for: "id1")
-        _ = testableWorld.database.write(User(id: "id2", name: "name2"), for: "id2")
-        _ = testableWorld.database.write(User(id: "id3", name: "name3"), for: "id3")
         store.dispatch(.users(.watch))
         assert(keyPath: \AppState.latestUsers)
     }
