@@ -27,6 +27,10 @@ These tests run synchronously, so we can test an entire flow such as login in a 
 
 You can run in both `record` mode and `play` mode. Record will dump what you should store in a file which will be used each time that test is run. 
 
+I have implemented a rudimentary version which works for simple data types.
+
+There is a nicer version available here: https://github.com/pointfreeco/swift-snapshot-testing
+
 **Make sure you review the file to ensure logic is what you expect.**
 
 ## Tests
