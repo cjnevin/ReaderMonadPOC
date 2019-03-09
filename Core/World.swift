@@ -39,6 +39,7 @@ public typealias WorldReaderEffect<T> = Effect<WorldReader<T>>
 public typealias WorldInterpreter<T> = Interpreter<World, T>
 public typealias WorldInterpreterRecorder<T> = InterpreterRecorder<World, T>
 public typealias WorldReducer<S, A> = Reducer<S, A, World>
+public typealias WorldStore<S, A> = Store<S, A, World>
 
 public typealias WorldIO<T> = WorldReader<T>
 public typealias WorldIOResult<T> = WorldIO<WorldResult<T>>

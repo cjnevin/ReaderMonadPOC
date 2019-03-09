@@ -10,15 +10,15 @@ import XCTest
 import Core
 @testable import POC
 
-class AppStateTests: StoreTest {
+class AppStateTests: WorldStoreTest {
     func testDownloadFailure() {
-        downloadResult = .failure(.unknown)
+        testableWorld.downloadResult = .failure(.unknown)
         store.dispatch(.download(.start))
         assert(keyPath: \AppState.isLoading)
     }
 
     func testDownloadSuccess() {
-        downloadResult = .success(Data())
+        testableWorld.downloadResult = .success(Data())
         store.dispatch(.download(.start))
         assert(keyPath: \AppState.isLoading)
     }
@@ -29,7 +29,7 @@ class AppStateTests: StoreTest {
     }
 
     func testLoginFailure() {
-        database.writeError = .notWritable
+        testableWorld.database.writeError = .notWritable
         store.dispatch(.login(.send))
         assert(keyPaths: \AppState.user, \AppState.isLoading)
     }

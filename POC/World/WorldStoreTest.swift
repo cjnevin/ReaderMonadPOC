@@ -1,5 +1,5 @@
 //
-//  StoreTest.swift
+//  WorldStoreTest.swift
 //  POCTests
 //
 //  Created by Chris Nevin on 08/03/2019.
@@ -29,92 +29,64 @@ enum OutputSpecVersion {
     }
 }
 
-class StoreTest: XCTestCase {
+class WorldStoreTest: XCTestCase {
     var recordMode: RecordMode = .play
     var outputSpecVersion: OutputSpecVersion = .one
 
-    var database = TestableDatabase(MemoryDatabase())
-    var databaseRecorder: DatabaseRecorder!
-
-    var downloadResult: Download = Download.failure(.unknown)
-    var downloadRecorder: DownloadRecorder!
-
-    var disk: Disk = MemoryDisk()
-    var diskRecorder: DiskRecorder!
-
-    var reducer: Reducer<AppState, AppAction, World>! = appReducer
-    var reducerRecorder: ReducerRecorder<AppState, AppAction, World>!
-
     var store: Store<AppState, AppAction, World>!
-
-    var sync: Sync = mainSync
+    var world: World!
 
     var outputRecorder: OutputRecorder!
 
-    var world: World!
-    var interpreter: WorldInterpreter<AppAction>!
+    var testableStore = TestableWorldStore()
+    var testableWorld = TestableWorld()
 
     override func setUp() {
         super.setUp()
-        reducerRecorder = ReducerRecorder(reducer: reducer)
-        downloadRecorder = DownloadRecorder { _ in self.downloadResult }
-        diskRecorder = DiskRecorder(disk)
-        databaseRecorder = DatabaseRecorder(database)
-
-        world = World(
-            database: databaseRecorder,
-            download: downloadRecorder.downloader,
-            disk: diskRecorder,
-            sync: sync)
-        interpreter = worldInterpreter(world: world)
-
-        store = Store(
-            reducer: reducerRecorder.reducer,
-            interpreter: interpreter,
-            initialState: AppState())
-
+        world = testableWorld.makeWorld()
+        store = testableStore.makeStore(world: world)
         outputRecorder = OutputRecorder()
     }
 
     func testRecordModeOff() {
-        if type(of: self) == StoreTest.self {
+        if type(of: self) == WorldStoreTest.self {
             XCTAssert(recordMode == .play)
         }
     }
 
     func assert(file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
-        XCTAssert(type(of: self) != StoreTest.self)
+        XCTAssert(type(of: self) != WorldStoreTest.self)
         outputAll(reducerEvents: [])
         finalise(file: file, function: function, line: line)
     }
 
     func assert<T>(keyPath: KeyPath<AppState, T>, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
-        XCTAssert(type(of: self) != StoreTest.self)
-        outputAll(reducerEvents: reducerRecorder[keyPath])
+        XCTAssert(type(of: self) != WorldStoreTest.self)
+        outputAll(reducerEvents: testableStore.reducerRecorder[keyPath])
         finalise(file: file, function: function, line: line)
     }
 
     func assert<T, U>(keyPaths keyPath1: KeyPath<AppState, T>, _ keyPath2: KeyPath<AppState, U>, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
-        XCTAssert(type(of: self) != StoreTest.self)
-        outputAll(reducerEvents: reducerRecorder[keyPath1, keyPath2])
+        XCTAssert(type(of: self) != WorldStoreTest.self)
+        outputAll(reducerEvents: testableStore.reducerRecorder[keyPath1, keyPath2])
         finalise(file: file, function: function, line: line)
     }
 
     func assert<T, U, V>(keyPaths keyPath1: KeyPath<AppState, T>, _ keyPath2: KeyPath<AppState, U>, _ keyPath3: KeyPath<AppState, V>, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
-        XCTAssert(type(of: self) != StoreTest.self)
-        outputAll(reducerEvents: reducerRecorder[keyPath1, keyPath2, keyPath3])
+        XCTAssert(type(of: self) != WorldStoreTest.self)
+        outputAll(reducerEvents: testableStore.reducerRecorder[keyPath1, keyPath2, keyPath3])
         finalise(file: file, function: function, line: line)
-    }
-
-    private func outputAll(reducerEvents: [Any]) {
-        output(databaseRecorder)
-        output(diskRecorder)
-        output(downloadRecorder)
-        output(reducerRecorder, events: reducerEvents)
     }
 
     private func output<T: Recorder>(_ recorder: T, events: [Any] = []) {
         outputSpecVersion.output(recorder, events: events.isEmpty ? recorder.events : events, to: &outputRecorder)
+    }
+
+    private func outputAll(reducerEvents: [Any]) {
+        output(testableWorld.databaseRecorder)
+        output(testableWorld.diskRecorder)
+        output(testableWorld.downloadRecorder)
+        output(testableStore.reducerRecorder, events: reducerEvents)
     }
 
     private func finalise(file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
@@ -128,7 +100,7 @@ class StoreTest: XCTestCase {
             print("\n\n!!!! Copy the above into a file called: \(name).\(ext) !!!!\n")
             XCTFail("Please disable recordMode once you have generated output")
         } else {
-            let path = Bundle(for: StoreTest.self).path(forResource: name, ofType: ext)!
+            let path = Bundle(for: WorldStoreTest.self).path(forResource: name, ofType: ext)!
             let content = try! String(contentsOfFile: path).trimmingCharacters(in: .whitespacesAndNewlines)
             XCTAssertEqual(outputRecorder.result, content, file: file, line: line)
         }
