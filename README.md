@@ -18,6 +18,8 @@ Redux allows us to control when the global state of the application can change a
 
 It (and other unidirectional architectures) are a fundamental part in making applications safe by reducing the potential for dead-locks and race-conditions practically to zero (if you implement it correctly).
 
+Read more: https://itnext.io/functional-architecture-e9031090ff18
+
 ## Snapshot Tests
 Snapshot will be used to compare the previous recorded state with the current in memory state. Tests will fail if they do not match.
 
