@@ -39,7 +39,6 @@ struct AppState {
 }
 
 let appReducer = WorldReducer<AppState, AppAction> { state, action in
-    let dispose = disposal(for: .root)
     switch action {
     case .download(let download):
         switch download {
@@ -61,7 +60,7 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
             return .identity
         case .watch:
             state.isLoading = true
-            return .recurring(.main(fetchUsers()), dispose())
+            return .recurring(.main(fetchUsers()), disposal(for: .userList)())
         case .received(let allUsers):
             state.latestUsers = allUsers.last(10).sorted()
             state.isLoading = false

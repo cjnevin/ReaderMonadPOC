@@ -1,14 +1,11 @@
 //
-//  Screen.swift
+//  UserDetailViewController.swift
 //  POC
 //
 //  Created by Chris Nevin on 09/03/2019.
 //  Copyright © 2019 Chris Nevin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-enum Screen: String, Hashable {
-    case userList
-    case userDetails
-}
+class UserDetailViewController: UIViewController { }
