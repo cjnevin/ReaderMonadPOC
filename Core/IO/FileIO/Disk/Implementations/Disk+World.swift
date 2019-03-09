@@ -34,9 +34,3 @@ public func writeFile(to path: URL) -> (Data) -> WorldIOResult<Void> {
 public func copyFile(from source: URL, to destination: URL) -> WorldIOResult<Void> {
     return readFile(at: source) >>>= writeFile(to: destination)
 }
-
-public func download(url: URL, cacheAt cache: URL, thenMoveTo destination: URL) -> WorldIOResult<Void> {
-    return download(from: url, into: cache)
-        >>>= { copyFile(from: cache, to: destination) }
-        >>>= { deleteFile(at: cache) }
-}
