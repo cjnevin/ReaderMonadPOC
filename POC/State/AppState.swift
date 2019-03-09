@@ -61,16 +61,13 @@ private let google = URL(string: "https://www.google.com")!
 private let downloadToCache = download(from: google, into: "cache")
 private let copyToDocuments = copyFile(from: "cache", to: "documents")
 private let deleteFromCache = deleteFile(at: "cache")
-private let downloadToDocuments
+private let downloadThenComplete
     = downloadToCache
         >>>= { copyToDocuments }
         >>>= { deleteFromCache }
-private let downloadThenComplete = downloadToDocuments
-    .map { $0.map { AppAction.download(.complete) } ?? AppAction.download(.failed) }
+        >>>= { .pure($0.map { AppAction.download(.complete) } ?? AppAction.download(.failed)) }
 
-
-private let fakeLogin
+private let sendCredentials
     = WorldReader.pure(User(id: "id", name: "name"))
         >>>= { writeToDatabase($0, for: $0.id) }
-private let sendCredentials = fakeLogin
-    .map { $0.map { AppAction.login(.success($0)) } ?? AppAction.login(.failed) }
+        >>>= { .pure($0.map { AppAction.login(.success($0)) } ?? AppAction.login(.failed)) }
