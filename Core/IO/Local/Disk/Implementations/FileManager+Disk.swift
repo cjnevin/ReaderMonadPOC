@@ -20,7 +20,7 @@ extension FileManager: Disk {
     }
 
     public func write(_ value: Data, to path: URL) -> Result<Void, WriteError> {
-        return Try { try value.write(to: path, options: .atomicWrite) }
+        return Try { try value.write(to: path, options: .init(rawValue: 0)) }
             .result(WriteError.notWritable)
     }
 }

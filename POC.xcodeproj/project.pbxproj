@@ -362,12 +362,12 @@
 			path = Optics;
 			sourceTree = "<group>";
 		};
-		834DDF552233B6AC004C9C4F /* FileIO */ = {
+		834DDF552233B6AC004C9C4F /* Local */ = {
 			isa = PBXGroup;
 			children = (
 				834DDF562233B6B5004C9C4F /* Database */,
 			);
-			path = FileIO;
+			path = Local;
 			sourceTree = "<group>";
 		};
 		834DDF562233B6B5004C9C4F /* Database */ = {
@@ -447,24 +447,24 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		FEA69873223281F800A8E043 /* FileIO */ = {
+		FEA69873223281F800A8E043 /* Local */ = {
 			isa = PBXGroup;
 			children = (
 				834DDF092232FCF6004C9C4F /* Database */,
 				834DDF082232FCE5004C9C4F /* Disk */,
 				FEA6986F2232819500A8E043 /* FileIOError.swift */,
 			);
-			path = FileIO;
+			path = Local;
 			sourceTree = "<group>";
 		};
-		FEA698742232822400A8E043 /* RemoteIO */ = {
+		FEA698742232822400A8E043 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
 				FEA69871223281D900A8E043 /* Download.swift */,
 				FEA698A922328EBA00A8E043 /* Download+World.swift */,
 				FEA6988A223286A700A8E043 /* Implementations */,
 			);
-			path = RemoteIO;
+			path = Remote;
 			sourceTree = "<group>";
 		};
 		FEA698772232825300A8E043 /* Monads */ = {
@@ -480,8 +480,8 @@
 		FEA698782232827A00A8E043 /* IO */ = {
 			isa = PBXGroup;
 			children = (
-				FEA69873223281F800A8E043 /* FileIO */,
-				FEA698742232822400A8E043 /* RemoteIO */,
+				FEA69873223281F800A8E043 /* Local */,
+				FEA698742232822400A8E043 /* Remote */,
 			);
 			path = IO;
 			sourceTree = "<group>";
@@ -533,7 +533,7 @@
 		FEA698B52232AE5000A8E043 /* IO */ = {
 			isa = PBXGroup;
 			children = (
-				834DDF552233B6AC004C9C4F /* FileIO */,
+				834DDF552233B6AC004C9C4F /* Local */,
 			);
 			path = IO;
 			sourceTree = "<group>";
