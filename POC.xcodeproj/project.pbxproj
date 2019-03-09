@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		832A8555223469F700EB3A32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A8554223469F700EB3A32 /* Analytics.swift */; };
+		832A855822346D7E00EB3A32 /* AnalyticsRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A855722346D7E00EB3A32 /* AnalyticsRecorder.swift */; };
+		832A855A22346E2000EB3A32 /* AnalyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A855922346E2000EB3A32 /* AnalyticsLogger.swift */; };
+		832A856122346FCD00EB3A32 /* Semigroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A856022346FCD00EB3A32 /* Semigroup.swift */; };
+		832A856322346FD600EB3A32 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A856222346FD600EB3A32 /* Monoid.swift */; };
+		832A85652234701000EB3A32 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85642234701000EB3A32 /* Function.swift */; };
+		832A85672234703B00EB3A32 /* Analytics+World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85662234703B00EB3A32 /* Analytics+World.swift */; };
+		832A85682234795C00EB3A32 /* AnalyticsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85522234688F00EB3A32 /* AnalyticsComponent.swift */; };
 		834DDF032232FB45004C9C4F /* DatabaseLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF022232FB45004C9C4F /* DatabaseLogger.swift */; };
 		834DDF052232FBEE004C9C4F /* DatabaseRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */; };
 		834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */; };
@@ -196,6 +204,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		832A85522234688F00EB3A32 /* AnalyticsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsComponent.swift; sourceTree = "<group>"; };
+		832A8554223469F700EB3A32 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		832A855722346D7E00EB3A32 /* AnalyticsRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRecorder.swift; sourceTree = "<group>"; };
+		832A855922346E2000EB3A32 /* AnalyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLogger.swift; sourceTree = "<group>"; };
+		832A856022346FCD00EB3A32 /* Semigroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semigroup.swift; sourceTree = "<group>"; };
+		832A856222346FD600EB3A32 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
+		832A85642234701000EB3A32 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		832A85662234703B00EB3A32 /* Analytics+World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+World.swift"; sourceTree = "<group>"; };
 		834DDF022232FB45004C9C4F /* DatabaseLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLogger.swift; sourceTree = "<group>"; };
 		834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecorder.swift; sourceTree = "<group>"; };
 		834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDatabase.swift; sourceTree = "<group>"; };
@@ -362,6 +378,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		832A85502234685000EB3A32 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				832A85662234703B00EB3A32 /* Analytics+World.swift */,
+				FEA698AB22328F2400A8E043 /* Database+World.swift */,
+				FEA698A722328E6F00A8E043 /* Disk+World.swift */,
+				FEA698A922328EBA00A8E043 /* Download+World.swift */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
+		832A85512234687F00EB3A32 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				832A8554223469F700EB3A32 /* Analytics.swift */,
+				832A855D22346E7900EB3A32 /* Implementations */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		832A855622346A9900EB3A32 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				832A85522234688F00EB3A32 /* AnalyticsComponent.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		832A855D22346E7900EB3A32 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				832A855922346E2000EB3A32 /* AnalyticsLogger.swift */,
+				832A855722346D7E00EB3A32 /* AnalyticsRecorder.swift */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
+		832A855E22346E7F00EB3A32 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				FEA69871223281D900A8E043 /* Download.swift */,
+				FEA6988A223286A700A8E043 /* Implementations */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		832A855F22346FC300EB3A32 /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				832A85642234701000EB3A32 /* Function.swift */,
+				832A856222346FD600EB3A32 /* Monoid.swift */,
+				832A856022346FCD00EB3A32 /* Semigroup.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
 		834DDF082232FCE5004C9C4F /* Disk */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,13 +577,11 @@
 			children = (
 				834DDF912234286B004C9C4F /* World.h */,
 				834DDFB222342959004C9C4F /* Generated */,
+				832A85502234685000EB3A32 /* IO */,
+				834DDFB522342976004C9C4F /* SourceryImports_Prism.swift */,
+				834DDF732233CE73004C9C4F /* TestableWorld.swift */,
 				FEA6987B223282A200A8E043 /* World.swift */,
 				834DDF9E2234286B004C9C4F /* WorldTests.swift */,
-				FEA698AB22328F2400A8E043 /* Database+World.swift */,
-				FEA698A722328E6F00A8E043 /* Disk+World.swift */,
-				FEA698A922328EBA00A8E043 /* Download+World.swift */,
-				834DDF732233CE73004C9C4F /* TestableWorld.swift */,
-				834DDFB522342976004C9C4F /* SourceryImports_Prism.swift */,
 				834DDF922234286B004C9C4F /* Info.plist */,
 				834DDFA02234286B004C9C4F /* Test-Info.plist */,
 			);
@@ -615,6 +685,7 @@
 			children = (
 				834DDFC3223439B7004C9C4F /* Stencils */,
 				FEA6984B2232811E00A8E043 /* Core.h */,
+				832A855F22346FC300EB3A32 /* Composition */,
 				834DDF392233AA43004C9C4F /* Generated */,
 				FEA698782232827A00A8E043 /* IO */,
 				FEA698772232825300A8E043 /* Monads */,
@@ -623,7 +694,6 @@
 				FEA6988F2232876100A8E043 /* State */,
 				FEA698A3223289E900A8E043 /* Test */,
 				FEA6987F223283F200A8E043 /* Operators.swift */,
-				834DDF1A2233063D004C9C4F /* Sync.swift */,
 				834DDF782233D12A004C9C4F /* Info.plist */,
 				FEA6984C2232811E00A8E043 /* Test-Info.plist */,
 			);
@@ -636,6 +706,7 @@
 				834DDF092232FCF6004C9C4F /* Database */,
 				834DDF082232FCE5004C9C4F /* Disk */,
 				FEA6986F2232819500A8E043 /* FileIOError.swift */,
+				834DDF1A2233063D004C9C4F /* Sync.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -643,8 +714,8 @@
 		FEA698742232822400A8E043 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				FEA69871223281D900A8E043 /* Download.swift */,
-				FEA6988A223286A700A8E043 /* Implementations */,
+				832A85512234687F00EB3A32 /* Analytics */,
+				832A855E22346E7F00EB3A32 /* Download */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -715,6 +786,7 @@
 		FEA698B52232AE5000A8E043 /* IO */ = {
 			isa = PBXGroup;
 			children = (
+				832A855622346A9900EB3A32 /* Analytics */,
 				834DDF562233B6B5004C9C4F /* Database */,
 			);
 			path = IO;
@@ -1094,6 +1166,7 @@
 				834DDFAD2234289A004C9C4F /* TestableWorld.swift in Sources */,
 				834DDFAF223428D1004C9C4F /* Disk+World.swift in Sources */,
 				834DDFAC2234287B004C9C4F /* World.swift in Sources */,
+				832A85672234703B00EB3A32 /* Analytics+World.swift in Sources */,
 				834DDFB422342959004C9C4F /* AutoPrism.generated.swift in Sources */,
 				834DDFAE223428C8004C9C4F /* Database+World.swift in Sources */,
 				834DDFB622342976004C9C4F /* SourceryImports_Prism.swift in Sources */,
@@ -1129,6 +1202,7 @@
 				834DDFC92234513F004C9C4F /* Screen.swift in Sources */,
 				FEA698B72232AED400A8E043 /* RealmDatabase.swift in Sources */,
 				FEA698242232810300A8E043 /* AppDelegate.swift in Sources */,
+				832A85682234795C00EB3A32 /* AnalyticsComponent.swift in Sources */,
 				FEA698B22232ADC800A8E043 /* AppState.swift in Sources */,
 				834DDF1D223307E9004C9C4F /* RealWorld.swift in Sources */,
 				834DDFC522344FCA004C9C4F /* ModelType.swift in Sources */,
@@ -1156,13 +1230,16 @@
 				FEA698852232860000A8E043 /* DiskLogger.swift in Sources */,
 				834DDF5D2233BBC3004C9C4F /* FileManager+Disk.swift in Sources */,
 				FEA698762232825000A8E043 /* Reader.swift in Sources */,
+				832A855A22346E2000EB3A32 /* AnalyticsLogger.swift in Sources */,
 				834DDF1122330095004C9C4F /* Recorder.swift in Sources */,
 				834DDF8322342436004C9C4F /* Disposable.swift in Sources */,
 				834DDF052232FBEE004C9C4F /* DatabaseRecorder.swift in Sources */,
 				FEA698C12232D5FE00A8E043 /* DiskRecorder.swift in Sources */,
+				832A8555223469F700EB3A32 /* Analytics.swift in Sources */,
 				FEA69880223283F200A8E043 /* Operators.swift in Sources */,
 				FEA69872223281D900A8E043 /* Download.swift in Sources */,
 				FEA698702232819500A8E043 /* FileIOError.swift in Sources */,
+				832A855822346D7E00EB3A32 /* AnalyticsRecorder.swift in Sources */,
 				834DDF2B22334ABB004C9C4F /* TestableDatabase.swift in Sources */,
 				834DDF8922342499004C9C4F /* OptionalType.swift in Sources */,
 				834DDFEE22345A9C004C9C4F /* DiskDecorator.swift in Sources */,
@@ -1171,7 +1248,9 @@
 				834DDF7D2233FE47004C9C4F /* Observable.swift in Sources */,
 				834DDF032232FB45004C9C4F /* DatabaseLogger.swift in Sources */,
 				FEA69883223285BA00A8E043 /* MemoryDisk.swift in Sources */,
+				832A85652234701000EB3A32 /* Function.swift in Sources */,
 				FEA6988E2232871200A8E043 /* DownloadLogger.swift in Sources */,
+				832A856322346FD600EB3A32 /* Monoid.swift in Sources */,
 				FEA698A2223289BC00A8E043 /* ReducerRecorder.swift in Sources */,
 				FEA698892232866100A8E043 /* Try.swift in Sources */,
 				FEA698912232877000A8E043 /* Reducer.swift in Sources */,
@@ -1182,6 +1261,7 @@
 				FEA6989E223288E300A8E043 /* InterpreterRecorder.swift in Sources */,
 				834DDF852234245C004C9C4F /* Observer.swift in Sources */,
 				834DDF3E2233AA73004C9C4F /* Prism.swift in Sources */,
+				832A856122346FCD00EB3A32 /* Semigroup.swift in Sources */,
 				FEA6989C223288A600A8E043 /* InterpreterLogger.swift in Sources */,
 				FEA698BF2232D43500A8E043 /* DownloadRecorder.swift in Sources */,
 				FEA698A522328A0400A8E043 /* OutputRecorder.swift in Sources */,

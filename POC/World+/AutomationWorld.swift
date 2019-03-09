@@ -11,6 +11,7 @@ import Core
 import World
 
 let automationWorld = World(
+    analytics: analyticsLogger,
     database: RealmDatabase(),
     download: URLSession.shared.download,
     disk: FileManager(),

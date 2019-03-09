@@ -44,36 +44,45 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
         switch download {
         case .start:
             state.isLoading = true
-            return .immediate(.background(downloadTheInternet))
+            return .action(.background(downloadTheInternet))
         case .complete:
             state.isLoading = false
+            return .trackAnalytics(event: .userList("download complete"))
         case .failed:
             state.isLoading = false
+            return .trackAnalytics(event: .userList("download failed"))
         }
     case .users(let users):
         switch users {
         case .inject(let user):
             state.isLoading = true
-            return .immediate(.background(inject(user: user)))
+            return .action(.background(inject(user: user)))
         case .injected(let user):
             state.isLoading = false
-            return .identity
+            return .trackAnalytics(event: .userList("injected \(user.id)"))
         case .watch:
             state.isLoading = true
-            return .recurring(.main(fetchUsers()), disposal(for: .userList)())
+            return .actions(.main(fetchUsers()), disposedBy: disposal(for: .userList)())
         case .received(let allUsers):
             state.latestUsers = allUsers.last(10).sorted()
             state.isLoading = false
+            return .trackAnalytics(event: .userList("received \(allUsers.count) users"))
         case .failed:
             state.isLoading = false
+            return .trackAnalytics(event: .userList("failed"))
         }
     }
-    return .identity
 }
 
 extension Array {
     func last(_ items: Int) -> [Element] {
         return count > items ? Array(suffix(items)) : self
+    }
+}
+
+extension DispatchMethod where W == World, A == AppAction {
+    static func trackAnalytics(event: AnalyticsComponent) -> DispatchMethod {
+        return .void(.background(track(event: event)))
     }
 }
 
@@ -86,8 +95,8 @@ private let downloadTheInternet
         >>>= { .pure($0.map(AppAction.prism.download.complete.review) ?? AppAction.download(.failed)) }
 
 private func inject(user: User) -> WorldReader<AppAction> {
-    return .pure(user)
-        >>>= { writeToDatabase($0, for: $0.id) }
+    return track(event: .userList("inject user"))
+        >>>= { writeToDatabase(user, for: user.id) }
         >>>= { .pure($0.map(AppAction.prism.users.injected.review) ?? AppAction.users(.failed)) }
 }
 
@@ -95,7 +104,7 @@ private func fetchUsers() -> Recurring<AppAction> {
     return Recurring<AppAction> { world in
         world.database.objects(ofType: User.self)
             .map(AppAction.prism.users.received.review)
-            .mapError(WorldError.prism.database.read.review)
+            .noError()
     }
 }
 

@@ -28,7 +28,11 @@ public final class Observer<T, E>: ObserverType {
     }
 
     public func on(event: Event<T, E>) {
-        handler(event)
+        if case .error(is NoError) = event {
+            handler(.completed)
+        } else {
+            handler(event)
+        }
     }
 }
 

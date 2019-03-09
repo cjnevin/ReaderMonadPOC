@@ -8,12 +8,12 @@
 
 import Foundation
 
-public final class Store<S, A, W, E> {
+public final class Store<S, A, W> {
     public typealias Token = Int
     private var token = (0...).makeIterator()
     private var subscribers: [Token: (S) -> Void] = [:]
-    private let reducer: Reducer<S, A, W, E>
-    private let interpreter: Interpreter<W, A, E>
+    private let reducer: Reducer<S, A, W>
+    private let interpreter: Interpreter<W, A>
     private(set) public var currentState: S {
         didSet { self.notitySubscribers() }
     }
@@ -23,8 +23,8 @@ public final class Store<S, A, W, E> {
         self.subscribers.values.forEach { $0(self.currentState) }
     }
 
-    public init(reducer: Reducer<S, A, W, E>,
-         interpreter: @escaping Interpreter<W, A, E>,
+    public init(reducer: Reducer<S, A, W>,
+         interpreter: @escaping Interpreter<W, A>,
          initialState: S) {
         self.reducer = reducer
         self.interpreter = interpreter

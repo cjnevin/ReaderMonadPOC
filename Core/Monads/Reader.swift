@@ -8,30 +8,30 @@
 
 import Foundation
 
-public struct Reader<E, A> {
-    private let g: (E) -> A
+public struct Reader<W, A> {
+    private let g: (W) -> A
 
-    public init(_ g: @escaping (E) -> A) {
+    public init(_ g: @escaping (W) -> A) {
         self.g = g
     }
 
-    public static func pure(_ a: A) -> Reader<E, A> {
+    public static func pure(_ a: A) -> Reader<W, A> {
         return .init { e in a }
     }
 
-    public func apply(_ e: E) -> A {
-        return g(e)
+    public func apply(_ world: W) -> A {
+        return g(world)
     }
 
-    public func map<B>(_ f: @escaping (A) -> B) -> Reader<E, B> {
-        return Reader<E, B>{ e in f(self.g(e)) }
+    public func map<B>(_ f: @escaping (A) -> B) -> Reader<W, B> {
+        return Reader<W, B>{ e in f(self.g(e)) }
     }
 
-    public func flatMap<B>(_ f: @escaping (A) -> Reader<E, B>) -> Reader<E, B> {
-        return Reader<E, B>{ e in f(self.g(e)).g(e) }
+    public func flatMap<B>(_ f: @escaping (A) -> Reader<W, B>) -> Reader<W, B> {
+        return Reader<W, B>{ e in f(self.g(e)).g(e) }
     }
 }
 
-public func >>>= <E, A, B>(a: Reader<E, A>, f: @escaping (A) -> Reader<E, B>) -> Reader<E, B> {
+public func >>>= <W, A, B>(a: Reader<W, A>, f: @escaping (A) -> Reader<W, B>) -> Reader<W, B> {
     return a.flatMap(f)
 }

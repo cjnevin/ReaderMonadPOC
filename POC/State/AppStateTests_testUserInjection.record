@@ -1,7 +1,7 @@
 Core.DatabaseRecorder
 ▿ 1 element
-  - "write User id1 - success()"
-Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
+  - "[DatabaseLogger] write User id1 - success()"
+Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World>
 ▿ 2 elements
   ▿ (4 elements)
     - .0: false
@@ -11,8 +11,8 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
         ▿ inject: POC.User
           - id: "id1"
           - name: "name1"
-    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.immediate
-      ▿ immediate: Core.Effect<Core.Reader<World.World, POC.AppAction>>.background
+    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.action
+      ▿ action: Core.Effect<Core.Reader<World.World, POC.AppAction>>.background
         ▿ background: Core.Reader<World.World, POC.AppAction>
           - g: (Function)
   ▿ (4 elements)
@@ -23,6 +23,7 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
         ▿ injected: POC.User
           - id: "id1"
           - name: "name1"
-    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.immediate
-      ▿ immediate: Core.Effect<Core.Reader<World.World, POC.AppAction>>.sequence
-        - sequence: 0 elements
+    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.void
+      ▿ void: Core.Effect<Core.Reader<World.World, ()>>.background
+        ▿ background: Core.Reader<World.World, ()>
+          - g: (Function)

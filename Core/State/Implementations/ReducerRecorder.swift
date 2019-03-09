@@ -8,12 +8,12 @@
 
 import Foundation
 
-public final class ReducerRecorder<S, A, W, E>: Recorder {
-    public typealias I = Interpretable<W, A, E>
-    public private(set) var reducer: Reducer<S, A, W, E>!
+public final class ReducerRecorder<S, A, W>: Recorder {
+    public typealias I = Interpretable<W, A>
+    public private(set) var reducer: Reducer<S, A, W>!
     public private(set) var events: [(S, S, A, I)] = []
 
-    public init(reducer: Reducer<S, A, W, E>) {
+    public init(reducer: Reducer<S, A, W>) {
         self.reducer = .init { state, action in
             let oldState = state
             let effect = reducer.reduce(&state, action)

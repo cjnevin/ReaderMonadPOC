@@ -13,7 +13,7 @@ import World
 
 class TestableWorldStore {
     var reducer: WorldReducer<AppState, AppAction>! = appReducer
-    var reducerRecorder: ReducerRecorder<AppState, AppAction, World, WorldError>!
+    var reducerRecorder: ReducerRecorder<AppState, AppAction, World>!
     var interpreter: WorldInterpreter<AppAction>!
 
     func makeStore(world: World) -> WorldStore<AppState, AppAction> {

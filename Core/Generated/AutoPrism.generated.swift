@@ -5,6 +5,27 @@
 
 
 
+extension AnalyticsComponent {
+    public enum prism {
+        public static let sequence = Prism<AnalyticsComponent, [AnalyticsComponent]>(
+            preview: { if case .sequence(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .sequence(x1) })
+        public static let element = Prism<AnalyticsComponent, (String, Any)>(
+            preview: { if case .element(let value) = $0 { return value } else { return nil } },
+            review: { (x1, x2) in .element(key:x1, value:x2) })
+    }
+}
+
+public extension Prism where Part == AnalyticsComponent {
+	var sequence: Prism<Whole, [AnalyticsComponent]> {
+		return self • AnalyticsComponent.prism.sequence
+	}
+	var element: Prism<Whole, (String, Any)> {
+		return self • AnalyticsComponent.prism.element
+	}
+}
+
+
 extension DeleteError {
     public enum prism {
         public static let notDeletable = Prism<DeleteError, ()>(

@@ -10,16 +10,19 @@ import Foundation
 import Core
 
 public struct World {
+    public let analytics: AnalyticsTracker
     public let database: Database
     public let download: Downloader
     public let disk: Disk
     public let sync: Sync
 
     public init(
+        analytics: @escaping AnalyticsTracker,
         database: Database,
         download: @escaping Downloader,
         disk: Disk,
         sync: @escaping Sync) {
+        self.analytics = analytics
         self.database = database
         self.download = download
         self.disk = disk
@@ -36,18 +39,31 @@ public enum WorldError {
 
 public typealias WorldResult<T> = Result<T, WorldError>
 public typealias WorldReader<T> = Reader<World, T>
-public typealias WorldInterpreter<T> = Interpreter<World, T, WorldError>
-public typealias WorldInterpreterRecorder<T> = InterpreterRecorder<World, T, WorldError>
-public typealias WorldReducer<S, A> = Reducer<S, A, World, WorldError>
-public typealias WorldStore<S, A> = Store<S, A, World, WorldError>
+public typealias WorldInterpreter<T> = Interpreter<World, T>
+public typealias WorldInterpreterRecorder<T> = InterpreterRecorder<World, T>
+public typealias WorldReducer<S, A> = Reducer<S, A, World>
+public typealias WorldStore<S, A> = Store<S, A, World>
 public typealias WorldObservable<T> = Observable<T, WorldError>
 
-public typealias Recurring<T> = WorldReader<WorldObservable<T>>
+public typealias Recurring<T> = WorldReader<Observable<T, NoError>>
 public typealias ImmediateResult<T> = WorldReader<WorldResult<T>>
 
 public func worldInterpreter<A>(world: World) -> WorldInterpreter<A> {
     return { method, dispatch -> Void in
-        func immediate(_ effect: Effect<WorldReader<A>>) {
+        func void(_ effect: Effect<WorldReader<Void>>) {
+            switch effect {
+            case .background(let background):
+                world.sync {
+                    background.apply(world)
+                }
+            case .main(let main):
+                main.apply(world)
+            case .sequence(let sequence):
+                sequence.forEach(void)
+            }
+        }
+
+        func action(_ effect: Effect<WorldReader<A>>) {
             switch effect {
             case .background(let background):
                 world.sync {
@@ -56,27 +72,32 @@ public func worldInterpreter<A>(world: World) -> WorldInterpreter<A> {
             case .main(let main):
                 dispatch(main.apply(world))
             case .sequence(let sequence):
-                sequence.forEach(immediate)
+                sequence.forEach(action)
             }
         }
 
-        func recurring(_ effect: Effect<Recurring<A>>, disposable: CompositeDisposable) {
+        func actions(_ effect: Effect<Recurring<A>>, disposedBy: CompositeDisposable) {
             switch effect {
             case .background(let background):
                 world.sync {
-                    disposable.add(background.apply(world).subscribe(onNext: dispatch))
+                    disposedBy.add(background.apply(world).subscribe(onNext: dispatch))
                 }
             case .main(let main):
-                disposable.add(main.apply(world).subscribe(onNext: dispatch))
+                disposedBy.add(main.apply(world).subscribe(onNext: dispatch))
             case .sequence(let sequence):
-                sequence.forEach { recurring($0, disposable: disposable) }
+                sequence.forEach { actions($0, disposedBy: disposedBy) }
             }
         }
 
-        switch method {
-        case .immediate(let effect): immediate(effect)
-        case .recurring(let effect, let disposable): recurring(effect, disposable: disposable)
+        func handle(method: DispatchMethod<World, A>) {
+            switch method {
+            case .sequence(let methods): methods.forEach(handle)
+            case .void(let effect): void(effect)
+            case .action(let effect): action(effect)
+            case .actions(let effect, let disposable): actions(effect, disposedBy: disposable)
+            }
         }
+        handle(method: method)
     }
 }
 

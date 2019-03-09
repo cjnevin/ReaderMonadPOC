@@ -37,6 +37,12 @@ public class Observable<T, E>: ObservableType {
 }
 
 extension ObservableType {
+    public func noError() -> Observable<T, NoError> {
+        return mapError { _ in NoError() }
+    }
+}
+
+extension ObservableType {
     public static func error(_ error: E) -> Observable<T, E> {
         return Observable { observer in
             observer.error(error)

@@ -8,10 +8,10 @@
 
 import Foundation
 
-public struct Reducer<S, A, W, E> {
-    public let reduce: (inout S, A) -> Interpretable<W, A, E>
+public struct Reducer<S, A, W> {
+    public let reduce: (inout S, A) -> Interpretable<W, A>
 
-    public init(_ reduce: @escaping (inout S, A) -> Interpretable<W, A, E>) {
+    public init(_ reduce: @escaping (inout S, A) -> Interpretable<W, A>) {
         self.reduce = reduce
     }
 }

@@ -10,6 +10,9 @@ import Foundation
 import Core
 
 open class TestableWorld {
+    open var analytics: AnalyticsTracker = { _ in }
+    open var analyticsRecorder: AnalyticsRecorder!
+
     open var database = TestableDatabase(MemoryDatabase())
     open var databaseRecorder: DatabaseRecorder!
 
@@ -27,8 +30,9 @@ open class TestableWorld {
         downloadRecorder = DownloadRecorder { _ in self.downloadResult }
         diskRecorder = DiskRecorder(disk)
         databaseRecorder = DatabaseRecorder(database)
-
+        analyticsRecorder = AnalyticsRecorder(analytics)
         return World(
+            analytics: analyticsRecorder.analytics,
             database: databaseRecorder,
             download: downloadRecorder.downloader,
             disk: diskRecorder,

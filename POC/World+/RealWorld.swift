@@ -11,6 +11,7 @@ import Core
 import World
 
 let realWorld = World(
+    analytics: analyticsLogger,
     database: DatabaseLogger(RealmDatabase()),
     download: downloadLogger(URLSession.shared.download),
     disk: DiskLogger(MemoryDisk()),

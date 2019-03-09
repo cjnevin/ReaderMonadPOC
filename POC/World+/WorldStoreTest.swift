@@ -34,7 +34,7 @@ class WorldStoreTest: XCTestCase {
     var recordMode: RecordMode = .play
     var outputSpecVersion: OutputSpecVersion = .one
 
-    var store: Store<AppState, AppAction, World, WorldError>!
+    var store: Store<AppState, AppAction, World>!
     var world: World!
 
     var outputRecorder: OutputRecorder!
