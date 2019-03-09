@@ -15,11 +15,13 @@ public func download(from url: URL) -> WorldIOResult<Data> {
 }
 
 public func download(from source: URL, into path: URL) -> WorldIOResult<Void> {
-    return download(from: source) >>>= writeFile(to: path)
+    return download(from: source)
+        >>>= writeFile(to: path)
 }
 
 public func downloadThenRead(from source: URL, into path: URL) -> WorldIOResult<Data> {
-    return download(from: source, into: path) >>>= { readFile(at: path) }
+    return download(from: source, into: path)
+        >>>= { readFile(at: path) }
 }
 
 public func download(url: URL, cacheAt cache: URL, thenMoveTo destination: URL) -> WorldIOResult<Void> {

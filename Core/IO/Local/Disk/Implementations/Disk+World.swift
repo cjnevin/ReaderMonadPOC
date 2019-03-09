@@ -32,5 +32,6 @@ public func writeFile(to path: URL) -> (Data) -> WorldIOResult<Void> {
 }
 
 public func copyFile(from source: URL, to destination: URL) -> WorldIOResult<Void> {
-    return readFile(at: source) >>>= writeFile(to: destination)
+    return readFile(at: source)
+        >>>= writeFile(to: destination)
 }
