@@ -49,6 +49,9 @@ public extension Prism where Part == FileIOError {
 
 extension ReadError {
     public enum prism {
+        public static let notReadable = Prism<ReadError, ()>(
+            preview: { if case .notReadable = $0 { return () } else { return nil } },
+            review: { .notReadable })
         public static let notFound = Prism<ReadError, ()>(
             preview: { if case .notFound = $0 { return () } else { return nil } },
             review: { .notFound })
@@ -56,6 +59,9 @@ extension ReadError {
 }
 
 public extension Prism where Part == ReadError {
+	var notReadable: Prism<Whole, Void> {
+		return self • ReadError.prism.notReadable
+	}
 	var notFound: Prism<Whole, Void> {
 		return self • ReadError.prism.notFound
 	}
@@ -94,33 +100,6 @@ extension Try {
     }
 }
 
-
-
-extension WorldError {
-    public enum prism {
-        public static let database = Prism<WorldError, FileIOError>(
-            preview: { if case .database(let value) = $0 { return value } else { return nil } },
-            review: { (x1) in .database(x1) })
-        public static let disk = Prism<WorldError, FileIOError>(
-            preview: { if case .disk(let value) = $0 { return value } else { return nil } },
-            review: { (x1) in .disk(x1) })
-        public static let download = Prism<WorldError, DownloadError>(
-            preview: { if case .download(let value) = $0 { return value } else { return nil } },
-            review: { (x1) in .download(x1) })
-    }
-}
-
-public extension Prism where Part == WorldError {
-	var database: Prism<Whole, FileIOError> {
-		return self • WorldError.prism.database
-	}
-	var disk: Prism<Whole, FileIOError> {
-		return self • WorldError.prism.disk
-	}
-	var download: Prism<Whole, DownloadError> {
-		return self • WorldError.prism.download
-	}
-}
 
 
 extension WriteError {

@@ -8,11 +8,12 @@
 
 import Foundation
 import Core
+import World
 @testable import POC
 
 class TestableWorldStore {
     var reducer: WorldReducer<AppState, AppAction>! = appReducer
-    var reducerRecorder: ReducerRecorder<AppState, AppAction, World>!
+    var reducerRecorder: ReducerRecorder<AppState, AppAction, World, WorldError>!
     var interpreter: WorldInterpreter<AppAction>!
 
     func makeStore(world: World) -> WorldStore<AppState, AppAction> {

@@ -8,6 +8,7 @@
 
 import XCTest
 import Core
+import World
 @testable import POC
 
 class AppStateTests: WorldStoreTest {
@@ -23,14 +24,21 @@ class AppStateTests: WorldStoreTest {
         assert(keyPath: \AppState.isLoading)
     }
 
-    func testLoginSuccess() {
-        store.dispatch(.login(.send))
-        assert(keyPaths: \AppState.user, \AppState.isLoading)
+    func testUserInjection() {
+        store.dispatch(.users(.inject))
+        assert(keyPath: \AppState.isLoading)
     }
 
-    func testLoginFailure() {
-        testableWorld.database.writeError = .notWritable
-        store.dispatch(.login(.send))
-        assert(keyPaths: \AppState.user, \AppState.isLoading)
+    func testUserWatchFailure() {
+        store.dispatch(.users(.watch))
+        assert(keyPath: \AppState.latestUsers)
+    }
+
+    func testUserWatchSuccess() {
+        _ = testableWorld.database.write(User(id: "id1", name: "name1"), for: "id1")
+        _ = testableWorld.database.write(User(id: "id2", name: "name2"), for: "id2")
+        _ = testableWorld.database.write(User(id: "id3", name: "name3"), for: "id3")
+        store.dispatch(.users(.watch))
+        assert(keyPath: \AppState.latestUsers)
     }
 }

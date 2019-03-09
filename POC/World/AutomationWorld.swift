@@ -8,6 +8,7 @@
 
 import Foundation
 import Core
+import World
 
 let automationWorld = World(
     database: RealmDatabase(),

@@ -9,11 +9,17 @@
 import Foundation
 
 public protocol Database {
+    func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError>
     func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError>
     func write<T: DatabaseWritable>(_ value: T, for id: String) -> Result<Void, WriteError>
 }
 
+public protocol DatabaseObjectsObservable: DatabaseReadable {
+    static func objects() -> Observable<[Self], ReadError>
+}
+
 public protocol DatabaseReadable {
+    static func canRead() -> Bool
     static func read(id: String) -> Self?
 }
 

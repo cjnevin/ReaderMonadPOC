@@ -8,11 +8,11 @@
 
 import Foundation
 
-public final class InterpreterRecorder<W, A> {
-    public private(set) var interpreter: Interpreter<W, A>!
-    public private(set) var effects: [ReaderEffect<W, A>] = []
+public final class InterpreterRecorder<W, A, E> {
+    public private(set) var interpreter: Interpreter<W, A, E>!
+    public private(set) var effects: [Interpretable<W, A, E>] = []
 
-    public init(interpreter: @escaping Interpreter<W, A>) {
+    public init(interpreter: @escaping Interpreter<W, A, E>) {
         self.interpreter = { effect, dispatch in
             self.effects.append(effect)
             interpreter(effect, dispatch)

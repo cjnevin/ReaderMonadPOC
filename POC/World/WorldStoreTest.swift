@@ -8,6 +8,7 @@
 
 import XCTest
 import Core
+import World
 @testable import POC
 
 enum RecordMode {
@@ -33,7 +34,7 @@ class WorldStoreTest: XCTestCase {
     var recordMode: RecordMode = .play
     var outputSpecVersion: OutputSpecVersion = .one
 
-    var store: Store<AppState, AppAction, World>!
+    var store: Store<AppState, AppAction, World, WorldError>!
     var world: World!
 
     var outputRecorder: OutputRecorder!

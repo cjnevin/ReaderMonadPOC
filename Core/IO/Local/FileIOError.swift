@@ -9,7 +9,7 @@
 import Foundation
 
 ///sourcery:prism=chain
-public enum ReadError { case notFound }
+public enum ReadError { case notReadable, notFound }
 ///sourcery:prism=chain
 public enum WriteError { case notWritable }
 ///sourcery:prism=chain

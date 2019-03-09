@@ -11,7 +11,12 @@ import Core
 import RealmSwift
 
 struct RealmDatabase: Database {
+    func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError> {
+        return type.objects()
+    }
+
     func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
+        guard ofType.canRead() else { return .failure(.notReadable) }
         return ofType.read(id: id).map(Result.success) ?? Result.failure(.notFound)
     }
 
@@ -40,7 +45,34 @@ private func realmWrite<T: Object>(_ object: T) -> Bool {
     })
 }
 
-extension User: DatabaseReadable, DatabaseWritable {
+extension User: DatabaseReadable, DatabaseWritable, DatabaseObjectsObservable {
+    static func objects() -> Observable<[User], ReadError> {
+        guard let realm = realm() else { return .error(.notReadable) }
+        return Observable { (observer) -> Disposable in
+            let token = realm.objects(UserObject.self).observe({ (change) in
+                func send(_ results: Results<UserObject>?) {
+                    guard let results = results else { return observer.next([]) }
+                    observer.next(Array(results.map { $0.asModel() }))
+                }
+                switch change {
+                case .initial(let initial):
+                    send(initial)
+                case .update(let collection, _, _, _):
+                    send(collection)
+                case .error:
+                    send(nil)
+                }
+            })
+            return AnonymousDisposable {
+                token.invalidate()
+            }
+        }
+    }
+
+    static func canRead() -> Bool {
+        return realm() != nil
+    }
+
     static func read(id: String) -> User? {
         return realmRead(type: UserObject.self, id: id)?.asModel()
     }

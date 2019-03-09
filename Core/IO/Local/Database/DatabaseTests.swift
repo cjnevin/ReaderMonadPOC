@@ -37,6 +37,10 @@ private var databaseSource: [String: DatabaseObject] = [:]
 struct DatabaseObject: DatabaseReadable, DatabaseWritable, Equatable {
     let id: String
 
+    static func canRead() -> Bool {
+        return true
+    }
+
     static func read(id: String) -> DatabaseObject? {
         return databaseSource[id]
     }

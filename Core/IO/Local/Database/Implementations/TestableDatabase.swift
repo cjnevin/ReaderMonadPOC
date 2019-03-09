@@ -15,6 +15,11 @@ public final class TestableDatabase: Database {
         self.database = database
     }
 
+    public var objectsError: ReadError?
+    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError> {
+        return objectsError.map(Observable.error) ?? database.objects(ofType: type)
+    }
+
     public var readError: ReadError?
     public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
         return readError.map(Result.failure) ?? database.read(id: id, ofType: ofType)

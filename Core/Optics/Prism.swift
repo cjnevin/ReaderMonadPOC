@@ -32,14 +32,6 @@ extension Prism {
     }
 }
 
-extension Optional {
-    public static var prism: Prism<Optional, Wrapped> {
-        return Prism<Optional, Wrapped>(
-            preview: { $0 },
-            review: Optional.some)
-    }
-}
-
 precedencegroup OpticsCompositionPrecedence {
     associativity: left
     higherThan: AdditionPrecedence

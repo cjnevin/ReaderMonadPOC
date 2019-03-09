@@ -8,6 +8,7 @@
 
 import Foundation
 import Core
+import World
 
 let realWorld = World(
     database: DatabaseLogger(RealmDatabase()),

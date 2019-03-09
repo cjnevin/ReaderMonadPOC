@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func interpreterLogger<W, A>(_ interpreter: @escaping Interpreter<W, A>) -> Interpreter<W, A> {
+public func interpreterLogger<W, A, E>(_ interpreter: @escaping Interpreter<W, A, E>) -> Interpreter<W, A, E> {
     return { effect, dispatch in
         print("[EffectLogger] - \(effect)]")
         interpreter(effect, dispatch)

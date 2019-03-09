@@ -15,6 +15,10 @@ public final class MemoryDatabase: Database {
         self.values = values
     }
 
+    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError> {
+        return .just(values.values.compactMap { $0 as? T })
+    }
+
     public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
         return (values[id] as? T).map(Result.success) ?? Result.failure(.notFound)
     }

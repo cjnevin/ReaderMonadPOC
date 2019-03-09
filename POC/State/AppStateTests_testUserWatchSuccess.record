@@ -1,0 +1,97 @@
+Core.DatabaseRecorder
+▿ 1 element
+  - "all User - [POC.User(id: \"id2\", name: \"name2\"), POC.User(id: \"id1\", name: \"name1\"), POC.User(id: \"id3\", name: \"name3\")]"
+Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
+▿ 2 elements
+  ▿ (4 elements)
+    - .0: 0 elements
+    - .1: 0 elements
+    ▿ .2: POC.AppAction.users
+      - users: POC.AppAction.Users.watch
+    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.recurring
+      ▿ recurring: (2 elements)
+        ▿ .0: Core.Effect<Core.Reader<World.World, Core.Observable<POC.AppAction, World.WorldError>>>.main
+          ▿ main: Core.Reader<World.World, Core.Observable<POC.AppAction, World.WorldError>>
+            - g: (Function)
+        ▿ .1: Core.CompositeDisposable #0
+          - isDisposed: false
+          ▿ disposables: 3 elements
+            ▿ Core.Sink<Core.Observer<POC.AppAction, World.WorldError>> #1
+              - isDisposed: false
+              ▿ forward: Core.Observer<POC.AppAction, World.WorldError> #2
+                - handler: (Function)
+              - subscriptionHandler: (Function)
+              ▿ disposable: Core.CompositeDisposable #3
+                - isDisposed: false
+                ▿ disposables: 1 element
+                  ▿ Core.Sink<Core.Observer<POC.AppAction, Core.ReadError>> #4
+                    - isDisposed: false
+                    ▿ forward: Core.Observer<POC.AppAction, Core.ReadError> #5
+                      - handler: (Function)
+                    - subscriptionHandler: (Function)
+                    ▿ disposable: Core.CompositeDisposable #6
+                      - isDisposed: false
+                      ▿ disposables: 1 element
+                        ▿ Core.Sink<Core.Observer<Swift.Array<POC.User>, Core.ReadError>> #7
+                          - isDisposed: false
+                          ▿ forward: Core.Observer<Swift.Array<POC.User>, Core.ReadError> #8
+                            - handler: (Function)
+                          - subscriptionHandler: (Function)
+                          ▿ disposable: Core.CompositeDisposable #9
+                            - isDisposed: false
+                            ▿ disposables: 1 element
+                              ▿ Core.AnonymousDisposable #10
+                                - disposeHandler: (Function)
+            ▿ Core.Sink<Core.Observer<Swift.Array<POC.User>, Core.NoError>> #11
+              - isDisposed: false
+              ▿ forward: Core.Observer<Swift.Array<POC.User>, Core.NoError> #12
+                - handler: (Function)
+              - subscriptionHandler: (Function)
+              ▿ disposable: Core.CompositeDisposable #13
+                - isDisposed: false
+                ▿ disposables: 1 element
+                  ▿ Core.Sink<Core.Observer<POC.AppState, Core.NoError>> #14
+                    - isDisposed: false
+                    ▿ forward: Core.Observer<POC.AppState, Core.NoError> #15
+                      - handler: (Function)
+                    - subscriptionHandler: (Function)
+                    ▿ disposable: Core.CompositeDisposable #16
+                      - isDisposed: false
+                      ▿ disposables: 1 element
+                        ▿ Core.AnonymousDisposable #17
+                          - disposeHandler: (Function)
+            ▿ Core.Sink<Core.Observer<POC.AppAction, World.WorldError>> #18
+              - isDisposed: true
+              ▿ forward: Core.Observer<POC.AppAction, World.WorldError> #19
+                - handler: (Function)
+              - subscriptionHandler: (Function)
+              ▿ disposable: Core.CompositeDisposable #20
+                - isDisposed: true
+                - disposables: 0 elements
+  ▿ (4 elements)
+    - .0: 0 elements
+    ▿ .1: 3 elements
+      ▿ POC.User
+        - id: "id1"
+        - name: "name1"
+      ▿ POC.User
+        - id: "id2"
+        - name: "name2"
+      ▿ POC.User
+        - id: "id3"
+        - name: "name3"
+    ▿ .2: POC.AppAction.users
+      ▿ users: POC.AppAction.Users.received
+        ▿ received: 3 elements
+          ▿ POC.User
+            - id: "id2"
+            - name: "name2"
+          ▿ POC.User
+            - id: "id1"
+            - name: "name1"
+          ▿ POC.User
+            - id: "id3"
+            - name: "name3"
+    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.immediate
+      ▿ immediate: Core.Effect<Core.Reader<World.World, POC.AppAction>>.sequence
+        - sequence: 0 elements

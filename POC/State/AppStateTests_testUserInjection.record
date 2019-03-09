@@ -1,19 +1,13 @@
-Core.DiskRecorder
-▿ 4 elements
-  - "write cache.txt - success()"
-  - "read cache.txt - success(0 bytes)"
-  - "write download.txt - success()"
-  - "delete cache.txt - success()"
-Core.DownloadRecorder
+Core.DatabaseRecorder
 ▿ 1 element
-  - "https://www.google.com"
+  - "write User 9F6C5471-5BA6-4DB3-85C9-F66647EC8C0A - success()"
 Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
 ▿ 2 elements
   ▿ (4 elements)
     - .0: false
     - .1: true
-    ▿ .2: POC.AppAction.download
-      - download: POC.AppAction.Download.start
+    ▿ .2: POC.AppAction.users
+      - users: POC.AppAction.Users.inject
     ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.immediate
       ▿ immediate: Core.Effect<Core.Reader<World.World, POC.AppAction>>.background
         ▿ background: Core.Reader<World.World, POC.AppAction>
@@ -21,8 +15,11 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World, World.WorldError>
   ▿ (4 elements)
     - .0: true
     - .1: false
-    ▿ .2: POC.AppAction.download
-      - download: POC.AppAction.Download.complete
+    ▿ .2: POC.AppAction.users
+      ▿ users: POC.AppAction.Users.injected
+        ▿ injected: POC.User
+          - id: "9F6C5471-5BA6-4DB3-85C9-F66647EC8C0A"
+          - name: "s0DMSFKve4yC9IZ"
     ▿ .3: Core.DispatchMethod<World.World, POC.AppAction, World.WorldError>.immediate
       ▿ immediate: Core.Effect<Core.Reader<World.World, POC.AppAction>>.sequence
         - sequence: 0 elements

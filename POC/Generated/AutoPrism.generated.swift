@@ -11,9 +11,9 @@ extension AppAction {
         internal static let download = Prism<AppAction, AppAction.Download>(
             preview: { if case .download(let value) = $0 { return value } else { return nil } },
             review: { (x1) in .download(x1) })
-        internal static let login = Prism<AppAction, AppAction.Login>(
-            preview: { if case .login(let value) = $0 { return value } else { return nil } },
-            review: { (x1) in .login(x1) })
+        internal static let users = Prism<AppAction, AppAction.Users>(
+            preview: { if case .users(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .users(x1) })
     }
 }
 
@@ -21,8 +21,8 @@ internal extension Prism where Part == AppAction {
 	var download: Prism<Whole, AppAction.Download> {
 		return self • AppAction.prism.download
 	}
-	var login: Prism<Whole, AppAction.Login> {
-		return self • AppAction.prism.login
+	var users: Prism<Whole, AppAction.Users> {
+		return self • AppAction.prism.users
 	}
 }
 
@@ -54,29 +54,41 @@ internal extension Prism where Part == AppAction.Download {
 }
 
 
-extension AppAction.Login {
+extension AppAction.Users {
     internal enum prism {
-        internal static let send = Prism<AppAction.Login, ()>(
-            preview: { if case .send = $0 { return () } else { return nil } },
-            review: { .send })
-        internal static let success = Prism<AppAction.Login, User>(
-            preview: { if case .success(let value) = $0 { return value } else { return nil } },
-            review: { (x1) in .success(x1) })
-        internal static let failed = Prism<AppAction.Login, ()>(
+        internal static let inject = Prism<AppAction.Users, ()>(
+            preview: { if case .inject = $0 { return () } else { return nil } },
+            review: { .inject })
+        internal static let injected = Prism<AppAction.Users, User>(
+            preview: { if case .injected(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .injected(x1) })
+        internal static let watch = Prism<AppAction.Users, ()>(
+            preview: { if case .watch = $0 { return () } else { return nil } },
+            review: { .watch })
+        internal static let received = Prism<AppAction.Users, [User]>(
+            preview: { if case .received(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .received(x1) })
+        internal static let failed = Prism<AppAction.Users, ()>(
             preview: { if case .failed = $0 { return () } else { return nil } },
             review: { .failed })
     }
 }
 
-internal extension Prism where Part == AppAction.Login {
-	var send: Prism<Whole, Void> {
-		return self • AppAction.Login.prism.send
+internal extension Prism where Part == AppAction.Users {
+	var inject: Prism<Whole, Void> {
+		return self • AppAction.Users.prism.inject
 	}
-	var success: Prism<Whole, User> {
-		return self • AppAction.Login.prism.success
+	var injected: Prism<Whole, User> {
+		return self • AppAction.Users.prism.injected
+	}
+	var watch: Prism<Whole, Void> {
+		return self • AppAction.Users.prism.watch
+	}
+	var received: Prism<Whole, [User]> {
+		return self • AppAction.Users.prism.received
 	}
 	var failed: Prism<Whole, Void> {
-		return self • AppAction.Login.prism.failed
+		return self • AppAction.Users.prism.failed
 	}
 }
 
