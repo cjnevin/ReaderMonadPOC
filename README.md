@@ -2,9 +2,9 @@
 Proof of concept using IO monad, redux, and snapshot tests
 
 ## IOMonad
-The IO monad allows us to abstract all dependency injection in our application to a single point (known as a 'World' or 'Environment'). We can then inject a different 'World' in order to run unit or automation tests (or different configurations).
+The IO monad allows us to abstract all dependency injection in our application to a single point (known as a `World` or `Environment`). We can then inject a different `World` in order to run unit or automation tests (or different configurations).
 
-For example, a 'Debug World' may log every event that goes through the system, to help us debug. A 'Unit Test World' may record all events and move all asynchronous tasks to the main thread to allow the tests to be executed synchronously.
+For example, a `Debug World` may log every event that goes through the system, to help us debug. A `Unit Test World` may record all events and move all asynchronous tasks to the main thread to allow the tests to be executed synchronously. Meanwhile a `Automation World` may configure a mock API instead of the default API.
 
 Monads can be chained to perform **synchronous** tasks which can then be executed on a background thread.
 
