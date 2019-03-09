@@ -3,24 +3,28 @@ Core.DatabaseRecorder
   - "write id - success()"
 Core.ReducerRecorder<POC.AppState, POC.AppAction, Core.World>
 ▿ 2 elements
-  ▿ (4 elements)
+  ▿ (6 elements)
     - .0: nil
-    - .1: nil
-    ▿ .2: POC.AppAction.login
-      - login: POC.AppAction.Login.sent
-    ▿ .3: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.background
+    - .1: false
+    - .2: nil
+    - .3: true
+    ▿ .4: POC.AppAction.login
+      - login: POC.AppAction.Login.send
+    ▿ .5: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.background
       ▿ background: Core.Reader<Core.World, POC.AppAction>
         - g: (Function)
-  ▿ (4 elements)
+  ▿ (6 elements)
     - .0: nil
-    ▿ .1: Optional(POC.User(id: "id", name: "name"))
+    - .1: true
+    ▿ .2: Optional(POC.User(id: "id", name: "name"))
       ▿ some: POC.User
         - id: "id"
         - name: "name"
-    ▿ .2: POC.AppAction.login
+    - .3: false
+    ▿ .4: POC.AppAction.login
       ▿ login: POC.AppAction.Login.success
         ▿ success: POC.User
           - id: "id"
           - name: "name"
-    ▿ .3: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.sequence
+    ▿ .5: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.sequence
       - sequence: 0 elements

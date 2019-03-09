@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         store.dispatch(.download(.start))
-        store.dispatch(.login(.sent))
+        store.dispatch(.login(.send))
     }
 }
 

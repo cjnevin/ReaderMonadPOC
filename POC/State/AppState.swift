@@ -11,7 +11,7 @@ import Core
 
 enum AppAction {
     enum Login {
-        case sent
+        case send
         case success(User)
         case failed
     }
@@ -45,12 +45,15 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
         }
     case .login(let login):
         switch login {
-        case .sent:
+        case .send:
+            state.isLoading = true
             state.user = nil
             return .background(sendCredentials)
         case .success(let user):
+            state.isLoading = false
             state.user = user
         case .failed:
+            state.isLoading = false
             state.user = nil
         }
     }

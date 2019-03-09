@@ -84,24 +84,33 @@ class StoreTest: XCTestCase {
 
     func assert(file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
         XCTAssert(type(of: self) != StoreTest.self)
-
-        output(databaseRecorder)
-        output(diskRecorder)
-        output(downloadRecorder)
-        output(reducerRecorder)
-
+        outputAll(reducerEvents: [])
         finalise(file: file, function: function, line: line)
     }
 
     func assert<T>(keyPath: KeyPath<AppState, T>, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
         XCTAssert(type(of: self) != StoreTest.self)
+        outputAll(reducerEvents: reducerRecorder[keyPath])
+        finalise(file: file, function: function, line: line)
+    }
 
+    func assert<T, U>(keyPaths keyPath1: KeyPath<AppState, T>, _ keyPath2: KeyPath<AppState, U>, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
+        XCTAssert(type(of: self) != StoreTest.self)
+        outputAll(reducerEvents: reducerRecorder[keyPath1, keyPath2])
+        finalise(file: file, function: function, line: line)
+    }
+
+    func assert<T, U, V>(keyPaths keyPath1: KeyPath<AppState, T>, _ keyPath2: KeyPath<AppState, U>, _ keyPath3: KeyPath<AppState, V>, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
+        XCTAssert(type(of: self) != StoreTest.self)
+        outputAll(reducerEvents: reducerRecorder[keyPath1, keyPath2, keyPath3])
+        finalise(file: file, function: function, line: line)
+    }
+
+    private func outputAll(reducerEvents: [Any]) {
         output(databaseRecorder)
         output(diskRecorder)
         output(downloadRecorder)
-        output(reducerRecorder, events: reducerRecorder[keyPath])
-
-        finalise(file: file, function: function, line: line)
+        output(reducerRecorder, events: reducerEvents)
     }
 
     private func output<T: Recorder>(_ recorder: T, events: [Any] = []) {

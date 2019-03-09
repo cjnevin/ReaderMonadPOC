@@ -24,13 +24,13 @@ class AppStateTests: StoreTest {
     }
 
     func testLoginSuccess() {
-        store.dispatch(.login(.sent))
-        assert(keyPath: \AppState.user)
+        store.dispatch(.login(.send))
+        assert(keyPaths: \AppState.user, \AppState.isLoading)
     }
 
     func testLoginFailure() {
         database.writeError = .notWritable
-        store.dispatch(.login(.sent))
-        assert(keyPath: \AppState.user)
+        store.dispatch(.login(.send))
+        assert(keyPaths: \AppState.user, \AppState.isLoading)
     }
 }
