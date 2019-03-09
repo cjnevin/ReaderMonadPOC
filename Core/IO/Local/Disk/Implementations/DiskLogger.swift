@@ -8,27 +8,9 @@
 
 import Foundation
 
-public struct DiskLogger: Disk {
-    public let disk: Disk
-
-    public init(_ disk: Disk) {
-        self.disk = disk
-    }
-
-    public func delete(from path: URL) -> Result<Void, DeleteError> {
-        return log(disk.delete(from: path), path: path, prefix: "delete")
-    }
-
-    public func read(from path: URL) -> Result<Data, ReadError> {
-        return log(disk.read(from: path), path: path, prefix: "read")
-    }
-
-    public func write(_ value: Data, to path: URL) -> Result<Void, WriteError> {
-        return log(disk.write(value, to: path), path: path, prefix: "write")
-    }
-
-    private func log<T, E>(_ result: Result<T, E>, path: URL, prefix: String) -> Result<T, E> {
-        print("[DiskLogger] \(prefix) \(path.lastPathComponent) - \(result)")
-        return result
+public class DiskLogger: DiskDecorator {
+    public override init(_ disk: Disk) {
+        super.init(disk)
+        self.decorator = { print("[DiskLogger] \($0)") }
     }
 }

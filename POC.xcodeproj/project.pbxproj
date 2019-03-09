@@ -65,6 +65,8 @@
 		834DDFE422345472004C9C4F /* WorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF9E2234286B004C9C4F /* WorldTests.swift */; };
 		834DDFE62234548C004C9C4F /* AbstractDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFE52234548C004C9C4F /* AbstractDataSource.swift */; };
 		834DDFE8223454AF004C9C4F /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFE7223454AF004C9C4F /* TableViewDataSource.swift */; };
+		834DDFEC223459AD004C9C4F /* DatabaseDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFEB223459AD004C9C4F /* DatabaseDecorator.swift */; };
+		834DDFEE22345A9C004C9C4F /* DiskDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFED22345A9C004C9C4F /* DiskDecorator.swift */; };
 		FEA698242232810300A8E043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698232232810300A8E043 /* AppDelegate.swift */; };
 		FEA698262232810300A8E043 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698252232810300A8E043 /* UserListViewController.swift */; };
 		FEA6982B2232810A00A8E043 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA6982A2232810A00A8E043 /* Assets.xcassets */; };
@@ -248,6 +250,8 @@
 		834DDFDA22345432004C9C4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		834DDFE52234548C004C9C4F /* AbstractDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractDataSource.swift; sourceTree = "<group>"; };
 		834DDFE7223454AF004C9C4F /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		834DDFEB223459AD004C9C4F /* DatabaseDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDecorator.swift; sourceTree = "<group>"; };
+		834DDFED22345A9C004C9C4F /* DiskDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskDecorator.swift; sourceTree = "<group>"; };
 		FEA698202232810300A8E043 /* POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA698232232810300A8E043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA698252232810300A8E043 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 		834DDF0A2232FD13004C9C4F /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
+				834DDFEB223459AD004C9C4F /* DatabaseDecorator.swift */,
 				834DDF022232FB45004C9C4F /* DatabaseLogger.swift */,
 				834DDF5E2233BFC2004C9C4F /* DatabaseLoggerTests.swift */,
 				834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */,
@@ -396,6 +401,7 @@
 		834DDF0B2232FD1E004C9C4F /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
+				834DDFED22345A9C004C9C4F /* DiskDecorator.swift */,
 				FEA698842232860000A8E043 /* DiskLogger.swift */,
 				834DDF442233ADCE004C9C4F /* DiskLoggerTests.swift */,
 				FEA698C02232D5FE00A8E043 /* DiskRecorder.swift */,
@@ -1159,6 +1165,7 @@
 				FEA698702232819500A8E043 /* FileIOError.swift in Sources */,
 				834DDF2B22334ABB004C9C4F /* TestableDatabase.swift in Sources */,
 				834DDF8922342499004C9C4F /* OptionalType.swift in Sources */,
+				834DDFEE22345A9C004C9C4F /* DiskDecorator.swift in Sources */,
 				FEA698AE2232AD7600A8E043 /* String+Output.swift in Sources */,
 				FEA6986E2232817F00A8E043 /* Disk.swift in Sources */,
 				834DDF7D2233FE47004C9C4F /* Observable.swift in Sources */,
@@ -1181,6 +1188,7 @@
 				834DDF8722342481004C9C4F /* Sink.swift in Sources */,
 				FEA6989A2232889000A8E043 /* ReducerLogger.swift in Sources */,
 				FEA698A02232892800A8E043 /* Intepreter.swift in Sources */,
+				834DDFEC223459AD004C9C4F /* DatabaseDecorator.swift in Sources */,
 				834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */,
 				FEA6986A2232813B00A8E043 /* Database.swift in Sources */,
 				FEA6988C223286B600A8E043 /* URLSession+Download.swift in Sources */,
