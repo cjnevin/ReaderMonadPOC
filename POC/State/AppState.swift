@@ -100,20 +100,6 @@ private func fetchUsers() -> Recurring<AppAction> {
     }
 }
 
-enum Screen: String, Hashable {
-    case root
-}
-
-var disposableDictionary: [Screen: CompositeDisposable] = [:]
-
-func disposal(for screen: Screen) -> () -> CompositeDisposable {
-    return {
-        let d = disposableDictionary[screen] ?? CompositeDisposable()
-        disposableDictionary[screen] = d
-        return d
-    }
-}
-
 extension User {
     static func random() -> User {
         return User(id: UUID().uuidString, name: randomString(length: 15))

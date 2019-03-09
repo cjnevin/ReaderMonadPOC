@@ -8,8 +8,6 @@
 
 import UIKit
 
-var store = realWorldStore
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
