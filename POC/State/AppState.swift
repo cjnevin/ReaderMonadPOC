@@ -68,6 +68,6 @@ private let downloadThenComplete
         >>>= { .pure($0.map { AppAction.download(.complete) } ?? AppAction.download(.failed)) }
 
 private let sendCredentials
-    = WorldReader.pure(User(id: "id", name: "name"))
+    = .pure(User(id: "id", name: "name"))
         >>>= { writeToDatabase($0, for: $0.id) }
         >>>= { .pure($0.map { AppAction.login(.success($0)) } ?? AppAction.login(.failed)) }
