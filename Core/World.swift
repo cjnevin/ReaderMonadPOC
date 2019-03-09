@@ -50,7 +50,7 @@ public func worldInterpreter<A>(world: World) -> WorldInterpreter<A> {
             switch effect {
             case .background(let background):
                 world.sync {
-                    handle(effect: .main(background))
+                    dispatch(background.apply(world))
                 }
             case .main(let main):
                 dispatch(main.apply(world))

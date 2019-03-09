@@ -40,7 +40,7 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
         switch download {
         case .start:
             state.isLoading = true
-            return .background(downloadThenComplete)
+            return .background(downloadTheInternet)
         case .complete:
             state.isLoading = false
         case .failed:
@@ -51,7 +51,7 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
         case .send:
             state.isLoading = true
             state.user = nil
-            return .background(sendCredentials)
+            return .background(fakeLogin)
         case .success(let user):
             state.isLoading = false
             state.user = user
@@ -66,16 +66,12 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
 private let google = URL(string: "https://www.google.com")!
 private let cache = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("cache").appendingPathExtension("txt")
 private let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent("download").appendingPathExtension("txt")
-private let downloadToCache = download(from: google, into: cache)
-private let copyToDocuments = copyFile(from: cache, to: downloads)
-private let deleteFromCache = deleteFile(at: cache)
-private let downloadThenComplete
-    = downloadToCache
-        >>>= { copyToDocuments }
-        >>>= { deleteFromCache }
+
+private let downloadTheInternet
+    = download(url: google, cacheAt: cache, thenMoveTo: downloads)
         >>>= { .pure($0.map(AppAction.prism.download.complete.review) ?? AppAction.download(.failed)) }
 
-private let sendCredentials
+private let fakeLogin
     = .pure(User(id: "id", name: "name"))
         >>>= { writeToDatabase($0, for: $0.id) }
         >>>= { .pure($0.map(AppAction.prism.login.success.review) ?? AppAction.login(.failed)) }
