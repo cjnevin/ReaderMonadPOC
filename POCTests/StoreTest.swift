@@ -126,6 +126,7 @@ class StoreTest: XCTestCase {
             print("\n!!!! Copy the below into a file called: \(name).\(ext) !!!!\n\n")
             print(outputRecorder.result)
             print("\n\n!!!! Copy the above into a file called: \(name).\(ext) !!!!\n")
+            XCTFail("Please disable recordMode once you have generated output")
         } else {
             let path = Bundle(for: StoreTest.self).path(forResource: name, ofType: ext)!
             let content = try! String(contentsOfFile: path).trimmingCharacters(in: .whitespacesAndNewlines)
