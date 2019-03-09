@@ -16,8 +16,8 @@ public final class TestableDatabase: Database {
     }
 
     public var readError: ReadError?
-    public func read<T: DatabaseReadable>(id: String) -> Result<T, ReadError> {
-        return readError.map(Result.failure) ?? database.read(id: id)
+    public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
+        return readError.map(Result.failure) ?? database.read(id: id, ofType: ofType)
     }
 
     public var writeError: WriteError?

@@ -1,0 +1,59 @@
+{% macro getTypeName type %}{% if type.actualTypeName %}{{ type.actualTypeName.name }}{% else %}{{ type.typeName.name }}{% endif %}{% endmacro %}
+
+{% for type in types.all where type.name == "SourceryImports_Prism" %}
+{% for variable in type.variables %}
+{% if variable|annotated:"testable" %}@testable {% else %}{% endif %}import {{ variable.name }}
+{% endfor %}
+{% endfor %}
+
+{% for type in types.enums|annotated:"prism" %}
+
+extension {{ type.name }} {
+    {{ type.accessLevel }} enum prism {
+        {% for case in type.cases %}
+		{% if type.isGeneric %}
+		{% if case.hasAssociatedValue %}
+		{{ type.accessLevel }} static var {{ case.name }}: Prism<{{ type.name }}, {% if case.associatedValues.count > 1 %}({% for associated in case.associatedValues %}{% call getTypeName associated %}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}){% else %}{% call getTypeName case.associatedValues.first %}{% endif %}> {
+			return .init(
+				preview: { if case .{{ case.name }}(let value) = $0 { return value } else { return nil } },
+				review: { ({% for associated in case.associatedValues %}x{{ forloop.counter}}{% if not forloop.last%}, {% endif %}{% endfor %}) in .{{ case.name }}({% for associated in case.associatedValues %}{% if associated.localName != nil %}{{ associated.localName }}:{% endif %}x{{ forloop.counter }}{% if not forloop.last%}, {% endif %}{% endfor %}) })
+		}
+		{% else %}
+		{{ type.accessLevel }} static var {{ case.name }}: Prism<{{ type.name }}, ()> {
+			return .init(
+				preview: { if case .{{ case.name }} = $0 { return () } else { return nil } },
+				review: { .{{ case.name }} })
+		}
+		{% endif %}
+		{% else %}
+        {% if case.hasAssociatedValue %}
+        {{ type.accessLevel }} static let {{ case.name }} = Prism<{{ type.name }}, {% if case.associatedValues.count > 1 %}({% for associated in case.associatedValues %}{% call getTypeName associated %}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}){% else %}{% call getTypeName case.associatedValues.first %}{% endif %}>(
+            preview: { if case .{{ case.name }}(let value) = $0 { return value } else { return nil } },
+            review: { ({% for associated in case.associatedValues %}x{{ forloop.counter}}{% if not forloop.last%}, {% endif %}{% endfor %}) in .{{ case.name }}({% for associated in case.associatedValues %}{% if associated.localName != nil %}{{ associated.localName }}:{% endif %}x{{ forloop.counter }}{% if not forloop.last%}, {% endif %}{% endfor %}) })
+        {% else %}
+        {{ type.accessLevel }} static let {{ case.name }} = Prism<{{ type.name }}, ()>(
+            preview: { if case .{{ case.name }} = $0 { return () } else { return nil } },
+            review: { .{{ case.name }} })
+        {% endif %}
+		{% endif %}
+        {% endfor %}
+    }
+}
+
+{% if type.annotations.prism == "chain" %}
+{{ type.accessLevel }} extension Prism where Part == {{ type.name }} {
+	{% for case in type.cases %}
+	{% if case.hasAssociatedValue %}
+	var {{ case.name }}: Prism<Whole, {% if case.associatedValues.count > 1 %}({% for associated in case.associatedValues %}{% call getTypeName associated %}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}){% else %}{% call getTypeName case.associatedValues.first %}{% endif %}> {
+		return self • {{ type.name }}.prism.{{ case.name }}
+	}
+	{% else %}
+	var {{ case.name }}: Prism<Whole, Void> {
+		return self • {{ type.name }}.prism.{{ case.name }}
+	}
+	{% endif %}
+	{% endfor %}
+}
+{% endif %}
+
+{% endfor %}

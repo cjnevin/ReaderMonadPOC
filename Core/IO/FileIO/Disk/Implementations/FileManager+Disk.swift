@@ -9,19 +9,18 @@
 import Foundation
 
 extension FileManager: Disk {
-    public func delete(from path: String) -> Result<Void, DeleteError> {
-        return Try { try self.removeItem(atPath: path) }
+    public func delete(from path: URL) -> Result<Void, DeleteError> {
+        return Try { try self.removeItem(at: path) }
             .result(DeleteError.notDeletable)
     }
 
-    public func read(from path: String) -> Result<Data, ReadError> {
-        return contents(atPath: path).map(Result.success) ?? Result.failure(.notFound)
+    public func read(from path: URL) -> Result<Data, ReadError> {
+        return Try { try Data(contentsOf: path) }
+            .result(ReadError.notFound)
     }
 
-    public func write(_ value: Data, to path: String) -> Result<Void, WriteError> {
-        return Try { try self.removeItem(atPath: path) }
-            .map { self.createFile(atPath: path, contents: value, attributes: nil) }
-            .flatMap { $0 ? .success(()) : .throw() }
+    public func write(_ value: Data, to path: URL) -> Result<Void, WriteError> {
+        return Try { try value.write(to: path, options: .atomicWrite) }
             .result(WriteError.notWritable)
     }
 }

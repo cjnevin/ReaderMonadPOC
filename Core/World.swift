@@ -26,6 +26,7 @@ public struct World {
     }
 }
 
+///sourcery:prism=chain
 public enum WorldError {
     case database(FileIOError)
     case disk(FileIOError)

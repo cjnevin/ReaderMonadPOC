@@ -15,7 +15,7 @@ public final class MemoryDatabase: Database {
         self.values = values
     }
 
-    public func read<T: DatabaseReadable>(id: String) -> Result<T, ReadError> {
+    public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
         return (values[id] as? T).map(Result.success) ?? Result.failure(.notFound)
     }
     

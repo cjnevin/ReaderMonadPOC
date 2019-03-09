@@ -8,6 +8,7 @@
 
 import Foundation
 
+//sourcery:prism
 /// Wraps do-try-catch logic
 public enum Try<T> {
     case success(T)
@@ -27,10 +28,7 @@ public enum Try<T> {
     public static func `throw`() -> Try<T> {
         return .init { throw TryError.throwError }
     }
-
-    public var value: T? { if case .success(let t) = self { return t } else { return nil } }
-    public var error: Error? { if case .failure(let e) = self { return e } else { return nil } }
-
+    
     public func map<U>(_ f: @escaping (T) -> U) -> Try<U> {
         switch self {
         case .success(let value): return .success(f(value))

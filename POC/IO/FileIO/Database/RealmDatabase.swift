@@ -11,8 +11,8 @@ import Core
 import RealmSwift
 
 struct RealmDatabase: Database {
-    func read<T: DatabaseReadable>(id: String) -> Result<T, ReadError> {
-        return T.read(id: id).map(Result.success) ?? Result.failure(.notFound)
+    func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
+        return ofType.read(id: id).map(Result.success) ?? Result.failure(.notFound)
     }
 
     func write<T: DatabaseWritable>(_ value: T, for id: String) -> Result<Void, WriteError> {
@@ -33,11 +33,11 @@ private func realmRead<T: Object>(type: T.Type, id: String) -> T? {
 
 private func realmWrite<T: Object>(_ object: T) -> Bool {
     guard let db = realm() else { return false }
-    return Try {
+    return Try.prism.failure.isCase(Try {
         try db.write {
             db.add(object, update: true)
         }
-    }.error == nil
+    })
 }
 
 extension User: DatabaseReadable, DatabaseWritable {

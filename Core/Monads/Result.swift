@@ -8,7 +8,13 @@
 
 import Foundation
 
-public enum Result<T, E> {
+public protocol ResultType {
+    associatedtype Value
+    associatedtype Error
+}
+
+//sourcery:prism
+public enum Result<T, E>: ResultType {
     public typealias Value = T
     public typealias Error = E
 
@@ -21,17 +27,21 @@ extension Result {
         return success.map(Result.success) ?? failure.map(Result.failure)
     }
 
-    func mapError<D>(_ f: @escaping (E) -> D) -> Result<T, D> {
-        switch self {
-        case .success(let value): return .success(value)
-        case .failure(let error): return .failure(f(error))
-        }
+    func replace<U>(_ object: U) -> Result<U, E> {
+        return map { _ in object }
     }
     
     func map<U>(_ f: @escaping (T) -> U) -> Result<U, E> {
         switch self {
         case .success(let value): return .success(f(value))
         case .failure(let error): return .failure(error)
+        }
+    }
+
+    public func map<U>(_ f: @escaping (T) -> U) -> U? {
+        switch self {
+        case .success(let value): return f(value)
+        case .failure: return nil
         }
     }
 
@@ -49,17 +59,17 @@ extension Result {
         }
     }
 
-    func flatMapError<D>(_ f: @escaping (E) -> Result<T, D>) -> Result<T, D> {
+    func `catch`<D>(_ f: @escaping (E) -> D) -> Result<T, D> {
         switch self {
         case .success(let value): return .success(value)
-        case .failure(let error): return f(error)
+        case .failure(let error): return .failure(f(error))
         }
     }
 
-    public func map<U>(_ f: @escaping (T) -> U) -> U? {
+    func `catch`<D>(_ f: @escaping (E) -> Result<T, D>) -> Result<T, D> {
         switch self {
-        case .success(let value): return f(value)
-        case .failure: return nil
+        case .success(let value): return .success(value)
+        case .failure(let error): return f(error)
         }
     }
 }

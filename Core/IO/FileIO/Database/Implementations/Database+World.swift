@@ -10,14 +10,15 @@ import Foundation
 
 public func queryDatabase<T: DatabaseReadable>(id: String) -> WorldIOResult<T> {
     return .init { world in
-        world.database.read(id: id).mapError { WorldError.database(.read($0)) }
+        world.database.read(id: id, ofType: T.self)
+            .catch(WorldError.prism.database.read.review)
     }
 }
 
 public func writeToDatabase<T: DatabaseWritable>(_ value: T, for id: String) -> WorldIOResult<T> {
     return .init { world in
         world.database.write(value, for: id)
-            .mapError { WorldError.database(.write($0)) }
-            .map { _ in value }
+            .catch(WorldError.prism.database.write.review)
+            .replace(value)
     }
 }

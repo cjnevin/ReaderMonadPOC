@@ -1,9 +1,9 @@
 Core.DiskRecorder
 ▿ 4 elements
-  - "write cache - success()"
-  - "read cache - success(0 bytes)"
-  - "write documents - success()"
-  - "delete cache - success()"
+  - "write cache.txt - success()"
+  - "read cache.txt - success(0 bytes)"
+  - "write download.txt - success()"
+  - "delete cache.txt - success()"
 Core.DownloadRecorder
 ▿ 1 element
   - "https://www.google.com"

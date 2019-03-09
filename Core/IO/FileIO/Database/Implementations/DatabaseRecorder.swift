@@ -16,8 +16,8 @@ public class DatabaseRecorder: Database, Recorder {
         self.database = database
     }
 
-    public func read<T: DatabaseReadable>(id: String) -> Result<T, ReadError> {
-        return record(database.read(id: id), id: id, prefix: "read")
+    public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
+        return record(database.read(id: id, ofType: ofType), id: id, prefix: "read")
     }
 
     public func write<T: DatabaseWritable>(_ value: T, for id: String) -> Result<Void, WriteError> {

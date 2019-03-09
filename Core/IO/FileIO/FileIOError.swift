@@ -8,10 +8,14 @@
 
 import Foundation
 
+///sourcery:prism=chain
 public enum ReadError { case notFound }
+///sourcery:prism=chain
 public enum WriteError { case notWritable }
+///sourcery:prism=chain
 public enum DeleteError { case notDeletable }
 
+///sourcery:prism=chain
 public enum FileIOError {
     case delete(DeleteError)
     case read(ReadError)

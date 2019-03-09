@@ -1,0 +1,8 @@
+sources:
+  include:
+    - .
+  exclude:
+    - Generated/
+templates:
+  - Stencils/
+output: Generated/

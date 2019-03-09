@@ -10,10 +10,10 @@ import Foundation
 
 public func download(from url: URL) -> WorldIOResult<Data> {
     return .init { world in
-        world.download(url).mapError(WorldError.download)
+        world.download(url).catch(WorldError.download)
     }
 }
 
-public func download(from source: URL, into path: String) -> WorldIOResult<Void> {
+public func download(from source: URL, into path: URL) -> WorldIOResult<Void> {
     return download(from: source) >>>= writeFile(to: path)
 }

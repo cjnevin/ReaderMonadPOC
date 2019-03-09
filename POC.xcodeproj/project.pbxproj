@@ -22,6 +22,21 @@
 		834DDF2E22334C53004C9C4F /* AppStateTests_testLoginSuccess.record in Resources */ = {isa = PBXBuildFile; fileRef = 834DDF2C22334BC1004C9C4F /* AppStateTests_testLoginSuccess.record */; };
 		834DDF2F22334C56004C9C4F /* AppStateTests_testLoginFailure.record in Resources */ = {isa = PBXBuildFile; fileRef = 834DDF2822334390004C9C4F /* AppStateTests_testLoginFailure.record */; };
 		834DDF3122334FC9004C9C4F /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF3022334FC9004C9C4F /* CoreTests.swift */; };
+		834DDF3B2233AA43004C9C4F /* AutoPrism.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF3A2233AA43004C9C4F /* AutoPrism.generated.swift */; };
+		834DDF3E2233AA73004C9C4F /* Prism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF3D2233AA73004C9C4F /* Prism.swift */; };
+		834DDF472233AE6D004C9C4F /* DiskLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF442233ADCE004C9C4F /* DiskLoggerTests.swift */; };
+		834DDF482233AE7D004C9C4F /* DiskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF3F2233ACCF004C9C4F /* DiskTests.swift */; };
+		834DDF4B2233B00E004C9C4F /* DiskRecorderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF492233AFFE004C9C4F /* DiskRecorderTests.swift */; };
+		834DDF4E2233B057004C9C4F /* MemoryDiskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF4C2233B046004C9C4F /* MemoryDiskTests.swift */; };
+		834DDF5A2233BAEB004C9C4F /* FileManagerDiskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF4F2233B0C8004C9C4F /* FileManagerDiskTests.swift */; };
+		834DDF5D2233BBC3004C9C4F /* FileManager+Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698862232863000A8E043 /* FileManager+Disk.swift */; };
+		834DDF602233BFC9004C9C4F /* DatabaseLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF5E2233BFC2004C9C4F /* DatabaseLoggerTests.swift */; };
+		834DDF632233C112004C9C4F /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF612233BFDC004C9C4F /* DatabaseTests.swift */; };
+		834DDF662233C1CE004C9C4F /* DatabaseRecorderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF642233C1BB004C9C4F /* DatabaseRecorderTests.swift */; };
+		834DDF692233C1EE004C9C4F /* MemoryDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF672233C1DD004C9C4F /* MemoryDatabaseTests.swift */; };
+		834DDF6C2233C23D004C9C4F /* TestableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF6A2233C22F004C9C4F /* TestableDataTests.swift */; };
+		834DDF702233CB04004C9C4F /* AutoPrism.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF6F2233CB03004C9C4F /* AutoPrism.generated.swift */; };
+		834DDF722233CB1A004C9C4F /* SourceryImports_Prism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF712233CB1A004C9C4F /* SourceryImports_Prism.swift */; };
 		FEA698242232810300A8E043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698232232810300A8E043 /* AppDelegate.swift */; };
 		FEA698262232810300A8E043 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698252232810300A8E043 /* ViewController.swift */; };
 		FEA698292232810300A8E043 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA698272232810300A8E043 /* Main.storyboard */; };
@@ -41,7 +56,6 @@
 		FEA69880223283F200A8E043 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA6987F223283F200A8E043 /* Operators.swift */; };
 		FEA69883223285BA00A8E043 /* MemoryDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA69882223285BA00A8E043 /* MemoryDisk.swift */; };
 		FEA698852232860000A8E043 /* DiskLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698842232860000A8E043 /* DiskLogger.swift */; };
-		FEA698872232863000A8E043 /* FileManager+Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698862232863000A8E043 /* FileManager+Disk.swift */; };
 		FEA698892232866100A8E043 /* Try.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698882232866100A8E043 /* Try.swift */; };
 		FEA6988C223286B600A8E043 /* URLSession+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA6988B223286B600A8E043 /* URLSession+Download.swift */; };
 		FEA6988E2232871200A8E043 /* DownloadLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA6988D2232871200A8E043 /* DownloadLogger.swift */; };
@@ -126,6 +140,21 @@
 		834DDF2A22334ABB004C9C4F /* TestableDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableDatabase.swift; sourceTree = "<group>"; };
 		834DDF2C22334BC1004C9C4F /* AppStateTests_testLoginSuccess.record */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppStateTests_testLoginSuccess.record; sourceTree = "<group>"; };
 		834DDF3022334FC9004C9C4F /* CoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTests.swift; sourceTree = "<group>"; };
+		834DDF332233A7B7004C9C4F /* AutoPrism.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoPrism.stencil; sourceTree = "<group>"; };
+		834DDF3A2233AA43004C9C4F /* AutoPrism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPrism.generated.swift; sourceTree = "<group>"; };
+		834DDF3D2233AA73004C9C4F /* Prism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prism.swift; sourceTree = "<group>"; };
+		834DDF3F2233ACCF004C9C4F /* DiskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskTests.swift; sourceTree = "<group>"; };
+		834DDF442233ADCE004C9C4F /* DiskLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskLoggerTests.swift; sourceTree = "<group>"; };
+		834DDF492233AFFE004C9C4F /* DiskRecorderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskRecorderTests.swift; sourceTree = "<group>"; };
+		834DDF4C2233B046004C9C4F /* MemoryDiskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDiskTests.swift; sourceTree = "<group>"; };
+		834DDF4F2233B0C8004C9C4F /* FileManagerDiskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDiskTests.swift; sourceTree = "<group>"; };
+		834DDF5E2233BFC2004C9C4F /* DatabaseLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLoggerTests.swift; sourceTree = "<group>"; };
+		834DDF612233BFDC004C9C4F /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
+		834DDF642233C1BB004C9C4F /* DatabaseRecorderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecorderTests.swift; sourceTree = "<group>"; };
+		834DDF672233C1DD004C9C4F /* MemoryDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDatabaseTests.swift; sourceTree = "<group>"; };
+		834DDF6A2233C22F004C9C4F /* TestableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableDataTests.swift; sourceTree = "<group>"; };
+		834DDF6F2233CB03004C9C4F /* AutoPrism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPrism.generated.swift; sourceTree = "<group>"; };
+		834DDF712233CB1A004C9C4F /* SourceryImports_Prism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceryImports_Prism.swift; sourceTree = "<group>"; };
 		FEA698202232810300A8E043 /* POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA698232232810300A8E043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA698252232810300A8E043 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA6986D2232817F00A8E043 /* Disk.swift */,
+				834DDF3F2233ACCF004C9C4F /* DiskTests.swift */,
 				834DDF0B2232FD1E004C9C4F /* Implementations */,
 			);
 			path = Disk;
@@ -227,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA698692232813B00A8E043 /* Database.swift */,
+				834DDF612233BFDC004C9C4F /* DatabaseTests.swift */,
 				834DDF0A2232FD13004C9C4F /* Implementations */,
 			);
 			path = Database;
@@ -237,9 +268,13 @@
 			children = (
 				FEA698AB22328F2400A8E043 /* Database+World.swift */,
 				834DDF022232FB45004C9C4F /* DatabaseLogger.swift */,
+				834DDF5E2233BFC2004C9C4F /* DatabaseLoggerTests.swift */,
 				834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */,
+				834DDF642233C1BB004C9C4F /* DatabaseRecorderTests.swift */,
 				834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */,
+				834DDF672233C1DD004C9C4F /* MemoryDatabaseTests.swift */,
 				834DDF2A22334ABB004C9C4F /* TestableDatabase.swift */,
+				834DDF6A2233C22F004C9C4F /* TestableDataTests.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -249,9 +284,13 @@
 			children = (
 				FEA698A722328E6F00A8E043 /* Disk+World.swift */,
 				FEA698842232860000A8E043 /* DiskLogger.swift */,
+				834DDF442233ADCE004C9C4F /* DiskLoggerTests.swift */,
 				FEA698C02232D5FE00A8E043 /* DiskRecorder.swift */,
+				834DDF492233AFFE004C9C4F /* DiskRecorderTests.swift */,
 				FEA698862232863000A8E043 /* FileManager+Disk.swift */,
+				834DDF4F2233B0C8004C9C4F /* FileManagerDiskTests.swift */,
 				FEA69882223285BA00A8E043 /* MemoryDisk.swift */,
+				834DDF4C2233B046004C9C4F /* MemoryDiskTests.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -295,6 +334,54 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		834DDF322233A770004C9C4F /* Stencils */ = {
+			isa = PBXGroup;
+			children = (
+				834DDF332233A7B7004C9C4F /* AutoPrism.stencil */,
+			);
+			path = Stencils;
+			sourceTree = "<group>";
+		};
+		834DDF392233AA43004C9C4F /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				834DDF3A2233AA43004C9C4F /* AutoPrism.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		834DDF3C2233AA6A004C9C4F /* Optics */ = {
+			isa = PBXGroup;
+			children = (
+				834DDF3D2233AA73004C9C4F /* Prism.swift */,
+			);
+			path = Optics;
+			sourceTree = "<group>";
+		};
+		834DDF552233B6AC004C9C4F /* FileIO */ = {
+			isa = PBXGroup;
+			children = (
+				834DDF562233B6B5004C9C4F /* Database */,
+			);
+			path = FileIO;
+			sourceTree = "<group>";
+		};
+		834DDF562233B6B5004C9C4F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				FEA698B62232AED400A8E043 /* RealmDatabase.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		834DDF6E2233CB03004C9C4F /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				834DDF6F2233CB03004C9C4F /* AutoPrism.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		FEA698172232810300A8E043 = {
 			isa = PBXGroup;
 			children = (
@@ -321,12 +408,14 @@
 		FEA698222232810300A8E043 /* POC */ = {
 			isa = PBXGroup;
 			children = (
+				834DDF6E2233CB03004C9C4F /* Generated */,
 				FEA698B52232AE5000A8E043 /* IO */,
 				834DDF25223331E5004C9C4F /* Model */,
 				834DDF162233051E004C9C4F /* State */,
 				834DDF19223305F5004C9C4F /* World */,
 				FEA698232232810300A8E043 /* AppDelegate.swift */,
 				FEA698252232810300A8E043 /* ViewController.swift */,
+				834DDF712233CB1A004C9C4F /* SourceryImports_Prism.swift */,
 				FEA698272232810300A8E043 /* Main.storyboard */,
 				FEA6982A2232810A00A8E043 /* Assets.xcassets */,
 				FEA6982C2232810A00A8E043 /* LaunchScreen.storyboard */,
@@ -348,9 +437,12 @@
 			isa = PBXGroup;
 			children = (
 				FEA6984B2232811E00A8E043 /* Core.h */,
+				834DDF392233AA43004C9C4F /* Generated */,
 				FEA698782232827A00A8E043 /* IO */,
 				FEA698772232825300A8E043 /* Monads */,
+				834DDF3C2233AA6A004C9C4F /* Optics */,
 				FEA6988F2232876100A8E043 /* State */,
+				834DDF322233A770004C9C4F /* Stencils */,
 				FEA698A3223289E900A8E043 /* Test */,
 				FEA6987F223283F200A8E043 /* Operators.swift */,
 				834DDF1A2233063D004C9C4F /* Sync.swift */,
@@ -454,7 +546,7 @@
 		FEA698B52232AE5000A8E043 /* IO */ = {
 			isa = PBXGroup;
 			children = (
-				FEA698B62232AED400A8E043 /* RealmDatabase.swift */,
+				834DDF552233B6AC004C9C4F /* FileIO */,
 			);
 			path = IO;
 			sourceTree = "<group>";
@@ -477,6 +569,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FEA6983D2232810B00A8E043 /* Build configuration list for PBXNativeTarget "POC" */;
 			buildPhases = (
+				834DDF6D2233CA27004C9C4F /* Sourcery */,
 				FEA6981C2232810300A8E043 /* Sources */,
 				FEA6981D2232810300A8E043 /* Frameworks */,
 				FEA6981E2232810300A8E043 /* Resources */,
@@ -515,6 +608,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FEA698602232811E00A8E043 /* Build configuration list for PBXNativeTarget "Core" */;
 			buildPhases = (
+				834DDF352233A80C004C9C4F /* Sourcery */,
 				FEA698442232811E00A8E043 /* Headers */,
 				FEA698452232811E00A8E043 /* Sources */,
 				FEA698462232811E00A8E043 /* Frameworks */,
@@ -656,6 +750,42 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
+		834DDF352233A80C004C9C4F /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which sourcery >/dev/null; then\nsourcery --config Core\nelse\necho \"error: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery\"\nexit 1\nfi\n";
+		};
+		834DDF6D2233CA27004C9C4F /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which sourcery >/dev/null; then\nsourcery --config POC\nelse\necho \"error: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery\"\nexit 1\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -668,8 +798,10 @@
 				FEA698242232810300A8E043 /* AppDelegate.swift in Sources */,
 				FEA698B22232ADC800A8E043 /* AppState.swift in Sources */,
 				834DDF1D223307E9004C9C4F /* RealWorld.swift in Sources */,
+				834DDF702233CB04004C9C4F /* AutoPrism.generated.swift in Sources */,
 				FEA698B42232AE2000A8E043 /* AutomationWorld.swift in Sources */,
 				834DDF27223331EF004C9C4F /* User.swift in Sources */,
+				834DDF722233CB1A004C9C4F /* SourceryImports_Prism.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEA698852232860000A8E043 /* DiskLogger.swift in Sources */,
+				834DDF5D2233BBC3004C9C4F /* FileManager+Disk.swift in Sources */,
 				FEA698A822328E6F00A8E043 /* Disk+World.swift in Sources */,
 				FEA698762232825000A8E043 /* Reader.swift in Sources */,
 				834DDF1122330095004C9C4F /* Recorder.swift in Sources */,
@@ -705,11 +838,11 @@
 				FEA698892232866100A8E043 /* Try.swift in Sources */,
 				FEA698912232877000A8E043 /* Reducer.swift in Sources */,
 				FEA6986C2232815700A8E043 /* Result.swift in Sources */,
-				FEA698872232863000A8E043 /* FileManager+Disk.swift in Sources */,
 				FEA698932232878C00A8E043 /* Effect.swift in Sources */,
 				834DDF1B2233063D004C9C4F /* Sync.swift in Sources */,
 				FEA698972232881C00A8E043 /* Store.swift in Sources */,
 				FEA6989E223288E300A8E043 /* InterpreterRecorder.swift in Sources */,
+				834DDF3E2233AA73004C9C4F /* Prism.swift in Sources */,
 				FEA6989C223288A600A8E043 /* InterpreterLogger.swift in Sources */,
 				FEA698BF2232D43500A8E043 /* DownloadRecorder.swift in Sources */,
 				FEA698A522328A0400A8E043 /* OutputRecorder.swift in Sources */,
@@ -721,6 +854,7 @@
 				834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */,
 				FEA6986A2232813B00A8E043 /* Database.swift in Sources */,
 				FEA6988C223286B600A8E043 /* URLSession+Download.swift in Sources */,
+				834DDF3B2233AA43004C9C4F /* AutoPrism.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,7 +862,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				834DDF662233C1CE004C9C4F /* DatabaseRecorderTests.swift in Sources */,
+				834DDF692233C1EE004C9C4F /* MemoryDatabaseTests.swift in Sources */,
+				834DDF4E2233B057004C9C4F /* MemoryDiskTests.swift in Sources */,
 				834DDF3122334FC9004C9C4F /* CoreTests.swift in Sources */,
+				834DDF5A2233BAEB004C9C4F /* FileManagerDiskTests.swift in Sources */,
+				834DDF602233BFC9004C9C4F /* DatabaseLoggerTests.swift in Sources */,
+				834DDF482233AE7D004C9C4F /* DiskTests.swift in Sources */,
+				834DDF4B2233B00E004C9C4F /* DiskRecorderTests.swift in Sources */,
+				834DDF632233C112004C9C4F /* DatabaseTests.swift in Sources */,
+				834DDF472233AE6D004C9C4F /* DiskLoggerTests.swift in Sources */,
+				834DDF6C2233C23D004C9C4F /* TestableDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
