@@ -1,0 +1,20 @@
+Core.DatabaseRecorder
+▿ 1 element
+  - "write id - failure(Core.WriteError.notWritable)"
+Core.ReducerRecorder<POC.AppState, POC.AppAction, Core.World>
+▿ 2 elements
+  ▿ (4 elements)
+    - .0: nil
+    - .1: nil
+    ▿ .2: POC.AppAction.login
+      - login: POC.AppAction.Login.sent
+    ▿ .3: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.background
+      ▿ background: Core.Reader<Core.World, POC.AppAction>
+        - g: (Function)
+  ▿ (4 elements)
+    - .0: nil
+    - .1: nil
+    ▿ .2: POC.AppAction.login
+      - login: POC.AppAction.Login.failed
+    ▿ .3: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.sequence
+      - sequence: 0 elements

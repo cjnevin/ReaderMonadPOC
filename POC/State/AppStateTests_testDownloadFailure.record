@@ -1,0 +1,20 @@
+Core.DownloadRecorder
+▿ 1 element
+  - "https://www.google.com"
+Core.ReducerRecorder<POC.AppState, POC.AppAction, Core.World>
+▿ 2 elements
+  ▿ (4 elements)
+    - .0: false
+    - .1: true
+    ▿ .2: POC.AppAction.download
+      - download: POC.AppAction.Download.start
+    ▿ .3: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.background
+      ▿ background: Core.Reader<Core.World, POC.AppAction>
+        - g: (Function)
+  ▿ (4 elements)
+    - .0: true
+    - .1: false
+    ▿ .2: POC.AppAction.download
+      - download: POC.AppAction.Download.failed
+    ▿ .3: Core.Effect<Core.Reader<Core.World, POC.AppAction>>.sequence
+      - sequence: 0 elements
