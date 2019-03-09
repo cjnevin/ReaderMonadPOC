@@ -1,7 +1,7 @@
 # IOMonadPOC
 Proof of concept using IO monad, redux, and snapshot tests
 
-## IOMonad
+## IO Monad
 The IO monad allows us to abstract all dependency injection in our application to a single point (known as a `World` or `Environment`). We can then inject a different `World` in order to run unit or automation tests (or different configurations).
 
 For example:
@@ -20,6 +20,8 @@ It (and other unidirectional architectures) are a fundamental part in making app
 
 ## Snapshot Tests
 Snapshot will be used to compare the previous recorded state with the current in memory state. Tests will fail if they do not match.
+
+These tests run synchronously, so we can test an entire flow such as login in a single `assert`.
 
 You can run in both `record` mode and `play` mode. Record will dump what you should store in a file which will be used each time that test is run. 
 
