@@ -6,6 +6,10 @@ The IO monad allows us to abstract all dependency injection in our application t
 
 For example, a 'Debug World' may log every event that goes through the system, to help us debug. A 'Unit Test World' may record all events and move all asynchronous tasks to the main thread to allow the tests to be executed synchronously.
 
+Monads can be chained to perform **synchronous** tasks which can then be executed on a background thread.
+
+Asynchronous tasks are confined to the App as it's considered a side-effect in this architecture.
+
 ## Redux
 Redux allows us to control when the global state of the application can change and when side-effects can occur. 
 
