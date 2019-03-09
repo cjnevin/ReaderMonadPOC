@@ -29,3 +29,5 @@ You can run in both `record` mode and `play` mode. Record will dump what you sho
 
 ## Tests
 Tests live with their counterparts, same folder they just belong to the test target instead.
+
+Why? Read: https://kickstarter.engineering/why-you-should-co-locate-your-xcode-tests-c69f79211411
