@@ -20,6 +20,11 @@ public final class TestableDatabase: Database {
         return objectsError.map(Observable.error) ?? database.objects(ofType: type)
     }
 
+    public var deleteError: DeleteError?
+    public func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError> {
+        return deleteError.map(Result.failure) ?? database.delete(id: id, ofType: ofType)
+    }
+
     public var readError: ReadError?
     public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
         return readError.map(Result.failure) ?? database.read(id: id, ofType: ofType)

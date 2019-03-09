@@ -21,6 +21,10 @@ public class DatabaseRecorder: Database, Recorder {
         return record(database.objects(ofType: type), id: "\(type)", prefix: "all")
     }
 
+    public func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError> {
+        return record(database.delete(id: id, ofType: ofType), id: id, prefix: "delete \(ofType)")
+    }
+
     public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
         return record(database.read(id: id, ofType: ofType), id: id, prefix: "read \(ofType)")
     }

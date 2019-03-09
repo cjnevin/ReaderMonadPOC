@@ -56,6 +56,7 @@
 		834DDFB622342976004C9C4F /* SourceryImports_Prism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFB522342976004C9C4F /* SourceryImports_Prism.swift */; };
 		834DDFC122343033004C9C4F /* AppStateTests_testUserWatchFailure.record in Resources */ = {isa = PBXBuildFile; fileRef = 834DDFBD22342DC9004C9C4F /* AppStateTests_testUserWatchFailure.record */; };
 		834DDFC222343033004C9C4F /* AppStateTests_testUserWatchSuccess.record in Resources */ = {isa = PBXBuildFile; fileRef = 834DDFBF22342FE7004C9C4F /* AppStateTests_testUserWatchSuccess.record */; };
+		834DDFC522344FCA004C9C4F /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFC422344FCA004C9C4F /* ModelType.swift */; };
 		FEA698242232810300A8E043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698232232810300A8E043 /* AppDelegate.swift */; };
 		FEA698262232810300A8E043 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA698252232810300A8E043 /* UserListViewController.swift */; };
 		FEA6982B2232810A00A8E043 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA6982A2232810A00A8E043 /* Assets.xcassets */; };
@@ -181,7 +182,6 @@
 		834DDF26223331EF004C9C4F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		834DDF2822334390004C9C4F /* AppStateTests_testUserInjection.record */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppStateTests_testUserInjection.record; sourceTree = "<group>"; };
 		834DDF2A22334ABB004C9C4F /* TestableDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableDatabase.swift; sourceTree = "<group>"; };
-		834DDF332233A7B7004C9C4F /* AutoPrism.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoPrism.stencil; sourceTree = "<group>"; };
 		834DDF3A2233AA43004C9C4F /* AutoPrism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPrism.generated.swift; sourceTree = "<group>"; };
 		834DDF3D2233AA73004C9C4F /* Prism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prism.swift; sourceTree = "<group>"; };
 		834DDF3F2233ACCF004C9C4F /* DiskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskTests.swift; sourceTree = "<group>"; };
@@ -215,6 +215,8 @@
 		834DDFB522342976004C9C4F /* SourceryImports_Prism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceryImports_Prism.swift; sourceTree = "<group>"; };
 		834DDFBD22342DC9004C9C4F /* AppStateTests_testUserWatchFailure.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserWatchFailure.record; sourceTree = "<group>"; };
 		834DDFBF22342FE7004C9C4F /* AppStateTests_testUserWatchSuccess.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserWatchSuccess.record; sourceTree = "<group>"; };
+		834DDFC3223439B7004C9C4F /* Stencils */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Stencils; sourceTree = "<group>"; };
+		834DDFC422344FCA004C9C4F /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		FEA698202232810300A8E043 /* POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA698232232810300A8E043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA698252232810300A8E043 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -409,14 +411,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		834DDF322233A770004C9C4F /* Stencils */ = {
-			isa = PBXGroup;
-			children = (
-				834DDF332233A7B7004C9C4F /* AutoPrism.stencil */,
-			);
-			path = Stencils;
-			sourceTree = "<group>";
-		};
 		834DDF392233AA43004C9C4F /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +438,7 @@
 		834DDF562233B6B5004C9C4F /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				834DDFC422344FCA004C9C4F /* ModelType.swift */,
 				FEA698B62232AED400A8E043 /* RealmDatabase.swift */,
 			);
 			path = Database;
@@ -468,9 +463,9 @@
 		834DDF8122342420004C9C4F /* Reactive */ = {
 			isa = PBXGroup;
 			children = (
+				834DDF8222342436004C9C4F /* Disposable.swift */,
 				834DDF7C2233FE47004C9C4F /* Observable.swift */,
 				834DDF842234245C004C9C4F /* Observer.swift */,
-				834DDF8222342436004C9C4F /* Disposable.swift */,
 				834DDF8622342481004C9C4F /* Sink.swift */,
 			);
 			path = Reactive;
@@ -557,6 +552,7 @@
 		FEA6984A2232811E00A8E043 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				834DDFC3223439B7004C9C4F /* Stencils */,
 				FEA6984B2232811E00A8E043 /* Core.h */,
 				834DDF392233AA43004C9C4F /* Generated */,
 				FEA698782232827A00A8E043 /* IO */,
@@ -564,7 +560,6 @@
 				834DDF3C2233AA6A004C9C4F /* Optics */,
 				834DDF8122342420004C9C4F /* Reactive */,
 				FEA6988F2232876100A8E043 /* State */,
-				834DDF322233A770004C9C4F /* Stencils */,
 				FEA698A3223289E900A8E043 /* Test */,
 				FEA6987F223283F200A8E043 /* Operators.swift */,
 				834DDF1A2233063D004C9C4F /* Sync.swift */,
@@ -1023,6 +1018,7 @@
 				FEA698242232810300A8E043 /* AppDelegate.swift in Sources */,
 				FEA698B22232ADC800A8E043 /* AppState.swift in Sources */,
 				834DDF1D223307E9004C9C4F /* RealWorld.swift in Sources */,
+				834DDFC522344FCA004C9C4F /* ModelType.swift in Sources */,
 				834DDF702233CB04004C9C4F /* AutoPrism.generated.swift in Sources */,
 				FEA698B42232AE2000A8E043 /* AutomationWorld.swift in Sources */,
 				834DDF27223331EF004C9C4F /* User.swift in Sources */,

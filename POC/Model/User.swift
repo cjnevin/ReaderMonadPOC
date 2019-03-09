@@ -10,7 +10,7 @@
 import Foundation
 import RealmSwift
 
-struct User: Comparable {
+struct User: Comparable, ModelType {
     static func < (lhs: User, rhs: User) -> Bool {
         return lhs.name < rhs.name
     }
@@ -18,7 +18,7 @@ struct User: Comparable {
     let id: String
     let name: String
 
-    func asDatabaseObject() -> UserObject {
+    func asRealm() -> UserObject {
         let o = UserObject()
         o.id = id
         o.name = name
@@ -26,7 +26,7 @@ struct User: Comparable {
     }
 }
 
-final class UserObject: Object {
+final class UserObject: Object, RealmType {
     @objc dynamic var id: String = ""
     @objc dynamic var name: String = ""
 

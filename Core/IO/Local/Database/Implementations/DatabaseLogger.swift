@@ -20,6 +20,10 @@ public class DatabaseLogger: Database {
         return log(database.objects(ofType: type), id: "\(type)", prefix: "all")
     }
 
+    public func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError> {
+        return log(database.delete(id: id, ofType: ofType), id: id, prefix: "delete \(ofType)")
+    }
+
     public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
         return log(database.read(id: id, ofType: ofType), id: id, prefix: "read \(ofType)")
     }

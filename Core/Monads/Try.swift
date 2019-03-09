@@ -25,6 +25,15 @@ public enum Try<T> {
     public enum TryError: Error {
         case throwError
     }
+
+    public func didFail() -> Bool {
+        return Try.prism.failure.isCase(self)
+    }
+
+    public func didSucceed() -> Bool {
+        return Try.prism.success.isCase(self)
+    }
+
     public static func `throw`() -> Try<T> {
         return .init { throw TryError.throwError }
     }
@@ -54,6 +63,19 @@ public enum Try<T> {
         switch self {
         case .success(let value): return .success(value)
         case .failure: return .failure(e)
+        }
+    }
+
+    public func materialize() -> T? {
+        return Try.prism.success.preview(self)
+    }
+}
+
+extension Try where T: OptionalType {
+    public func throwIfNull() -> Try<T.Wrapped> {
+        switch self {
+        case .success(let v): return v.value == nil ? .throw() : .success(v.value!)
+        case .failure(let e): return .failure(e)
         }
     }
 }

@@ -22,9 +22,19 @@ class DatabaseTests: XCTestCase {
         XCTAssertTrue(sut.writeRead(DatabaseObject(id: "test"), for: id))
     }
 
+    func testWriteDeleteRead() {
+        if isRoot { return }
+        XCTAssertTrue(sut.writeDeleteRead(value: DatabaseObject(id: "test"), for: id))
+    }
+
     func testReadErrors() {
         if isRoot { return }
         XCTAssertTrue(Result.prism.failure.isCase(sut.read(id: id, ofType: DatabaseObject.self)))
+    }
+    
+    func testDeleteErrors() {
+        if isRoot { return }
+        XCTAssertTrue(Result.prism.failure.isCase(sut.delete(id: id, ofType: DatabaseObject.self)))
     }
 
     override func tearDown() {
@@ -34,11 +44,15 @@ class DatabaseTests: XCTestCase {
 }
 
 private var databaseSource: [String: DatabaseObject] = [:]
-struct DatabaseObject: DatabaseReadable, DatabaseWritable, Equatable {
+struct DatabaseObject: DatabaseReadable, DatabaseWritable, DatabaseDeletable, Equatable {
     let id: String
 
     static func canRead() -> Bool {
         return true
+    }
+
+    static func delete(for id: String) -> Bool {
+        return databaseSource.removeValue(forKey: id) != nil
     }
 
     static func read(id: String) -> DatabaseObject? {

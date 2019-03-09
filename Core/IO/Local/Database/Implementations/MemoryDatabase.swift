@@ -19,6 +19,14 @@ public final class MemoryDatabase: Database {
         return .just(values.values.compactMap { $0 as? T })
     }
 
+    public func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError> {
+        if values.removeValue(forKey: id) != nil {
+            return .success(())
+        } else {
+            return .failure(.notDeletable)
+        }
+    }
+
     public func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError> {
         return (values[id] as? T).map(Result.success) ?? Result.failure(.notFound)
     }
