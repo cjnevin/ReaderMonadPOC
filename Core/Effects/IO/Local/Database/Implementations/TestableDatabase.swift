@@ -16,8 +16,8 @@ public final class TestableDatabase: Database {
     }
 
     public var objectsError: ReadError?
-    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError> {
-        return objectsError.map(Observable.error) ?? database.objects(ofType: type)
+    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError> {
+        return objectsError.map(Signal.error) ?? database.objects(ofType: type)
     }
 
     public var deleteError: DeleteError?
