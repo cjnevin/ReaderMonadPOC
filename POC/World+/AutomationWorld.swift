@@ -15,6 +15,7 @@ let automationWorld = World(
     database: RealmDatabase(),
     download: URLSession.shared.download,
     disk: FileManager(),
+    navigate: navigate,
     sync: backgroundSync)
 
 let automationWorldStore = Store(

@@ -14,6 +14,7 @@ public struct World {
     public let database: Database
     public let download: Downloader
     public let disk: Disk
+    public let navigate: Navigator
     public let sync: Sync
 
     public init(
@@ -21,11 +22,13 @@ public struct World {
         database: Database,
         download: @escaping Downloader,
         disk: Disk,
+        navigate: @escaping Navigator,
         sync: @escaping Sync) {
         self.analytics = analytics
         self.database = database
         self.download = download
         self.disk = disk
+        self.navigate = navigate
         self.sync = sync
     }
 }
@@ -43,10 +46,7 @@ public typealias WorldInterpreter<T> = Interpreter<World, T>
 public typealias WorldInterpreterRecorder<T> = InterpreterRecorder<World, T>
 public typealias WorldReducer<S, A> = Reducer<S, A, World>
 public typealias WorldStore<S, A> = Store<S, A, World>
-public typealias WorldObservable<T> = Observable<T, WorldError>
-
-public typealias Recurring<T> = WorldReader<Observable<T, NoError>>
-public typealias ImmediateResult<T> = WorldReader<WorldResult<T>>
+public typealias WorldSignal<T> = Signal<T, WorldError>
 
 public func worldInterpreter<A>(world: World) -> WorldInterpreter<A> {
     return { method, dispatch -> Void in
@@ -76,7 +76,7 @@ public func worldInterpreter<A>(world: World) -> WorldInterpreter<A> {
             }
         }
 
-        func actions(_ effect: Effect<Recurring<A>>, disposedBy: CompositeDisposable) {
+        func actions(_ effect: Effect<WorldReader<ErrorlessSignal<A>>>, disposedBy: CompositeDisposable) {
             switch effect {
             case .background(let background):
                 world.sync {
@@ -101,8 +101,8 @@ public func worldInterpreter<A>(world: World) -> WorldInterpreter<A> {
     }
 }
 
-public func >>>= <A, B>(a: ImmediateResult<A>, f: @escaping (A) -> ImmediateResult<B>) -> ImmediateResult<B> {
-    return a.flatMap { result -> ImmediateResult<B> in
+public func >>>= <A, B>(a: WorldReader<WorldResult<A>>, f: @escaping (A) -> WorldReader<WorldResult<B>>) -> WorldReader<WorldResult<B>> {
+    return a.flatMap { result -> WorldReader<WorldResult<B>> in
         switch result {
         case .success(let value): return f(value)
         case .failure(let error): return .pure(.failure(error))

@@ -11,7 +11,7 @@ import Core
 import RealmSwift
 
 struct RealmDatabase: Database {
-    func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError> {
+    func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError> {
         return type.objects()
     }
 

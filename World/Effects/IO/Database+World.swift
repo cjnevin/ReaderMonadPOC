@@ -24,7 +24,7 @@ public func writeToDatabase<T: DatabaseWritable>(_ value: T, for id: String) -> 
     }
 }
 
-public func databaseObjects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> WorldReader<WorldObservable<[T]>> {
+public func databaseObjects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> WorldReader<WorldSignal<[T]>> {
     return .init { world in
         world.database.objects(ofType: type)
             .mapError(WorldError.prism.database.read.review)

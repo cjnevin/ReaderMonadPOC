@@ -27,19 +27,30 @@ enum AppAction {
         case watch
         case received([User])
         case failed
+        
+        case select(User)
     }
 
     case download(Download)
     case users(Users)
+    case screen(Screen)
 }
 
 struct AppState {
     var isLoading: Bool = false
     var latestUsers: [User] = []
+    var selectedUser: User? = nil
+    var currentScreen: Screen? = nil
 }
 
 let appReducer = WorldReducer<AppState, AppAction> { state, action in
     switch action {
+    case .screen(let screen):
+        state.currentScreen = screen
+        if screen == .userList {
+            state.selectedUser = nil
+        }
+        return .identity
     case .download(let download):
         switch download {
         case .start:
@@ -47,10 +58,10 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
             return .action(.background(downloadTheInternet))
         case .complete:
             state.isLoading = false
-            return .trackAnalytics(event: .userList("download complete"))
+            return .track(event: .userList("download complete"))
         case .failed:
             state.isLoading = false
-            return .trackAnalytics(event: .userList("download failed"))
+            return .track(event: .userList("download failed"))
         }
     case .users(let users):
         switch users {
@@ -59,17 +70,22 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
             return .action(.background(inject(user: user)))
         case .injected(let user):
             state.isLoading = false
-            return .trackAnalytics(event: .userList("injected \(user.id)"))
+            return .track(event: .userList("injected \(user.id)"))
         case .watch:
             state.isLoading = true
             return .actions(.main(fetchUsers()), disposedBy: disposal(for: .userList)())
         case .received(let allUsers):
+            // Optimisation: sorting and filtering should be moved to store
             state.latestUsers = allUsers.last(10).sorted()
             state.isLoading = false
-            return .trackAnalytics(event: .userList("received \(allUsers.count) users"))
+            return .track(event: .userList("received \(allUsers.count) users"))
         case .failed:
             state.isLoading = false
-            return .trackAnalytics(event: .userList("failed"))
+            return .track(event: .userList("failed"))
+        case .select(let user):
+            state.selectedUser = user
+            return .track(event: .userList("selected user"))
+                <> .go(to: .userDetails)
         }
     }
 }
@@ -81,8 +97,12 @@ extension Array {
 }
 
 extension DispatchMethod where W == World, A == AppAction {
-    static func trackAnalytics(event: AnalyticsComponent) -> DispatchMethod {
-        return .void(.background(track(event: event)))
+    static func track(event: AnalyticsComponent) -> DispatchMethod {
+        return .void(.background(trackAnalytics(event: event)))
+    }
+
+    static func go(to screen: Screen) -> DispatchMethod {
+        return .void(.main(navigate(to: screen)))
     }
 }
 
@@ -91,17 +111,17 @@ private let cache = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathCo
 private let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent("download").appendingPathExtension("txt")
 
 private let downloadTheInternet
-    = download(url: google, cacheAt: cache, thenMoveTo: downloads)
+    = download(from: google, cacheAt: cache, thenMoveTo: downloads)
         >>>= { .pure($0.map(AppAction.prism.download.complete.review) ?? AppAction.download(.failed)) }
 
 private func inject(user: User) -> WorldReader<AppAction> {
-    return track(event: .userList("inject user"))
+    return trackAnalytics(event: .userList("inject user"))
         >>>= { writeToDatabase(user, for: user.id) }
         >>>= { .pure($0.map(AppAction.prism.users.injected.review) ?? AppAction.users(.failed)) }
 }
 
-private func fetchUsers() -> Recurring<AppAction> {
-    return Recurring<AppAction> { world in
+private func fetchUsers() -> WorldReader<ErrorlessSignal<AppAction>> {
+    return .init { world in
         world.database.objects(ofType: User.self)
             .map(AppAction.prism.users.received.review)
             .noError()

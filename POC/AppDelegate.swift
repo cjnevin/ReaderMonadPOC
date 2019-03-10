@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // TODO: Disable based on ProcessInfo
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: UserListViewController())
+        window?.rootViewController = UINavigationController(rootViewController: Screen.userList.make())
         window?.makeKeyAndVisible()
         return true
     }

@@ -15,6 +15,14 @@
 		832A85652234701000EB3A32 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85642234701000EB3A32 /* Function.swift */; };
 		832A85672234703B00EB3A32 /* Analytics+World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85662234703B00EB3A32 /* Analytics+World.swift */; };
 		832A85682234795C00EB3A32 /* AnalyticsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85522234688F00EB3A32 /* AnalyticsComponent.swift */; };
+		832A85782234FE7700EB3A32 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A856F2234F7B700EB3A32 /* Navigator.swift */; };
+		832A85792234FE7700EB3A32 /* NavigatorDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85712234F85600EB3A32 /* NavigatorDecorator.swift */; };
+		832A857A2234FE7700EB3A32 /* NavigationLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85732234F96100EB3A32 /* NavigationLogger.swift */; };
+		832A857B2234FE7700EB3A32 /* NavigationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A85752234F9EA00EB3A32 /* NavigationRecorder.swift */; };
+		832A857D2234FE8800EB3A32 /* Navigator+World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A857C2234FE8800EB3A32 /* Navigator+World.swift */; };
+		832A857F2234FF8400EB3A32 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A857E2234FF8400EB3A32 /* Signal.swift */; };
+		832A858122350B6400EB3A32 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A858022350B6400EB3A32 /* TableViewController.swift */; };
+		832A858322350F1A00EB3A32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A858222350F1A00EB3A32 /* ViewController.swift */; };
 		834DDF032232FB45004C9C4F /* DatabaseLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF022232FB45004C9C4F /* DatabaseLogger.swift */; };
 		834DDF052232FBEE004C9C4F /* DatabaseRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */; };
 		834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */; };
@@ -44,7 +52,6 @@
 		834DDF702233CB04004C9C4F /* AutoPrism.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF6F2233CB03004C9C4F /* AutoPrism.generated.swift */; };
 		834DDF722233CB1A004C9C4F /* SourceryImports_Prism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF712233CB1A004C9C4F /* SourceryImports_Prism.swift */; };
 		834DDF772233CFE2004C9C4F /* TestableWorldStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF752233CFD6004C9C4F /* TestableWorldStore.swift */; };
-		834DDF7D2233FE47004C9C4F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF7C2233FE47004C9C4F /* Observable.swift */; };
 		834DDF8022342213004C9C4F /* Store+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF7F22342213004C9C4F /* Store+Extensions.swift */; };
 		834DDF8322342436004C9C4F /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF8222342436004C9C4F /* Disposable.swift */; };
 		834DDF852234245C004C9C4F /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF842234245C004C9C4F /* Observer.swift */; };
@@ -66,7 +73,7 @@
 		834DDFC522344FCA004C9C4F /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFC422344FCA004C9C4F /* ModelType.swift */; };
 		834DDFC722345117004C9C4F /* DisposableDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFC622345117004C9C4F /* DisposableDictionary.swift */; };
 		834DDFC92234513F004C9C4F /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFC82234513F004C9C4F /* Screen.swift */; };
-		834DDFCB22345233004C9C4F /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFCA22345233004C9C4F /* UserDetailViewController.swift */; };
+		834DDFCB22345233004C9C4F /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDFCA22345233004C9C4F /* UserDetailsViewController.swift */; };
 		834DDFDB22345432004C9C4F /* Render.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DDFD922345432004C9C4F /* Render.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		834DDFDE22345432004C9C4F /* Render.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834DDFD722345432004C9C4F /* Render.framework */; };
 		834DDFDF22345432004C9C4F /* Render.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 834DDFD722345432004C9C4F /* Render.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -212,6 +219,14 @@
 		832A856222346FD600EB3A32 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		832A85642234701000EB3A32 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		832A85662234703B00EB3A32 /* Analytics+World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+World.swift"; sourceTree = "<group>"; };
+		832A856F2234F7B700EB3A32 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		832A85712234F85600EB3A32 /* NavigatorDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorDecorator.swift; sourceTree = "<group>"; };
+		832A85732234F96100EB3A32 /* NavigationLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLogger.swift; sourceTree = "<group>"; };
+		832A85752234F9EA00EB3A32 /* NavigationRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRecorder.swift; sourceTree = "<group>"; };
+		832A857C2234FE8800EB3A32 /* Navigator+World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigator+World.swift"; sourceTree = "<group>"; };
+		832A857E2234FF8400EB3A32 /* Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
+		832A858022350B6400EB3A32 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		832A858222350F1A00EB3A32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		834DDF022232FB45004C9C4F /* DatabaseLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLogger.swift; sourceTree = "<group>"; };
 		834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecorder.swift; sourceTree = "<group>"; };
 		834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDatabase.swift; sourceTree = "<group>"; };
@@ -240,7 +255,6 @@
 		834DDF732233CE73004C9C4F /* TestableWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableWorld.swift; sourceTree = "<group>"; };
 		834DDF752233CFD6004C9C4F /* TestableWorldStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableWorldStore.swift; sourceTree = "<group>"; };
 		834DDF782233D12A004C9C4F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		834DDF7C2233FE47004C9C4F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		834DDF7F22342213004C9C4F /* Store+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Extensions.swift"; sourceTree = "<group>"; };
 		834DDF8222342436004C9C4F /* Disposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
 		834DDF842234245C004C9C4F /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
@@ -260,7 +274,7 @@
 		834DDFC422344FCA004C9C4F /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		834DDFC622345117004C9C4F /* DisposableDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposableDictionary.swift; sourceTree = "<group>"; };
 		834DDFC82234513F004C9C4F /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
-		834DDFCA22345233004C9C4F /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		834DDFCA22345233004C9C4F /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		834DDFD722345432004C9C4F /* Render.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Render.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		834DDFD922345432004C9C4F /* Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Render.h; sourceTree = "<group>"; };
 		834DDFDA22345432004C9C4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -385,6 +399,7 @@
 				FEA698AB22328F2400A8E043 /* Database+World.swift */,
 				FEA698A722328E6F00A8E043 /* Disk+World.swift */,
 				FEA698A922328EBA00A8E043 /* Download+World.swift */,
+				832A857C2234FE8800EB3A32 /* Navigator+World.swift */,
 			);
 			path = IO;
 			sourceTree = "<group>";
@@ -432,6 +447,34 @@
 				832A856022346FCD00EB3A32 /* Semigroup.swift */,
 			);
 			path = Composition;
+			sourceTree = "<group>";
+		};
+		832A856D2234F7A100EB3A32 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				832A85502234685000EB3A32 /* IO */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
+		832A856E2234F7A900EB3A32 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				832A856F2234F7B700EB3A32 /* Navigator.swift */,
+				832A85712234F85600EB3A32 /* NavigatorDecorator.swift */,
+				832A85732234F96100EB3A32 /* NavigationLogger.swift */,
+				832A85752234F9EA00EB3A32 /* NavigationRecorder.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		832A85772234FE5900EB3A32 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				FEA698782232827A00A8E043 /* IO */,
+				832A856E2234F7A900EB3A32 /* Navigation */,
+			);
+			path = Effects;
 			sourceTree = "<group>";
 		};
 		834DDF082232FCE5004C9C4F /* Disk */ = {
@@ -520,14 +563,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		834DDF25223331E5004C9C4F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				834DDFC82234513F004C9C4F /* Screen.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		834DDF392233AA43004C9C4F /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,8 +600,8 @@
 			isa = PBXGroup;
 			children = (
 				834DDF8222342436004C9C4F /* Disposable.swift */,
-				834DDF7C2233FE47004C9C4F /* Observable.swift */,
 				834DDF842234245C004C9C4F /* Observer.swift */,
+				832A857E2234FF8400EB3A32 /* Signal.swift */,
 				834DDF8622342481004C9C4F /* Sink.swift */,
 			);
 			path = Reactive;
@@ -577,7 +612,7 @@
 			children = (
 				834DDF912234286B004C9C4F /* World.h */,
 				834DDFB222342959004C9C4F /* Generated */,
-				832A85502234685000EB3A32 /* IO */,
+				832A856D2234F7A100EB3A32 /* Effects */,
 				834DDFB522342976004C9C4F /* SourceryImports_Prism.swift */,
 				834DDF732233CE73004C9C4F /* TestableWorld.swift */,
 				FEA6987B223282A200A8E043 /* World.swift */,
@@ -599,6 +634,9 @@
 		834DDFCC2234529A004C9C4F /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				834DDFC82234513F004C9C4F /* Screen.swift */,
+				832A858022350B6400EB3A32 /* TableViewController.swift */,
+				832A858222350F1A00EB3A32 /* ViewController.swift */,
 				834DDFCD223452A5004C9C4F /* User */,
 			);
 			path = Features;
@@ -609,7 +647,7 @@
 			children = (
 				834DDF26223331EF004C9C4F /* User.swift */,
 				FEA698252232810300A8E043 /* UserListViewController.swift */,
-				834DDFCA22345233004C9C4F /* UserDetailViewController.swift */,
+				834DDFCA22345233004C9C4F /* UserDetailsViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -667,7 +705,6 @@
 				834DDFCE22345379004C9C4F /* Core+ */,
 				834DDF19223305F5004C9C4F /* World+ */,
 				834DDF6E2233CB03004C9C4F /* Generated */,
-				834DDF25223331E5004C9C4F /* Model */,
 				834DDF162233051E004C9C4F /* State */,
 				834DDFCC2234529A004C9C4F /* Features */,
 				FEA698232232810300A8E043 /* AppDelegate.swift */,
@@ -687,7 +724,7 @@
 				FEA6984B2232811E00A8E043 /* Core.h */,
 				832A855F22346FC300EB3A32 /* Composition */,
 				834DDF392233AA43004C9C4F /* Generated */,
-				FEA698782232827A00A8E043 /* IO */,
+				832A85772234FE5900EB3A32 /* Effects */,
 				FEA698772232825300A8E043 /* Monads */,
 				834DDF3C2233AA6A004C9C4F /* Optics */,
 				834DDF8122342420004C9C4F /* Reactive */,
@@ -1167,6 +1204,7 @@
 				834DDFAF223428D1004C9C4F /* Disk+World.swift in Sources */,
 				834DDFAC2234287B004C9C4F /* World.swift in Sources */,
 				832A85672234703B00EB3A32 /* Analytics+World.swift in Sources */,
+				832A857D2234FE8800EB3A32 /* Navigator+World.swift in Sources */,
 				834DDFB422342959004C9C4F /* AutoPrism.generated.swift in Sources */,
 				834DDFAE223428C8004C9C4F /* Database+World.swift in Sources */,
 				834DDFB622342976004C9C4F /* SourceryImports_Prism.swift in Sources */,
@@ -1195,14 +1233,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				834DDFCB22345233004C9C4F /* UserDetailViewController.swift in Sources */,
+				834DDFCB22345233004C9C4F /* UserDetailsViewController.swift in Sources */,
 				FEA698262232810300A8E043 /* UserListViewController.swift in Sources */,
 				834DDFC722345117004C9C4F /* DisposableDictionary.swift in Sources */,
 				834DDF8022342213004C9C4F /* Store+Extensions.swift in Sources */,
+				832A858122350B6400EB3A32 /* TableViewController.swift in Sources */,
 				834DDFC92234513F004C9C4F /* Screen.swift in Sources */,
 				FEA698B72232AED400A8E043 /* RealmDatabase.swift in Sources */,
 				FEA698242232810300A8E043 /* AppDelegate.swift in Sources */,
 				832A85682234795C00EB3A32 /* AnalyticsComponent.swift in Sources */,
+				832A858322350F1A00EB3A32 /* ViewController.swift in Sources */,
 				FEA698B22232ADC800A8E043 /* AppState.swift in Sources */,
 				834DDF1D223307E9004C9C4F /* RealWorld.swift in Sources */,
 				834DDFC522344FCA004C9C4F /* ModelType.swift in Sources */,
@@ -1228,7 +1268,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEA698852232860000A8E043 /* DiskLogger.swift in Sources */,
+				832A857B2234FE7700EB3A32 /* NavigationRecorder.swift in Sources */,
+				832A85792234FE7700EB3A32 /* NavigatorDecorator.swift in Sources */,
 				834DDF5D2233BBC3004C9C4F /* FileManager+Disk.swift in Sources */,
+				832A857A2234FE7700EB3A32 /* NavigationLogger.swift in Sources */,
 				FEA698762232825000A8E043 /* Reader.swift in Sources */,
 				832A855A22346E2000EB3A32 /* AnalyticsLogger.swift in Sources */,
 				834DDF1122330095004C9C4F /* Recorder.swift in Sources */,
@@ -1245,11 +1288,11 @@
 				834DDFEE22345A9C004C9C4F /* DiskDecorator.swift in Sources */,
 				FEA698AE2232AD7600A8E043 /* String+Output.swift in Sources */,
 				FEA6986E2232817F00A8E043 /* Disk.swift in Sources */,
-				834DDF7D2233FE47004C9C4F /* Observable.swift in Sources */,
 				834DDF032232FB45004C9C4F /* DatabaseLogger.swift in Sources */,
 				FEA69883223285BA00A8E043 /* MemoryDisk.swift in Sources */,
 				832A85652234701000EB3A32 /* Function.swift in Sources */,
 				FEA6988E2232871200A8E043 /* DownloadLogger.swift in Sources */,
+				832A85782234FE7700EB3A32 /* Navigator.swift in Sources */,
 				832A856322346FD600EB3A32 /* Monoid.swift in Sources */,
 				FEA698A2223289BC00A8E043 /* ReducerRecorder.swift in Sources */,
 				FEA698892232866100A8E043 /* Try.swift in Sources */,
@@ -1260,6 +1303,7 @@
 				FEA698972232881C00A8E043 /* Store.swift in Sources */,
 				FEA6989E223288E300A8E043 /* InterpreterRecorder.swift in Sources */,
 				834DDF852234245C004C9C4F /* Observer.swift in Sources */,
+				832A857F2234FF8400EB3A32 /* Signal.swift in Sources */,
 				834DDF3E2233AA73004C9C4F /* Prism.swift in Sources */,
 				832A856122346FCD00EB3A32 /* Semigroup.swift in Sources */,
 				FEA6989C223288A600A8E043 /* InterpreterLogger.swift in Sources */,

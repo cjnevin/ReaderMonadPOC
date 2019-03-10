@@ -10,12 +10,14 @@ import UIKit
 
 public protocol TableViewCellModel {
     func cell(at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell
+    func didSelect(at indexPath: IndexPath, in tableView: UITableView)
 }
 
-open class TableViewDataSource<T: TableViewCellModel>: AbstractDataSource<T>, UITableViewDataSource {
+open class TableViewDataSource<T: TableViewCellModel>: AbstractDataSource<T>, UITableViewDataSource, UITableViewDelegate {
     open weak var tableView: UITableView? {
         didSet {
             tableView?.dataSource = self
+            tableView?.delegate = self
             reload()
         }
     }
@@ -34,5 +36,9 @@ open class TableViewDataSource<T: TableViewCellModel>: AbstractDataSource<T>, UI
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return items[indexPath.row].cell(at: indexPath, in: tableView)
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        return items[indexPath.row].didSelect(at: indexPath, in: tableView)
     }
 }

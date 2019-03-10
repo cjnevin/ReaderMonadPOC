@@ -15,7 +15,7 @@ public final class MemoryDatabase: Database {
         self.values = values
     }
 
-    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError> {
+    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError> {
         return .just(values.values.compactMap { $0 as? T })
     }
 

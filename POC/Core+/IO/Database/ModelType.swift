@@ -24,7 +24,7 @@ protocol RealmConvertible {
 }
 
 extension ModelType {
-    static func objects() -> Observable<[R.M], ReadError> {
+    static func objects() -> Signal<[R.M], ReadError> {
         return realmObjects(type: R.self).map { $0.map { $0.asModel() } }
     }
 
@@ -79,9 +79,9 @@ private func realmDelete<T: Object>(_ object: T) -> Bool {
     return tryRealmWrite({ $0.delete(object) }).didSucceed()
 }
 
-private func realmObjects<T: Object>(type: T.Type) -> Observable<[T], ReadError> {
+private func realmObjects<T: Object>(type: T.Type) -> Signal<[T], ReadError> {
     guard let realm = realm() else { return .error(.notReadable) }
-    return Observable { (observer) -> Disposable in
+    return Signal { (observer) -> Disposable in
         let token = realm.objects(T.self).observe({ (change) in
             func send(_ results: Results<T>?) {
                 guard let results = results else { return observer.next([]) }

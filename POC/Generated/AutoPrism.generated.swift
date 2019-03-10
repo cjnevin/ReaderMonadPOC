@@ -14,6 +14,9 @@ extension AppAction {
         internal static let users = Prism<AppAction, AppAction.Users>(
             preview: { if case .users(let value) = $0 { return value } else { return nil } },
             review: { (x1) in .users(x1) })
+        internal static let screen = Prism<AppAction, Screen>(
+            preview: { if case .screen(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .screen(x1) })
     }
 }
 
@@ -23,6 +26,9 @@ internal extension Prism where Part == AppAction {
 	}
 	var users: Prism<Whole, AppAction.Users> {
 		return self • AppAction.prism.users
+	}
+	var screen: Prism<Whole, Screen> {
+		return self • AppAction.prism.screen
 	}
 }
 
@@ -71,6 +77,9 @@ extension AppAction.Users {
         internal static let failed = Prism<AppAction.Users, ()>(
             preview: { if case .failed = $0 { return () } else { return nil } },
             review: { .failed })
+        internal static let select = Prism<AppAction.Users, User>(
+            preview: { if case .select(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .select(x1) })
     }
 }
 
@@ -89,6 +98,9 @@ internal extension Prism where Part == AppAction.Users {
 	}
 	var failed: Prism<Whole, Void> {
 		return self • AppAction.Users.prism.failed
+	}
+	var select: Prism<Whole, User> {
+		return self • AppAction.Users.prism.select
 	}
 }
 

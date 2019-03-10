@@ -9,30 +9,27 @@
 import UIKit
 import Render
 
-class UserListViewController: UITableViewController {
+class UserListViewController: TableViewController {
     private let users = UserListDataSource()
-    var injectTimer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         store.dispatch(.download(.start))
         users.tableView = tableView
         navigationItem.title = "Users"
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addUser))
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    @objc func addUser() {
+        store.dispatch(.users(.inject(.random())))
+    }
+
+    @objc override func bind() {
+        super.bind()
         store.dispatch(.users(.watch))
-        store.subscribe(.userList, to: \.latestUsers) { [unowned users] (latestUsers) in
+        subscribe(to: \.latestUsers) { [unowned users] (latestUsers) in
             users.items = latestUsers
         }
-        injectTimer = store.timed { AppAction.prism.users.inject.review(.random()) }
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        disposal(for: .userList)().dispose()
-        injectTimer?.invalidate()
     }
 }
 
@@ -44,5 +41,9 @@ extension User: TableViewCellModel {
             ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
         cell.textLabel?.text = name
         return cell
+    }
+
+    func didSelect(at indexPath: IndexPath, in tableView: UITableView) {
+        store.dispatch(.users(.select(self)))
     }
 }

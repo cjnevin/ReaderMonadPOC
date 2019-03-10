@@ -18,3 +18,8 @@ func disposal(for screen: Screen) -> () -> CompositeDisposable {
         return d
     }
 }
+
+func dispose(screen: Screen) {
+    disposal(for: screen)().dispose()
+    disposableDictionary[screen] = CompositeDisposable()
+}

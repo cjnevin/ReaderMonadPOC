@@ -9,7 +9,7 @@
 import Foundation
 import Core
 
-public func track(event: AnalyticsComponent) -> WorldReader<Void> {
+public func trackAnalytics(event: AnalyticsComponent) -> WorldReader<Void> {
     return .init { world in
         world.analytics(event)
     }

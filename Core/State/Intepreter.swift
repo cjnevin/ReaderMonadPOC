@@ -16,7 +16,7 @@ public enum DispatchMethod<W, A> {
     case sequence([DispatchMethod<W, A>])
     case void(ReaderEffect<W, Void>)
     case action(ReaderEffect<W, A>)
-    case actions(ReaderEffect<W, Observable<A, NoError>>, disposedBy: CompositeDisposable)
+    case actions(ReaderEffect<W, Signal<A, NoError>>, disposedBy: CompositeDisposable)
 
     public static var identity: DispatchMethod<W, A> {
         return .void(.identity)

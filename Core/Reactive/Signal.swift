@@ -1,5 +1,5 @@
 //
-//  Observable.swift
+//  Signal.swift
 //  Core
 //
 //  Created by Chris Nevin on 09/03/2019.
@@ -8,13 +8,15 @@
 
 import Foundation
 
-public protocol ObservableType {
+public typealias ErrorlessSignal<T> = Signal<T, NoError>
+
+public protocol SignalType {
     associatedtype T
     associatedtype E
     func subscribe<O: ObserverType>(observer: O) -> Disposable where O.T == T, O.E == E
 }
 
-public class Observable<T, E>: ObservableType {
+public class Signal<T, E>: SignalType {
     private let subscribeHandler: (Observer<T, E>) -> Disposable
 
     public convenience init(_ elements: T...) {
@@ -36,22 +38,22 @@ public class Observable<T, E>: ObservableType {
     }
 }
 
-extension ObservableType {
-    public func noError() -> Observable<T, NoError> {
+extension SignalType {
+    public func noError() -> Signal<T, NoError> {
         return mapError { _ in NoError() }
     }
 }
 
-extension ObservableType {
-    public static func error(_ error: E) -> Observable<T, E> {
-        return Observable { observer in
+extension SignalType {
+    public static func error(_ error: E) -> Signal<T, E> {
+        return Signal { observer in
             observer.error(error)
             return Indisposable()
         }
     }
 
-    public static func just(_ elements: T...) -> Observable<T, E> {
-        return Observable { observer in
+    public static func just(_ elements: T...) -> Signal<T, E> {
+        return Signal { observer in
             elements.forEach(observer.next)
             observer.completed()
             return Indisposable()
@@ -66,8 +68,8 @@ extension ObservableType {
         })
     }
 
-    public func mapError<F>(_ transform: @escaping (E) -> F) -> Observable<T, F> {
-        return Observable<T, F> { observer in
+    public func mapError<F>(_ transform: @escaping (E) -> F) -> Signal<T, F> {
+        return Signal<T, F> { observer in
             return self.subscribe(observer: Observer { event in
                 switch event {
                 case .next(let element):
@@ -81,8 +83,8 @@ extension ObservableType {
         }
     }
 
-    public func map<U>(_ transform: @escaping (T) -> U) -> Observable<U, E> {
-        return Observable<U, E> { observer in
+    public func map<U>(_ transform: @escaping (T) -> U) -> Signal<U, E> {
+        return Signal<U, E> { observer in
             return self.subscribe(observer: Observer { event in
                 switch event {
                 case .next(let element):
@@ -96,8 +98,8 @@ extension ObservableType {
         }
     }
 
-    public func flatMap<U>(_ transform: @escaping (T) -> Observable<U, E>) -> Observable<U, E> {
-        return Observable { observer -> Disposable in
+    public func flatMap<U>(_ transform: @escaping (T) -> Signal<U, E>) -> Signal<U, E> {
+        return Signal { observer -> Disposable in
             return self.subscribe(observer: Observer { event in
                 let composite = CompositeDisposable()
                 let error: (E) -> Void = { e in observer.error(e); composite.dispose() }
@@ -118,12 +120,12 @@ extension ObservableType {
         }
     }
 
-    public func map<U>(_ keyPath: KeyPath<T, U>) -> Observable<U, E> {
+    public func map<U>(_ keyPath: KeyPath<T, U>) -> Signal<U, E> {
         return map { $0[keyPath: keyPath] }
     }
 
-    public func filter(_ predicate: @escaping (T) -> Bool) -> Observable<T, E> {
-        return Observable<T, E> { observer in
+    public func filter(_ predicate: @escaping (T) -> Bool) -> Signal<T, E> {
+        return Signal<T, E> { observer in
             return self.subscribe(observer: Observer { event in
                 switch event {
                 case .next(let element):
@@ -139,8 +141,8 @@ extension ObservableType {
         }
     }
 
-    public static func merge<U: ObservableType>(_ observables: [U]) -> Observable<U.T, U.E>  {
-        return Observable<U.T, U.E> { observer in
+    public static func merge<U: SignalType>(_ observables: [U]) -> Signal<U.T, U.E>  {
+        return Signal<U.T, U.E> { observer in
             var completed: Bool = false
             var error: U.E? = nil
             let disposable = observables.map { observable in
@@ -166,34 +168,34 @@ extension ObservableType {
     }
 }
 
-extension Sequence where Element: ObservableType {
-    public func merge() -> Observable<Element.T, Element.E> {
+extension Sequence where Element: SignalType {
+    public func merge() -> Signal<Element.T, Element.E> {
         return .merge(Array(self))
     }
 }
 
-extension ObservableType where T: OptionalType {
-    public func filterNil() -> Observable<T.Wrapped, E> {
+extension SignalType where T: OptionalType {
+    public func filterNil() -> Signal<T.Wrapped, E> {
         return filter { ($0 as? T.Wrapped) != nil }.map { $0 as! T.Wrapped }
     }
 }
 
-extension ObservableType where T == Bool {
-    public func `true`() -> Observable<T, E> {
+extension SignalType where T == Bool {
+    public func `true`() -> Signal<T, E> {
         return filter { $0 == true }
     }
 
-    public func `false`() -> Observable<T, E> {
+    public func `false`() -> Signal<T, E> {
         return filter { !$0 }
     }
 }
 
-extension ObservableType where T: Equatable {
-    public func equalTo(_ element: T) -> Observable<T, E> {
+extension SignalType where T: Equatable {
+    public func equalTo(_ element: T) -> Signal<T, E> {
         return filter { $0 == element }
     }
 
-    public func notEqualTo(_ element: T) -> Observable<T, E> {
+    public func notEqualTo(_ element: T) -> Signal<T, E> {
         return filter { $0 != element }
     }
 }

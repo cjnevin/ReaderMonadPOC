@@ -59,8 +59,8 @@ public final class Store<S, A, W> {
 public struct NoError { }
 
 extension Store {
-    public func observe() -> Observable<S, NoError> {
-        return Observable { observer -> Disposable in
+    public func observe() -> Signal<S, NoError> {
+        return Signal { observer -> Disposable in
             let token = self.subscribe { state in
                 observer.next(state)
             }

@@ -22,6 +22,9 @@ open class TestableWorld {
     open var disk: Disk = MemoryDisk()
     open var diskRecorder: DiskRecorder!
 
+    open var navigate: Navigator = { _ in }
+    open var navigationRecorder: NavigationRecorder!
+
     open var sync: Sync = mainSync
 
     public init() { }
@@ -31,11 +34,13 @@ open class TestableWorld {
         diskRecorder = DiskRecorder(disk)
         databaseRecorder = DatabaseRecorder(database)
         analyticsRecorder = AnalyticsRecorder(analytics)
+        navigationRecorder = NavigationRecorder(navigate)
         return World(
             analytics: analyticsRecorder.analytics,
             database: databaseRecorder,
             download: downloadRecorder.downloader,
             disk: diskRecorder,
+            navigate: navigationRecorder.navigator,
             sync: sync)
     }
 }

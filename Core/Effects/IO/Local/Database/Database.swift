@@ -9,14 +9,14 @@
 import Foundation
 
 public protocol Database {
-    func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError>
+    func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError>
     func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError>
     func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError>
     func write<T: DatabaseWritable>(_ value: T, for id: String) -> Result<Void, WriteError>
 }
 
 public protocol DatabaseObjectsObservable: DatabaseReadable {
-    static func objects() -> Observable<[Self], ReadError>
+    static func objects() -> Signal<[Self], ReadError>
 }
 
 public protocol DatabaseReadable {

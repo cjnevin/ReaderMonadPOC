@@ -17,7 +17,7 @@ public class DatabaseDecorator: Database {
         self.database = database
     }
 
-    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Observable<[T], ReadError> {
+    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError> {
         return decorate(database.objects(ofType: type), id: "\(type)", prefix: "all")
     }
 
@@ -38,7 +38,7 @@ public class DatabaseDecorator: Database {
         return result
     }
 
-    private func decorate<T, E>(_ result: Observable<T, E>, id: String, prefix: String) -> Observable<T, E> {
+    private func decorate<T, E>(_ result: Signal<T, E>, id: String, prefix: String) -> Signal<T, E> {
         disposables += result.subscribe { [unowned self] result in
             self.decorator?("\(prefix) \(id) - \(result)")
         }

@@ -15,6 +15,7 @@ let realWorld = World(
     database: DatabaseLogger(RealmDatabase()),
     download: downloadLogger(URLSession.shared.download),
     disk: DiskLogger(MemoryDisk()),
+    navigate: navigationLogger(navigate),
     sync: backgroundSync)
 
 let realWorldStore = Store(
