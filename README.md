@@ -1,8 +1,8 @@
-# IOMonadPOC
-Proof of concept using IO monad, redux, and snapshot tests
+# Reader Monad POC
+Proof of concept using reader monad, redux, and snapshot tests
 
-## IO Monad
-The IO monad allows us to abstract all dependency injection in our application to a single point (known as a `World` or `Environment`). We can then inject a different `World` in order to run unit or automation tests (or different configurations).
+## Reader Monad
+The Reader monad allows us to abstract all dependency injection in our application to a single point (known as a `World`). We can then inject a different `World` in order to run unit or automation tests (or different configurations).
 
 For example:
 * A `Debug World` may log every event that goes through the system, to help us debug. 
