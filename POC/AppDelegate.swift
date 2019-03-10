@@ -8,6 +8,8 @@
 
 import UIKit
 
+var store = makeStore()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // TODO: Disable based on ProcessInfo
+        if ProcessInfo.processInfo.environment["isUnitTesting"] != nil {
+            return true
+        }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: Screen.userList.make())
         window?.makeKeyAndVisible()

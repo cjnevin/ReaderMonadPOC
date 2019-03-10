@@ -562,6 +562,7 @@
 				834DDF1C223307E9004C9C4F /* RealWorld.swift */,
 				834DDF752233CFD6004C9C4F /* TestableWorldStore.swift */,
 				FEA698B82232B39000A8E043 /* WorldStoreTest.swift */,
+				834DDF7F22342213004C9C4F /* Store+Extensions.swift */,
 			);
 			path = "World+";
 			sourceTree = "<group>";
@@ -669,7 +670,6 @@
 			children = (
 				FEA698B52232AE5000A8E043 /* IO */,
 				834DDFC622345117004C9C4F /* DisposableDictionary.swift */,
-				834DDF7F22342213004C9C4F /* Store+Extensions.swift */,
 			);
 			path = "Core+";
 			sourceTree = "<group>";

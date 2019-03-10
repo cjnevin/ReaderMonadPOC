@@ -15,65 +15,13 @@ ReducerRecorder<AppState, AppAction, World>
             - g: (Function)
         ▿ disposedBy: CompositeDisposable #0
           - isDisposed: false
-          ▿ disposables: 3 elements
+          ▿ disposables: 1 element
             ▿ Sink<Observer<AppAction, NoError>> #1
-              - isDisposed: false
+              - isDisposed: true
               ▿ forward: Observer<AppAction, NoError> #2
                 - handler: (Function)
               - subscriptionHandler: (Function)
               ▿ disposable: CompositeDisposable #3
-                - isDisposed: false
-                ▿ disposables: 1 element
-                  ▿ Sink<Observer<AppAction, ReadError>> #4
-                    - isDisposed: false
-                    ▿ forward: Observer<AppAction, ReadError> #5
-                      - handler: (Function)
-                    - subscriptionHandler: (Function)
-                    ▿ disposable: CompositeDisposable #6
-                      - isDisposed: false
-                      ▿ disposables: 1 element
-                        ▿ Sink<Observer<Swift.Array<User>, ReadError>> #7
-                          - isDisposed: false
-                          ▿ forward: Observer<Swift.Array<User>, ReadError> #8
-                            - handler: (Function)
-                          - subscriptionHandler: (Function)
-                          ▿ disposable: CompositeDisposable #9
-                            - isDisposed: false
-                            ▿ disposables: 1 element
-                              ▿ Sink<Observer<Swift.Array<UserObject>, ReadError>> #10
-                                - isDisposed: false
-                                ▿ forward: Observer<Swift.Array<UserObject>, ReadError> #11
-                                  - handler: (Function)
-                                - subscriptionHandler: (Function)
-                                ▿ disposable: CompositeDisposable #12
-                                  - isDisposed: false
-                                  ▿ disposables: 1 element
-                                    ▿ AnonymousDisposable #13
-                                      - disposeHandler: (Function)
-            ▿ Sink<Observer<Swift.Array<User>, NoError>> #14
-              - isDisposed: false
-              ▿ forward: Observer<Swift.Array<User>, NoError> #15
-                - handler: (Function)
-              - subscriptionHandler: (Function)
-              ▿ disposable: CompositeDisposable #16
-                - isDisposed: false
-                ▿ disposables: 1 element
-                  ▿ Sink<Observer<AppState, NoError>> #17
-                    - isDisposed: false
-                    ▿ forward: Observer<AppState, NoError> #18
-                      - handler: (Function)
-                    - subscriptionHandler: (Function)
-                    ▿ disposable: CompositeDisposable #19
-                      - isDisposed: false
-                      ▿ disposables: 1 element
-                        ▿ AnonymousDisposable #20
-                          - disposeHandler: (Function)
-            ▿ Sink<Observer<AppAction, NoError>> #21
-              - isDisposed: true
-              ▿ forward: Observer<AppAction, NoError> #22
-                - handler: (Function)
-              - subscriptionHandler: (Function)
-              ▿ disposable: CompositeDisposable #23
                 - isDisposed: true
                 - disposables: 0 elements
   ▿ (4 elements)

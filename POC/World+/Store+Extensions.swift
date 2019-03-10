@@ -8,9 +8,16 @@
 
 import Foundation
 import Core
+import World
 
-// TODO: Swap based on ProcessInfo
-var store = realWorldStore
+typealias AppStore = WorldStore<AppState, AppAction>
+
+func makeStore() -> AppStore {
+    guard let _ = NSClassFromString("XCTest") else {
+        return realWorldStore
+    }
+    return automationWorldStore
+}
 
 extension Store {
     func subscribe<T>(_ screen: Screen, to keyPath: KeyPath<S, T>, callback: @escaping (T) -> Void) {

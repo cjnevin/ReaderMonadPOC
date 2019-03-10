@@ -99,11 +99,18 @@ class WorldStoreTest: XCTestCase {
             print("\n!!!! Copy the below into a file called: \(name).\(ext) !!!!\n\n")
             print(outputRecorder.result)
             print("\n\n!!!! Copy the above into a file called: \(name).\(ext) !!!!\n")
-            XCTFail("Please disable recordMode once you have generated output")
+            XCTFail("Please disable recordMode once you have generated output", file: file, line: line)
         } else {
             let path = Bundle(for: WorldStoreTest.self).path(forResource: name, ofType: ext)!
             let content = try! String(contentsOfFile: path).trimmingCharacters(in: .whitespacesAndNewlines)
-            XCTAssertEqual(outputRecorder.result, content, file: file, line: line)
+            if outputRecorder.result != content {
+                print("\n!!!! Output in file called: \(name).\(ext) !!!!\n\n")
+                print(content)
+                print("\n")
+                print("\n\n!!!! Did not match !!!!\n\n")
+                print(outputRecorder.result)
+                XCTFail("Please verify above is correct or fix your code to meet this criteria", file: file, line: line)
+            }
         }
     }
 }
