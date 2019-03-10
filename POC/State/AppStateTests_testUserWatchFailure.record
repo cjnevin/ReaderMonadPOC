@@ -10,8 +10,8 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World>
       - users: POC.AppAction.Users.watch
     ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.actions
       ▿ actions: (2 elements)
-        ▿ .0: Core.Effect<Core.Reader<World.World, Core.Observable<POC.AppAction, Core.NoError>>>.main
-          ▿ main: Core.Reader<World.World, Core.Observable<POC.AppAction, Core.NoError>>
+        ▿ .0: Core.Effect<Core.Reader<World.World, Core.Signal<POC.AppAction, Core.NoError>>>.main
+          ▿ main: Core.Reader<World.World, Core.Signal<POC.AppAction, Core.NoError>>
             - g: (Function)
         ▿ disposedBy: Core.CompositeDisposable #0
           - isDisposed: false

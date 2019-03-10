@@ -10,12 +10,12 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World>
       - users: POC.AppAction.Users.watch
     ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.actions
       ▿ actions: (2 elements)
-        ▿ .0: Core.Effect<Core.Reader<World.World, Core.Observable<POC.AppAction, Core.NoError>>>.main
-          ▿ main: Core.Reader<World.World, Core.Observable<POC.AppAction, Core.NoError>>
+        ▿ .0: Core.Effect<Core.Reader<World.World, Core.Signal<POC.AppAction, Core.NoError>>>.main
+          ▿ main: Core.Reader<World.World, Core.Signal<POC.AppAction, Core.NoError>>
             - g: (Function)
         ▿ disposedBy: Core.CompositeDisposable #0
           - isDisposed: false
-          ▿ disposables: 3 elements
+          ▿ disposables: 4 elements
             ▿ Core.Sink<Core.Observer<POC.AppAction, Core.NoError>> #1
               - isDisposed: false
               ▿ forward: Core.Observer<POC.AppAction, Core.NoError> #2
@@ -74,6 +74,14 @@ Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World>
                 - handler: (Function)
               - subscriptionHandler: (Function)
               ▿ disposable: Core.CompositeDisposable #23
+                - isDisposed: true
+                - disposables: 0 elements
+            ▿ Core.Sink<Core.Observer<POC.AppAction, Core.NoError>> #24
+              - isDisposed: true
+              ▿ forward: Core.Observer<POC.AppAction, Core.NoError> #25
+                - handler: (Function)
+              - subscriptionHandler: (Function)
+              ▿ disposable: Core.CompositeDisposable #26
                 - isDisposed: true
                 - disposables: 0 elements
   ▿ (4 elements)
