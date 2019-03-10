@@ -11,7 +11,34 @@ import Core
 import World
 @testable import POC
 
+extension User {
+    static func fake(n: Int = 1) -> User {
+        return User(id: "id\(n)", name: "name\(n)")
+    }
+}
+
 class AppStateTests: WorldStoreTest {
+    func testUserListScreen() {
+        store.dispatch(.screen(.userList))
+        assert(keyPath: \AppState.currentScreen)
+    }
+
+    func testUserDetailsScreen() {
+        store.dispatch(.screen(.userDetails))
+        assert(keyPath: \AppState.currentScreen)
+    }
+
+    func testSelectUserThenComeBackSetsThenClearsUser() {
+        store.dispatch(.users(.select(.fake())))
+        store.dispatch(.screen(.userList))
+        assert(keyPath: \AppState.selectedUser)
+    }
+
+    func testSelectUser() {
+        store.dispatch(.users(.select(.fake())))
+        assert(keyPath: \AppState.currentScreen)
+    }
+
     func testDownloadFailure() {
         testableWorld.downloadResult = .failure(.unknown)
         store.dispatch(.download(.start))
@@ -25,7 +52,7 @@ class AppStateTests: WorldStoreTest {
     }
 
     func testUserInjection() {
-        store.dispatch(.users(.inject(User(id: "id1", name: "name1"))))
+        store.dispatch(.users(.inject(.fake())))
         assert(keyPath: \AppState.isLoading)
     }
 
@@ -35,7 +62,7 @@ class AppStateTests: WorldStoreTest {
     }
 
     func testUserWatchSuccess() {
-        _ = testableWorld.database.write(User(id: "id1", name: "name1"), for: "id1")
+        _ = testableWorld.database.write(User.fake(), for: "id1")
         store.dispatch(.users(.watch))
         assert(keyPath: \AppState.latestUsers)
     }

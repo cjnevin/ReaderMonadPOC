@@ -1,29 +1,29 @@
-Core.DiskRecorder
+DiskRecorder
 ▿ 4 elements
   - "write cache.txt - success()"
   - "read cache.txt - success(0 bytes)"
   - "write download.txt - success()"
   - "delete cache.txt - success()"
-Core.DownloadRecorder
+DownloadRecorder
 ▿ 1 element
   - "https://www.google.com"
-Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World>
+ReducerRecorder<AppState, AppAction, World>
 ▿ 2 elements
   ▿ (4 elements)
     - .0: false
     - .1: true
-    ▿ .2: POC.AppAction.download
-      - download: POC.AppAction.Download.start
-    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.action
-      ▿ action: Core.Effect<Core.Reader<World.World, POC.AppAction>>.background
-        ▿ background: Core.Reader<World.World, POC.AppAction>
+    ▿ .2: AppAction.download
+      - download: AppAction.Download.start
+    ▿ .3: DispatchMethod<World, AppAction>.action
+      ▿ action: Effect<Reader<World, AppAction>>.background
+        ▿ background: Reader<World, AppAction>
           - g: (Function)
   ▿ (4 elements)
     - .0: true
     - .1: false
-    ▿ .2: POC.AppAction.download
-      - download: POC.AppAction.Download.complete
-    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.void
-      ▿ void: Core.Effect<Core.Reader<World.World, ()>>.background
-        ▿ background: Core.Reader<World.World, ()>
+    ▿ .2: AppAction.download
+      - download: AppAction.Download.complete
+    ▿ .3: DispatchMethod<World, AppAction>.void
+      ▿ void: Effect<Reader<World, ()>>.background
+        ▿ background: Reader<World, ()>
           - g: (Function)

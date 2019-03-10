@@ -10,7 +10,7 @@ import Foundation
 
 public func interpreterLogger<W, A>(_ interpreter: @escaping Interpreter<W, A>) -> Interpreter<W, A> {
     return { effect, dispatch in
-        print("[EffectLogger] - \(effect)]")
+        print("[EffectLogger] - \(effect)]".stripCruft())
         interpreter(effect, dispatch)
     }
 }

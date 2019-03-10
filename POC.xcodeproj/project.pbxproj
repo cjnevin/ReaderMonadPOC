@@ -23,6 +23,10 @@
 		832A857F2234FF8400EB3A32 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A857E2234FF8400EB3A32 /* Signal.swift */; };
 		832A858122350B6400EB3A32 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A858022350B6400EB3A32 /* TableViewController.swift */; };
 		832A858322350F1A00EB3A32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A858222350F1A00EB3A32 /* ViewController.swift */; };
+		832A8588223516EA00EB3A32 /* AppStateTests_testSelectUser.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8584223516E900EB3A32 /* AppStateTests_testSelectUser.record */; };
+		832A8589223516EA00EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8585223516E900EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record */; };
+		832A858A223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8586223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record */; };
+		832A858B223516EA00EB3A32 /* AppStateTests_testUserListScreen.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8587223516EA00EB3A32 /* AppStateTests_testUserListScreen.record */; };
 		834DDF032232FB45004C9C4F /* DatabaseLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF022232FB45004C9C4F /* DatabaseLogger.swift */; };
 		834DDF052232FBEE004C9C4F /* DatabaseRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */; };
 		834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */; };
@@ -227,6 +231,10 @@
 		832A857E2234FF8400EB3A32 /* Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		832A858022350B6400EB3A32 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		832A858222350F1A00EB3A32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		832A8584223516E900EB3A32 /* AppStateTests_testSelectUser.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testSelectUser.record; sourceTree = "<group>"; };
+		832A8585223516E900EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record; sourceTree = "<group>"; };
+		832A8586223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserDetailsScreen.record; sourceTree = "<group>"; };
+		832A8587223516EA00EB3A32 /* AppStateTests_testUserListScreen.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserListScreen.record; sourceTree = "<group>"; };
 		834DDF022232FB45004C9C4F /* DatabaseLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLogger.swift; sourceTree = "<group>"; };
 		834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecorder.swift; sourceTree = "<group>"; };
 		834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDatabase.swift; sourceTree = "<group>"; };
@@ -534,6 +542,10 @@
 			children = (
 				FEA698B12232ADC800A8E043 /* AppState.swift */,
 				FEA698382232810A00A8E043 /* AppStateTests.swift */,
+				832A8584223516E900EB3A32 /* AppStateTests_testSelectUser.record */,
+				832A8585223516E900EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record */,
+				832A8586223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record */,
+				832A8587223516EA00EB3A32 /* AppStateTests_testUserListScreen.record */,
 				FEA698BA2232CF7000A8E043 /* AppStateTests_testDownloadFailure.record */,
 				FEA698BC2232CFB100A8E043 /* AppStateTests_testDownloadSuccess.record */,
 				834DDF2822334390004C9C4F /* AppStateTests_testUserInjection.record */,
@@ -1094,10 +1106,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				832A858A223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record in Resources */,
 				834DDFC122343033004C9C4F /* AppStateTests_testUserWatchFailure.record in Resources */,
+				832A8588223516EA00EB3A32 /* AppStateTests_testSelectUser.record in Resources */,
 				FEA698BB2232CF7000A8E043 /* AppStateTests_testDownloadFailure.record in Resources */,
 				834DDFC222343033004C9C4F /* AppStateTests_testUserWatchSuccess.record in Resources */,
 				FEA698BD2232CFB100A8E043 /* AppStateTests_testDownloadSuccess.record in Resources */,
+				832A8589223516EA00EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record in Resources */,
+				832A858B223516EA00EB3A32 /* AppStateTests_testUserListScreen.record in Resources */,
 				834DDF2F22334C56004C9C4F /* AppStateTests_testUserInjection.record in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

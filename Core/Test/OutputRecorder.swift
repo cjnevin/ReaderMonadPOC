@@ -18,7 +18,7 @@ public struct OutputRecorder: TextOutputStream {
     public init() { }
     public mutating func write(_ string: String) {
         if string == "\n" {
-            written.append(current.stripLLDBExpressions())
+            written.append(current.stripCruft())
             current = ""
         } else {
             current += string

@@ -1,0 +1,20 @@
+ReducerRecorder<AppState, AppAction, World>
+▿ 1 element
+  ▿ (4 elements)
+    - .0: nil
+    - .1: nil
+    ▿ .2: AppAction.users
+      ▿ users: AppAction.Users.select
+        ▿ select: User
+          - id: "id1"
+          - name: "name1"
+    ▿ .3: DispatchMethod<World, AppAction>.sequence
+      ▿ sequence: 2 elements
+        ▿ DispatchMethod<World, AppAction>.void
+          ▿ void: Effect<Reader<World, ()>>.background
+            ▿ background: Reader<World, ()>
+              - g: (Function)
+        ▿ DispatchMethod<World, AppAction>.void
+          ▿ void: Effect<Reader<World, ()>>.main
+            ▿ main: Reader<World, ()>
+              - g: (Function)

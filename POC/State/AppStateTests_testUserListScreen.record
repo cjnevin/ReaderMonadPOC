@@ -1,0 +1,12 @@
+ReducerRecorder<AppState, AppAction, World>
+▿ 1 element
+  ▿ (4 elements)
+    - .0: nil
+    ▿ .1: Optional(Screen.userList)
+      - some: Screen.userList
+    ▿ .2: AppAction.screen
+      - screen: Screen.userList
+    ▿ .3: DispatchMethod<World, AppAction>.void
+      ▿ void: Effect<Reader<World, ()>>.background
+        ▿ background: Reader<World, ()>
+          - g: (Function)

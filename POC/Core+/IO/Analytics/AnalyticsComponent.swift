@@ -23,6 +23,10 @@ extension AnalyticsComponent {
 }
 
 extension AnalyticsComponent {
+    static func screen(_ screen: Screen) -> AnalyticsComponent {
+        return action(screen.rawValue) <> label("viewed") <> category("screen")
+    }
+
     static func userDetails(_ action: String) -> AnalyticsComponent {
         return self.action(action) <> user("details")
     }

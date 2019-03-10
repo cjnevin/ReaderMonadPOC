@@ -50,7 +50,7 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
         if screen == .userList {
             state.selectedUser = nil
         }
-        return .identity
+        return .track(event: .screen(screen))
     case .download(let download):
         switch download {
         case .start:
@@ -84,7 +84,7 @@ let appReducer = WorldReducer<AppState, AppAction> { state, action in
             return .track(event: .userList("failed"))
         case .select(let user):
             state.selectedUser = user
-            return .track(event: .userList("selected user"))
+            return .track(event: .userList("selected \(user.id)"))
                 <> .go(to: .userDetails)
         }
     }

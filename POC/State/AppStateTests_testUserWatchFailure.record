@@ -1,88 +1,88 @@
-Core.DatabaseRecorder
+DatabaseRecorder
 ▿ 1 element
   - "[DatabaseLogger] all User - []"
-Core.ReducerRecorder<POC.AppState, POC.AppAction, World.World>
+ReducerRecorder<AppState, AppAction, World>
 ▿ 2 elements
   ▿ (4 elements)
     - .0: 0 elements
     - .1: 0 elements
-    ▿ .2: POC.AppAction.users
-      - users: POC.AppAction.Users.watch
-    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.actions
+    ▿ .2: AppAction.users
+      - users: AppAction.Users.watch
+    ▿ .3: DispatchMethod<World, AppAction>.actions
       ▿ actions: (2 elements)
-        ▿ .0: Core.Effect<Core.Reader<World.World, Core.Signal<POC.AppAction, Core.NoError>>>.main
-          ▿ main: Core.Reader<World.World, Core.Signal<POC.AppAction, Core.NoError>>
+        ▿ .0: Effect<Reader<World, Signal<AppAction, NoError>>>.main
+          ▿ main: Reader<World, Signal<AppAction, NoError>>
             - g: (Function)
-        ▿ disposedBy: Core.CompositeDisposable #0
+        ▿ disposedBy: CompositeDisposable #0
           - isDisposed: false
           ▿ disposables: 3 elements
-            ▿ Core.Sink<Core.Observer<POC.AppAction, Core.NoError>> #1
+            ▿ Sink<Observer<AppAction, NoError>> #1
               - isDisposed: false
-              ▿ forward: Core.Observer<POC.AppAction, Core.NoError> #2
+              ▿ forward: Observer<AppAction, NoError> #2
                 - handler: (Function)
               - subscriptionHandler: (Function)
-              ▿ disposable: Core.CompositeDisposable #3
+              ▿ disposable: CompositeDisposable #3
                 - isDisposed: false
                 ▿ disposables: 1 element
-                  ▿ Core.Sink<Core.Observer<POC.AppAction, Core.ReadError>> #4
+                  ▿ Sink<Observer<AppAction, ReadError>> #4
                     - isDisposed: false
-                    ▿ forward: Core.Observer<POC.AppAction, Core.ReadError> #5
+                    ▿ forward: Observer<AppAction, ReadError> #5
                       - handler: (Function)
                     - subscriptionHandler: (Function)
-                    ▿ disposable: Core.CompositeDisposable #6
+                    ▿ disposable: CompositeDisposable #6
                       - isDisposed: false
                       ▿ disposables: 1 element
-                        ▿ Core.Sink<Core.Observer<Swift.Array<POC.User>, Core.ReadError>> #7
+                        ▿ Sink<Observer<Swift.Array<User>, ReadError>> #7
                           - isDisposed: false
-                          ▿ forward: Core.Observer<Swift.Array<POC.User>, Core.ReadError> #8
+                          ▿ forward: Observer<Swift.Array<User>, ReadError> #8
                             - handler: (Function)
                           - subscriptionHandler: (Function)
-                          ▿ disposable: Core.CompositeDisposable #9
+                          ▿ disposable: CompositeDisposable #9
                             - isDisposed: false
                             ▿ disposables: 1 element
-                              ▿ Core.Sink<Core.Observer<Swift.Array<POC.UserObject>, Core.ReadError>> #10
+                              ▿ Sink<Observer<Swift.Array<UserObject>, ReadError>> #10
                                 - isDisposed: false
-                                ▿ forward: Core.Observer<Swift.Array<POC.UserObject>, Core.ReadError> #11
+                                ▿ forward: Observer<Swift.Array<UserObject>, ReadError> #11
                                   - handler: (Function)
                                 - subscriptionHandler: (Function)
-                                ▿ disposable: Core.CompositeDisposable #12
+                                ▿ disposable: CompositeDisposable #12
                                   - isDisposed: false
                                   ▿ disposables: 1 element
-                                    ▿ Core.AnonymousDisposable #13
+                                    ▿ AnonymousDisposable #13
                                       - disposeHandler: (Function)
-            ▿ Core.Sink<Core.Observer<Swift.Array<POC.User>, Core.NoError>> #14
+            ▿ Sink<Observer<Swift.Array<User>, NoError>> #14
               - isDisposed: false
-              ▿ forward: Core.Observer<Swift.Array<POC.User>, Core.NoError> #15
+              ▿ forward: Observer<Swift.Array<User>, NoError> #15
                 - handler: (Function)
               - subscriptionHandler: (Function)
-              ▿ disposable: Core.CompositeDisposable #16
+              ▿ disposable: CompositeDisposable #16
                 - isDisposed: false
                 ▿ disposables: 1 element
-                  ▿ Core.Sink<Core.Observer<POC.AppState, Core.NoError>> #17
+                  ▿ Sink<Observer<AppState, NoError>> #17
                     - isDisposed: false
-                    ▿ forward: Core.Observer<POC.AppState, Core.NoError> #18
+                    ▿ forward: Observer<AppState, NoError> #18
                       - handler: (Function)
                     - subscriptionHandler: (Function)
-                    ▿ disposable: Core.CompositeDisposable #19
+                    ▿ disposable: CompositeDisposable #19
                       - isDisposed: false
                       ▿ disposables: 1 element
-                        ▿ Core.AnonymousDisposable #20
+                        ▿ AnonymousDisposable #20
                           - disposeHandler: (Function)
-            ▿ Core.Sink<Core.Observer<POC.AppAction, Core.NoError>> #21
+            ▿ Sink<Observer<AppAction, NoError>> #21
               - isDisposed: true
-              ▿ forward: Core.Observer<POC.AppAction, Core.NoError> #22
+              ▿ forward: Observer<AppAction, NoError> #22
                 - handler: (Function)
               - subscriptionHandler: (Function)
-              ▿ disposable: Core.CompositeDisposable #23
+              ▿ disposable: CompositeDisposable #23
                 - isDisposed: true
                 - disposables: 0 elements
   ▿ (4 elements)
     - .0: 0 elements
     - .1: 0 elements
-    ▿ .2: POC.AppAction.users
-      ▿ users: POC.AppAction.Users.received
+    ▿ .2: AppAction.users
+      ▿ users: AppAction.Users.received
         - received: 0 elements
-    ▿ .3: Core.DispatchMethod<World.World, POC.AppAction>.void
-      ▿ void: Core.Effect<Core.Reader<World.World, ()>>.background
-        ▿ background: Core.Reader<World.World, ()>
+    ▿ .3: DispatchMethod<World, AppAction>.void
+      ▿ void: Effect<Reader<World, ()>>.background
+        ▿ background: Reader<World, ()>
           - g: (Function)
