@@ -8,8 +8,6 @@
 
 import Foundation
 
-infix operator <>: AdditionPrecedence
-
 public protocol Semigroup {
     func combine(with other: Self) -> Self
 }
