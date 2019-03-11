@@ -1,6 +1,6 @@
 DatabaseRecorder
 ▿ 1 element
-  - "[DatabaseLogger] write User id1 - success()"
+  - "write User id1 - success()"
 ReducerRecorder<AppState, AppAction, World>
 ▿ 2 elements
   ▿ (4 elements)

@@ -12,6 +12,6 @@ public class DatabaseRecorder: DatabaseDecorator, Recorder {
     public private(set) var events: [String] = []
     public override init(_ database: Database) {
         super.init(database)
-        decorator = { self.events.append("[DatabaseLogger] \($0)") }
+        decorator = { self.events.append("\($0)") }
     }
 }

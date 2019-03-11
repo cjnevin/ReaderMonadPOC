@@ -1,6 +1,6 @@
 DatabaseRecorder
 ▿ 1 element
-  - "[DatabaseLogger] all User - []"
+  - "all User - []"
 ReducerRecorder<AppState, AppAction, World>
 ▿ 2 elements
   ▿ (4 elements)
