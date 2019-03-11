@@ -11,8 +11,12 @@ import Core
 import RealmSwift
 
 struct RealmDatabase: Database {
-    func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError> {
-        return type.objects()
+    func objects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Result<[T], ReadError> {
+        return T.objects(matching: query)
+    }
+
+    func recurringObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Signal<[T], ReadError> {
+        return T.recurringObjects(matching: query)
     }
 
     func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError> {

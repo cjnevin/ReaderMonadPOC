@@ -122,7 +122,7 @@ private func inject(user: User) -> WorldReader<AppAction> {
 
 private func fetchUsers() -> WorldReader<ErrorlessSignal<AppAction>> {
     return .init { world in
-        world.database.objects(ofType: User.self)
+        world.database.recurringObjects(ofType: User.self)
             .map(AppAction.prism.users.received.review)
             .noError()
     }

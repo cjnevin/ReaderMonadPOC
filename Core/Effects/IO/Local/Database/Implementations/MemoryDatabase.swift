@@ -15,7 +15,11 @@ public final class MemoryDatabase: Database {
         self.values = values
     }
 
-    public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError> {
+    public func objects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Result<[T], ReadError> {
+        return .success(values.values.compactMap { $0 as? T })
+    }
+
+    public func recurringObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Signal<[T], ReadError> {
         return .just(values.values.compactMap { $0 as? T })
     }
 
