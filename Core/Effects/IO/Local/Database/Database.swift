@@ -9,8 +9,8 @@
 import Foundation
 
 public protocol Database {
-    func objects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Result<[T], ReadError>
-    func recurringObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Signal<[T], ReadError>
+    func objects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Result<[T], ReadError>
+    func recurringObjects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Signal<[T], ReadError>
     func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError>
     func read<T: DatabaseReadable>(id: String, ofType: T.Type) -> Result<T, ReadError>
     func write<T: DatabaseWritable>(_ value: T, for id: String) -> Result<Void, WriteError>
@@ -18,8 +18,8 @@ public protocol Database {
 
 public protocol DatabaseObjectsObservable: DatabaseReadable {
     associatedtype DatabaseObject
-    static func objects(matching query: Query<DatabaseObject>) -> Result<[Self], ReadError>
-    static func recurringObjects(matching query: Query<DatabaseObject>) -> Signal<[Self], ReadError>
+    static func objects(matching query: DatabaseQuery<DatabaseObject>) -> Result<[Self], ReadError>
+    static func recurringObjects(matching query: DatabaseQuery<DatabaseObject>) -> Signal<[Self], ReadError>
 }
 
 public protocol DatabaseReadable {
@@ -37,11 +37,11 @@ public protocol DatabaseDeletable: DatabaseReadable {
 
 extension Database {
     public func objects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Result<[T], ReadError> {
-        return objects(for: Query())
+        return objects(for: DatabaseQuery<T.DatabaseObject>())
     }
 
     public func recurringObjects<T: DatabaseObjectsObservable>(ofType type: T.Type) -> Signal<[T], ReadError> {
-        return recurringObjects(for: Query())
+        return recurringObjects(for: DatabaseQuery<T.DatabaseObject>())
     }
 }
 
@@ -61,25 +61,5 @@ extension Database {
         guard case .success = delete(id: id, ofType: T.self) else { return false }
         guard case .failure = read(id: id, ofType: T.self) else { return false }
         return true
-    }
-}
-
-public struct Query<T> {
-    public typealias Element = T
-    public struct Sort {
-        public let key: String
-        public let ascending: Bool
-
-        public init(key: String, ascending: Bool) {
-            self.key = key
-            self.ascending = ascending
-        }
-    }
-    public let predicate: NSPredicate?
-    public let sort: Sort?
-
-    public init(filteredBy: NSPredicate? = nil, sortedBy: Sort? = nil) {
-        self.predicate = filteredBy
-        self.sort = sortedBy
     }
 }

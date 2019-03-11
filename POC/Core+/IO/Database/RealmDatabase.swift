@@ -11,11 +11,11 @@ import Core
 import RealmSwift
 
 struct RealmDatabase: Database {
-    func objects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Result<[T], ReadError> {
+    func objects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Result<[T], ReadError> {
         return T.objects(matching: query)
     }
 
-    func recurringObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Signal<[T], ReadError> {
+    func recurringObjects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Signal<[T], ReadError> {
         return T.recurringObjects(matching: query)
     }
 

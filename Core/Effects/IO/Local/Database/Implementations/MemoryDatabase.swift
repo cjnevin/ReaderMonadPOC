@@ -15,12 +15,18 @@ public final class MemoryDatabase: Database {
         self.values = values
     }
 
-    public func objects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Result<[T], ReadError> {
-        return .success(values.values.compactMap { $0 as? T })
+    private func filtered<T: DatabaseObjectsObservable>(by query: DatabaseQuery<T.DatabaseObject>) -> [T] {
+        return values.values
+            .compactMap { query.predicate?.evaluate(with: $0) ?? false }
+            .compactMap { $0 as? T }
     }
 
-    public func recurringObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Signal<[T], ReadError> {
-        return .just(values.values.compactMap { $0 as? T })
+    public func objects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Result<[T], ReadError> {
+        return .success(filtered(by: query))
+    }
+
+    public func recurringObjects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Signal<[T], ReadError> {
+        return .just(filtered(by: query))
     }
 
     public func delete<T: DatabaseDeletable>(id: String, ofType: T.Type) -> Result<Void, DeleteError> {

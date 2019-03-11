@@ -24,14 +24,14 @@ public func writeToDatabase<T: DatabaseWritable>(_ value: T, for id: String) -> 
     }
 }
 
-public func databaseObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> WorldReader<WorldResult<[T]>> {
+public func databaseObjects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> WorldReader<WorldResult<[T]>> {
     return .init { world in
         world.database.objects(for: query)
             .catch(WorldError.prism.database.read.review)
     }
 }
 
-public func recurringDatabaseObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> WorldReader<WorldSignal<[T]>> {
+public func recurringDatabaseObjects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> WorldReader<WorldSignal<[T]>> {
     return .init { world in
         world.database.recurringObjects(for: query)
             .mapError(WorldError.prism.database.read.review)

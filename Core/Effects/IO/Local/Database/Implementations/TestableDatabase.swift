@@ -16,12 +16,12 @@ public final class TestableDatabase: Database {
     }
 
     public var objectsError: ReadError?
-    public func objects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Result<[T], ReadError> {
+    public func objects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Result<[T], ReadError> {
         return objectsError.map(Result.failure) ?? database.objects(for: query)
     }
 
     public var recurringObjectsError: ReadError?
-    public func recurringObjects<T>(for query: Query<T.DatabaseObject>) -> Signal<[T], ReadError> where T : DatabaseObjectsObservable {
+    public func recurringObjects<T>(for query: DatabaseQuery<T.DatabaseObject>) -> Signal<[T], ReadError> where T : DatabaseObjectsObservable {
         return objectsError.map(Signal.error) ?? database.recurringObjects(for: query)
     }
 

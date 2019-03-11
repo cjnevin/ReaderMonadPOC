@@ -26,6 +26,7 @@
 		832A8589223516EA00EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8585223516E900EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record */; };
 		832A858A223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8586223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record */; };
 		832A858B223516EA00EB3A32 /* AppStateTests_testUserListScreen.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8587223516EA00EB3A32 /* AppStateTests_testUserListScreen.record */; };
+		832A858D2236F9BC00EB3A32 /* DatabaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A858C2236F9BC00EB3A32 /* DatabaseQuery.swift */; };
 		834DDF032232FB45004C9C4F /* DatabaseLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF022232FB45004C9C4F /* DatabaseLogger.swift */; };
 		834DDF052232FBEE004C9C4F /* DatabaseRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */; };
 		834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */; };
@@ -235,6 +236,7 @@
 		832A8585223516E900EB3A32 /* AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testSelectUserThenComeBackSetsThenClearsUser.record; sourceTree = "<group>"; };
 		832A8586223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserDetailsScreen.record; sourceTree = "<group>"; };
 		832A8587223516EA00EB3A32 /* AppStateTests_testUserListScreen.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserListScreen.record; sourceTree = "<group>"; };
+		832A858C2236F9BC00EB3A32 /* DatabaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQuery.swift; sourceTree = "<group>"; };
 		834DDF022232FB45004C9C4F /* DatabaseLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLogger.swift; sourceTree = "<group>"; };
 		834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecorder.swift; sourceTree = "<group>"; };
 		834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDatabase.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 			children = (
 				FEA698692232813B00A8E043 /* Database.swift */,
 				834DDF612233BFDC004C9C4F /* DatabaseTests.swift */,
+				832A858C2236F9BC00EB3A32 /* DatabaseQuery.swift */,
 				834DDF0A2232FD13004C9C4F /* Implementations */,
 			);
 			path = Database;
@@ -1339,6 +1342,7 @@
 				FEA6989A2232889000A8E043 /* ReducerLogger.swift in Sources */,
 				FEA698A02232892800A8E043 /* Intepreter.swift in Sources */,
 				834DDFEC223459AD004C9C4F /* DatabaseDecorator.swift in Sources */,
+				832A858D2236F9BC00EB3A32 /* DatabaseQuery.swift in Sources */,
 				834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */,
 				FEA6986A2232813B00A8E043 /* Database.swift in Sources */,
 				FEA698C522369AB200A8E043 /* Apply.swift in Sources */,

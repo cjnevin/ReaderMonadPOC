@@ -17,11 +17,11 @@ public class DatabaseDecorator: Database {
         self.database = database
     }
 
-    public func objects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Result<[T], ReadError> {
+    public func objects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Result<[T], ReadError> {
         return decorate(database.objects(for: query), id: "\(T.self)", prefix: "all")
     }
 
-    public func recurringObjects<T: DatabaseObjectsObservable>(for query: Query<T.DatabaseObject>) -> Signal<[T], ReadError> {
+    public func recurringObjects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Signal<[T], ReadError> {
         return decorate(database.recurringObjects(for: query), id: "\(T.self)", prefix: "all")
     }
 

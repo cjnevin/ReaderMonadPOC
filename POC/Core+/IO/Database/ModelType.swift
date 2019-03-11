@@ -24,11 +24,11 @@ protocol RealmConvertible {
 }
 
 extension ModelType {
-    static func objects(matching query: Query<R>) -> Result<[R.M], ReadError> {
+    static func objects(matching query: DatabaseQuery<R>) -> Result<[R.M], ReadError> {
         return realmObjects(matching: query).map { $0.map { $0.asModel() } }
     }
 
-    static func recurringObjects(matching query: Query<R>) -> Signal<[R.M], ReadError> {
+    static func recurringObjects(matching query: DatabaseQuery<R>) -> Signal<[R.M], ReadError> {
         return realmRecurringObjects(matching: query).map { $0.map { $0.asModel() } }
     }
 
@@ -84,22 +84,22 @@ private func realmDelete<T: Object>(_ object: T) -> Bool {
 }
 
 private extension Results {
-    func applying(_ query: Query<Element>) -> Results<Element> {
+    func applying(_ query: DatabaseQuery<Element>) -> Results<Element> {
         let filtered = query.predicate.map(self.filter) ?? self
         let sorted = query.sort.map { ($0.key, $0.ascending) }.map(filtered.sorted) ?? filtered
         return sorted
     }
 }
 
-private func realmObjects<T: Object>(matching query: Query<T>) -> Result<[T], ReadError> {
+private func realmObjects<T: Object>(matching query: DatabaseQuery<T>) -> Result<[T], ReadError> {
     guard let realm = realm() else { return .failure(.notReadable) }
     return .success(Array(realm.objects(T.self).applying(query)))
 }
 
-private func realmRecurringObjects<T: Object>(matching query: Query<T>) -> Signal<[T], ReadError> {
+private func realmRecurringObjects<T: Object>(matching query: DatabaseQuery<T>) -> Signal<[T], ReadError> {
     guard let realm = realm() else { return .error(.notReadable) }
-    return Signal { (observer) -> Disposable in
-        let token = realm.objects(T.self).applying(query).observe({ (change) in
+    return Signal { observer -> Disposable in
+        let token = realm.objects(T.self).applying(query).observe { change in
             func send(_ results: Results<T>?) {
                 guard let results = results else { return observer.next([]) }
                 observer.next(Array(results))
@@ -112,7 +112,7 @@ private func realmRecurringObjects<T: Object>(matching query: Query<T>) -> Signa
             case .error:
                 send(nil)
             }
-        })
+        }
         return AnonymousDisposable {
             token.invalidate()
         }
