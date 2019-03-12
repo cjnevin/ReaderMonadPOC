@@ -43,6 +43,46 @@ struct AppState {
     var currentScreen: Screen? = nil
 }
 
+func pipe<T>(lens: Lens<AppState, T?>, prism: Prism<AppAction, T>) -> (inout AppState, AppAction) -> Void {
+    return { state, action in
+        if let value = prism.preview(action) {
+            state = lens.set(value, state)
+        }
+    }
+}
+
+func setValue<T, U>(lens: Lens<AppState, T>, prism: Prism<AppAction, U>, f: @escaping (U) -> T) -> (inout AppState, AppAction) -> Void {
+    return { state, action in
+        if let value = prism.preview(action) {
+            state = lens.set(f(value), state)
+        }
+    }
+}
+
+func setValue<T>(lens: Lens<AppState, T>) -> (T) -> (Prism<AppAction, Void>) -> (inout AppState, AppAction) -> Void {
+    return { value in
+        return { prism in
+            return { state, action in
+                if prism.preview(action) != nil {
+                    state = lens.set(value, state)
+                }
+            }
+        }
+    }
+}
+
+func registerMany() {
+    let screenReducer = pipe(lens: lens(\AppState.currentScreen), prism: AppAction.prism.screen)
+    let _loading = setValue(lens: lens(\AppState.isLoading))
+    let notLoading = _loading(false)
+    let loading = _loading(true)
+
+    let a = loading(AppAction.prism.download.start)
+    let b = notLoading(AppAction.prism.download.complete)
+    let c = notLoading(AppAction.prism.download.failed)
+    
+}
+
 let appReducer = WorldReducer<AppState, AppAction> { state, action in
     switch action {
     case .screen(let screen):

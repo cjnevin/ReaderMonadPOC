@@ -32,13 +32,6 @@ extension Prism {
     }
 }
 
-precedencegroup OpticsCompositionPrecedence {
-    associativity: left
-    higherThan: AdditionPrecedence
-}
-
-infix operator • : OpticsCompositionPrecedence
-
 public func • <A, B, C> (lhs: Prism<A, B>, rhs: Prism<B, C>) -> Prism<A, C> {
     return lhs.compose(rhs)
 }
