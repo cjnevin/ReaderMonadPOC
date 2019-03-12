@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func downloadLogger(_ downloader: @escaping Downloader) -> (URL) -> Result<Data, DownloadError> {
+public func downloadLogger(_ downloader: @escaping Downloader) -> (URL) -> Response {
     return { url in
         let result = downloader(url)
         print("[DownloadLogger] '\(url)' - \(result)")

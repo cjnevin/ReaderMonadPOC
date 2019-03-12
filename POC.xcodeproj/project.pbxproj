@@ -27,6 +27,12 @@
 		832A858A223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8586223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record */; };
 		832A858B223516EA00EB3A32 /* AppStateTests_testUserListScreen.record in Resources */ = {isa = PBXBuildFile; fileRef = 832A8587223516EA00EB3A32 /* AppStateTests_testUserListScreen.record */; };
 		832A858D2236F9BC00EB3A32 /* DatabaseQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A858C2236F9BC00EB3A32 /* DatabaseQuery.swift */; };
+		83476E6A2238751700D040DF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E692238751700D040DF /* Request.swift */; };
+		83476E6D2238753000D040DF /* URLSession+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E6C2238753000D040DF /* URLSession+Request.swift */; };
+		83476E6F2238767500D040DF /* RequestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E6E2238767500D040DF /* RequestLogger.swift */; };
+		83476E71223876BC00D040DF /* RequestRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E70223876BC00D040DF /* RequestRecorder.swift */; };
+		83476E732238788300D040DF /* NetworkIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E722238788300D040DF /* NetworkIOError.swift */; };
+		83476E7522387B6E00D040DF /* Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E7422387B6E00D040DF /* Await.swift */; };
 		834DDF032232FB45004C9C4F /* DatabaseLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF022232FB45004C9C4F /* DatabaseLogger.swift */; };
 		834DDF052232FBEE004C9C4F /* DatabaseRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */; };
 		834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */; };
@@ -237,6 +243,12 @@
 		832A8586223516EA00EB3A32 /* AppStateTests_testUserDetailsScreen.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserDetailsScreen.record; sourceTree = "<group>"; };
 		832A8587223516EA00EB3A32 /* AppStateTests_testUserListScreen.record */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStateTests_testUserListScreen.record; sourceTree = "<group>"; };
 		832A858C2236F9BC00EB3A32 /* DatabaseQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQuery.swift; sourceTree = "<group>"; };
+		83476E692238751700D040DF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		83476E6C2238753000D040DF /* URLSession+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Request.swift"; sourceTree = "<group>"; };
+		83476E6E2238767500D040DF /* RequestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLogger.swift; sourceTree = "<group>"; };
+		83476E70223876BC00D040DF /* RequestRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRecorder.swift; sourceTree = "<group>"; };
+		83476E722238788300D040DF /* NetworkIOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIOError.swift; sourceTree = "<group>"; };
+		83476E7422387B6E00D040DF /* Await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Await.swift; sourceTree = "<group>"; };
 		834DDF022232FB45004C9C4F /* DatabaseLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLogger.swift; sourceTree = "<group>"; };
 		834DDF042232FBEE004C9C4F /* DatabaseRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecorder.swift; sourceTree = "<group>"; };
 		834DDF0C2232FD6A004C9C4F /* MemoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDatabase.swift; sourceTree = "<group>"; };
@@ -486,6 +498,25 @@
 				832A856E2234F7A900EB3A32 /* Navigation */,
 			);
 			path = Effects;
+			sourceTree = "<group>";
+		};
+		83476E682238750600D040DF /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				83476E692238751700D040DF /* Request.swift */,
+				83476E6B2238752300D040DF /* Implementations */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		83476E6B2238752300D040DF /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				83476E6E2238767500D040DF /* RequestLogger.swift */,
+				83476E70223876BC00D040DF /* RequestRecorder.swift */,
+				83476E6C2238753000D040DF /* URLSession+Request.swift */,
+			);
+			path = Implementations;
 			sourceTree = "<group>";
 		};
 		834DDF082232FCE5004C9C4F /* Disk */ = {
@@ -769,6 +800,9 @@
 			children = (
 				832A85512234687F00EB3A32 /* Analytics */,
 				832A855E22346E7F00EB3A32 /* Download */,
+				83476E682238750600D040DF /* Request */,
+				83476E7422387B6E00D040DF /* Await.swift */,
+				83476E722238788300D040DF /* NetworkIOError.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -1299,6 +1333,7 @@
 			files = (
 				FEA698852232860000A8E043 /* DiskLogger.swift in Sources */,
 				832A857B2234FE7700EB3A32 /* NavigationRecorder.swift in Sources */,
+				83476E6A2238751700D040DF /* Request.swift in Sources */,
 				832A85792234FE7700EB3A32 /* NavigatorDecorator.swift in Sources */,
 				834DDF5D2233BBC3004C9C4F /* FileManager+Disk.swift in Sources */,
 				832A857A2234FE7700EB3A32 /* NavigationLogger.swift in Sources */,
@@ -1326,7 +1361,9 @@
 				FEA698A2223289BC00A8E043 /* ReducerRecorder.swift in Sources */,
 				FEA698892232866100A8E043 /* Try.swift in Sources */,
 				FEA698912232877000A8E043 /* Reducer.swift in Sources */,
+				83476E6D2238753000D040DF /* URLSession+Request.swift in Sources */,
 				FEA6986C2232815700A8E043 /* Result.swift in Sources */,
+				83476E7522387B6E00D040DF /* Await.swift in Sources */,
 				FEA698932232878C00A8E043 /* Effect.swift in Sources */,
 				834DDF1B2233063D004C9C4F /* Sync.swift in Sources */,
 				FEA698972232881C00A8E043 /* Store.swift in Sources */,
@@ -1338,9 +1375,12 @@
 				FEA6989C223288A600A8E043 /* InterpreterLogger.swift in Sources */,
 				FEA698BF2232D43500A8E043 /* DownloadRecorder.swift in Sources */,
 				FEA698A522328A0400A8E043 /* OutputRecorder.swift in Sources */,
+				83476E6F2238767500D040DF /* RequestLogger.swift in Sources */,
+				83476E732238788300D040DF /* NetworkIOError.swift in Sources */,
 				834DDF8722342481004C9C4F /* Sink.swift in Sources */,
 				FEA6989A2232889000A8E043 /* ReducerLogger.swift in Sources */,
 				FEA698A02232892800A8E043 /* Intepreter.swift in Sources */,
+				83476E71223876BC00D040DF /* RequestRecorder.swift in Sources */,
 				834DDFEC223459AD004C9C4F /* DatabaseDecorator.swift in Sources */,
 				832A858D2236F9BC00EB3A32 /* DatabaseQuery.swift in Sources */,
 				834DDF0D2232FD6A004C9C4F /* MemoryDatabase.swift in Sources */,

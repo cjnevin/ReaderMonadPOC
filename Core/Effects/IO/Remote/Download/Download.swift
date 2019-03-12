@@ -8,10 +8,4 @@
 
 import Foundation
 
-public enum DownloadError {
-    case unknown
-    case serverError(Error)
-}
-
-public typealias Download = Result<Data, DownloadError>
-public typealias Downloader = (URL) -> Download
+public typealias Downloader = (URL) -> Response

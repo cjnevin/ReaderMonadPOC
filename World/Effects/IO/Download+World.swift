@@ -11,7 +11,7 @@ import Core
 
 public func download(from url: URL) -> WorldReader<WorldResult<Data>> {
     return .init { world in
-        world.download(url).catch(WorldError.download)
+        world.download(url).catch(WorldError.network)
     }
 }
 

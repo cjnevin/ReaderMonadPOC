@@ -14,6 +14,7 @@ public struct World {
     public let database: Database
     public let download: Downloader
     public let disk: Disk
+    public let executor: RequestExecutor
     public let navigate: Navigator
     public let sync: Sync
 
@@ -22,12 +23,14 @@ public struct World {
         database: Database,
         download: @escaping Downloader,
         disk: Disk,
+        executor: @escaping RequestExecutor,
         navigate: @escaping Navigator,
         sync: @escaping Sync) {
         self.analytics = analytics
         self.database = database
         self.download = download
         self.disk = disk
+        self.executor = executor
         self.navigate = navigate
         self.sync = sync
     }
@@ -37,7 +40,7 @@ public struct World {
 public enum WorldError {
     case database(FileIOError)
     case disk(FileIOError)
-    case download(DownloadError)
+    case network(NetworkIOError)
 }
 
 public typealias WorldResult<T> = Result<T, WorldError>

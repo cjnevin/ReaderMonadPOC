@@ -14,9 +14,9 @@ extension WorldError {
         public static let disk = Prism<WorldError, FileIOError>(
             preview: { if case .disk(let value) = $0 { return value } else { return nil } },
             review: { (x1) in .disk(x1) })
-        public static let download = Prism<WorldError, DownloadError>(
-            preview: { if case .download(let value) = $0 { return value } else { return nil } },
-            review: { (x1) in .download(x1) })
+        public static let network = Prism<WorldError, NetworkIOError>(
+            preview: { if case .network(let value) = $0 { return value } else { return nil } },
+            review: { (x1) in .network(x1) })
     }
 }
 
@@ -27,8 +27,8 @@ public extension Prism where Part == WorldError {
 	var disk: Prism<Whole, FileIOError> {
 		return self • WorldError.prism.disk
 	}
-	var download: Prism<Whole, DownloadError> {
-		return self • WorldError.prism.download
+	var network: Prism<Whole, NetworkIOError> {
+		return self • WorldError.prism.network
 	}
 }
 

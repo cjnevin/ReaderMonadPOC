@@ -16,11 +16,14 @@ open class TestableWorld {
     open var database = TestableDatabase(MemoryDatabase())
     open var databaseRecorder: DatabaseRecorder!
 
-    open var downloadResult: Download = Download.failure(.unknown)
+    open var downloadResult: Response = Response.failure(.unknown)
     open var downloadRecorder: DownloadRecorder!
 
     open var disk: Disk = MemoryDisk()
     open var diskRecorder: DiskRecorder!
+
+    open var response: Response = Response.failure(.unknown)
+    open var requestRecorder: RequestRecorder!
 
     open var navigate: Navigator = { _ in }
     open var navigationRecorder: NavigationRecorder!
@@ -35,11 +38,13 @@ open class TestableWorld {
         databaseRecorder = DatabaseRecorder(database)
         analyticsRecorder = AnalyticsRecorder(analytics)
         navigationRecorder = NavigationRecorder(navigate)
+        requestRecorder = RequestRecorder { _ in self.response }
         return World(
             analytics: analyticsRecorder.analytics,
             database: databaseRecorder,
             download: downloadRecorder.downloader,
             disk: diskRecorder,
+            executor: requestRecorder.executor,
             navigate: navigationRecorder.navigator,
             sync: sync)
     }
