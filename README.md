@@ -16,11 +16,11 @@ It (and other unidirectional architectures) are a fundamental part in making app
 
 Read more: https://itnext.io/functional-architecture-e9031090ff18
 
-## Synchronosity
-
-Asynchronous tasks are confined to the App as it's considered a side-effect in this architecture.
+## Synchronicity
 
 Monads can be chained to perform **synchronous** tasks which can then be executed on a background thread. These are essentially using an idea like co-routines to reduce complexity throughout the chain by converting asynchronous operations into synchronous operations.
+
+Asynchronous tasks are confined to the App as it's considered a side-effect in this architecture. However, we can still use them for returned values (as sometimes UI will require multiple updates of a value over time), they will be dispatched by the given `sync` closure in `World` to determine where to execute. To make them testable out of the box we must pass in an immediate callback.
 
 ## Snapshot Tests
 Snapshot will be used to compare the previous recorded state with the current in memory state. Tests will fail if they do not match.
