@@ -8,8 +8,9 @@
 
 import Foundation
 
-public func await(_ closure: @escaping (@escaping () -> ()) -> Void) {
+public func await<T>(_ closure: @escaping (@escaping () -> ()) throws -> T) rethrows -> T {
     let semaphore = DispatchSemaphore(value: 0)
-    closure() { semaphore.signal() }
+    let result = try closure() { semaphore.signal() }
     _ = semaphore.wait(timeout: .distantFuture)
+    return result
 }
