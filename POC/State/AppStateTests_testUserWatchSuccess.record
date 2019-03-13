@@ -15,21 +15,13 @@ ReducerRecorder<AppState, AppAction, World>
             - g: (Function)
         ▿ disposedBy: CompositeDisposable #0
           - isDisposed: false
-          ▿ disposables: 2 elements
+          ▿ disposables: 1 element
             ▿ Sink<Observer<AppAction, NoError>> #1
               - isDisposed: true
               ▿ forward: Observer<AppAction, NoError> #2
                 - handler: (Function)
               - subscriptionHandler: (Function)
               ▿ disposable: CompositeDisposable #3
-                - isDisposed: true
-                - disposables: 0 elements
-            ▿ Sink<Observer<AppAction, NoError>> #4
-              - isDisposed: true
-              ▿ forward: Observer<AppAction, NoError> #5
-                - handler: (Function)
-              - subscriptionHandler: (Function)
-              ▿ disposable: CompositeDisposable #6
                 - isDisposed: true
                 - disposables: 0 elements
   ▿ (4 elements)

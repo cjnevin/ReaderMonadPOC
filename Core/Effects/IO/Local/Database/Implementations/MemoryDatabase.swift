@@ -17,8 +17,8 @@ public final class MemoryDatabase: Database {
 
     private func filtered<T: DatabaseObjectsObservable>(by query: DatabaseQuery<T.DatabaseObject>) -> [T] {
         return values.values
-            .compactMap { query.predicate?.evaluate(with: $0) ?? false }
             .compactMap { $0 as? T }
+            .filter { query.predicate?.evaluate(with: $0) ?? true }
     }
 
     public func objects<T: DatabaseObjectsObservable>(for query: DatabaseQuery<T.DatabaseObject>) -> Result<[T], ReadError> {
