@@ -12,7 +12,7 @@ import World
 
 let realWorld = World(
     analytics: analyticsLogger,
-    database: DatabaseLogger(RealmDatabase()),
+    database: RealmDatabase(), // Large amounts of logging freezes Xcode/App - DatabaseLogger(RealmDatabase()),
     download: downloadLogger(URLSession.shared.download),
     disk: DiskLogger(MemoryDisk()),
     executor: requestLogger(URLSession.shared.execute),
@@ -20,6 +20,6 @@ let realWorld = World(
     sync: backgroundSync)
 
 let realWorldStore = Store(
-    reducer: reducerLogger(appReducer),
+    reducer: appReducer, // Large amounts of logging freezes Xcode/App - reducerLogger(appReducer),
     interpreter: interpreterLogger(worldInterpreter(world: realWorld)),
     initialState: AppState())
